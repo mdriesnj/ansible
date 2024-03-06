@@ -1,8 +1,10 @@
 - hosts: "{{ hosts }}"
-  become: true
+
+  become: yes
   tasks:
-  - name: Update and upgrade apt packages
-  apt:
-    update_cache: yes
-    upgrade: yes
-    cache_valid_time: 86400 #One day
+    # Upgrade packages
+    - name: upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
