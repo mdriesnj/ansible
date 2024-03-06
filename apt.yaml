@@ -1,7 +1,6 @@
-- name: Run the equivalent of apt-get update as a separate step
+- name: Update and upgrade apt packages
+  become: true
   apt:
+    upgrade: yes
     update_cache: yes
-- name: Upgrade all packages to the latest version
-  apt:
-    name: "*"
-    state: latest
+    cache_valid_time: 86400 #One day
