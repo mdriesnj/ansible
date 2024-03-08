@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+  become: true
+  tasks:
+    - name: ensure nginx is up to date
+      community.general.openbsd_pkg:
+        name: nginx
+        state: latest
