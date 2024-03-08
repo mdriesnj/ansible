@@ -1,3 +1,5 @@
+#install python first https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
+
 ---
 - hosts: all
 
