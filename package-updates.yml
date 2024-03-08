@@ -3,9 +3,8 @@
 
   become: true
   tasks:
-    - name: show distros
-      ansible.builtin.debug:
-        msg: ansible_distribution
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
     - name: update apt packages
       apt:
         upgrade: yes
