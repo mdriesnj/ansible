@@ -30,6 +30,6 @@
       
     - name: Reboot if patch requires it
       ansible.builtin.reboot:
-      when: syspatch.reboot_needed and ansible_distribution == 'OpenBSD' 
+      when: ansible_distribution == 'OpenBSD' and syspatch.reboot_needed
 
 
