@@ -5,7 +5,7 @@
 
   become: true
   tasks:
-    - name: ensure nginx is up to date
+    - name: Update all packages on the system
       community.general.openbsd_pkg:
-        name: nginx
+        name: '*'
         state: latest
