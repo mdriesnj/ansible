@@ -21,15 +21,15 @@
       community.general.openbsd_pkg:
         name: '*'
         state: latest
-      when: ansible_distribution == 'AlmaLinux'
+      when: ansible_distribution == 'OpenBSD'
 
     - name: Apply all patches and store result
       community.general.syspatch:
       register: syspatch
-      when: ansible_distribution == 'AlmaLinux' 
+      when: ansible_distribution == 'OpenBSD' 
       
     - name: Reboot if patch requires it
       ansible.builtin.reboot:
-      when: syspatch.reboot_needed and ansible_distribution == 'AlmaLinux' 
+      when: syspatch.reboot_needed and ansible_distribution == 'OpenBSD' 
 
 
