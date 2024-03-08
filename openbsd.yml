@@ -14,15 +14,15 @@
       community.general.syspatch:
       register: syspatch
     
-    - name: Upgrade to latest release
-      community.general.sysupgrade:
-      register: sysupgrade
+ #   - name: Upgrade to latest release
+ #     community.general.sysupgrade:
+ #     register: sysupgrade
   
     - name: Reboot if patch requires it
       ansible.builtin.reboot:
       when: syspatch.reboot_needed
 
 
-    - name: Reboot if patch requires it
-      ansible.builtin.reboot:
-      when: sysupgrade.reboot_needed
+ #   - name: Reboot if patch requires it
+ #     ansible.builtin.reboot:
+ #     when: sysupgrade.reboot_needed
