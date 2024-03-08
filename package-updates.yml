@@ -15,4 +15,4 @@
       yum:
         name: '*'
         state: latest
-      when: ansible_distribution == 'PMX'
+      when: ansible_distribution == 'AlmaLinux'
