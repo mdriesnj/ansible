@@ -5,7 +5,7 @@
   tasks:
     - name: show distros
       ansible.builtin.debug:
-        msg: {{ansible_distribution}}
+        msg: ansible_distribution
     - name: update apt packages
       apt:
         upgrade: yes
