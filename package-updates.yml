@@ -16,3 +16,20 @@
         name: '*'
         state: latest
       when: ansible_distribution == 'AlmaLinux'
+
+    - name: Update all packages on the system
+      community.general.openbsd_pkg:
+        name: '*'
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+    - name: Apply all patches and store result
+      community.general.syspatch:
+      register: syspatch
+      when: ansible_distribution == 'AlmaLinux' 
+      
+    - name: Reboot if patch requires it
+      ansible.builtin.reboot:
+      when: syspatch.reboot_needed and ansible_distribution == 'AlmaLinux' 
+
+
