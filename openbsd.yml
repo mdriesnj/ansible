@@ -3,7 +3,6 @@
 ---
 - hosts: all
 
-  become_method: su
   become: true
   tasks:
     - name: ensure nginx is up to date
