@@ -9,10 +9,16 @@
         state: present
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: "get eza key"
+      get_url:
+        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+        dest: /tmp/
+        mode: 0755
+
     
-    - name: get eza key
-      command: curl -O /tmp/deb.asc https://raw.githubusercontent.com/eza-community/eza/main/deb.asc #|  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: get eza key
+#      command: curl -O /tmp/deb.asc https://raw.githubusercontent.com/eza-community/eza/main/deb.asc #|  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: install eza key
 #      ansible.builtin.shell: gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
