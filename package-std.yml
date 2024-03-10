@@ -1,13 +1,28 @@
 ---
 - hosts: all
-
+  become: true
   tasks:
 
     - name: Add an Apt signing key, uses whichever key is at the URL
-      become: true
       ansible.builtin.apt_key:
         url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
         state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+    - name: update apt packages
+      apt:
+        update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+    - name: Install eza
+      apt:
+        name: eza
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
 
   
 #    - name: "get eza key"
@@ -58,19 +73,6 @@
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     
-    - name: update apt packages
-      apt:
-        update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
-
-
-#    - name: Install eza
-#      debug: msg="{{ ansible_distribution }}"
-#      apt:
-#        name: eza
-#        state: present
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
-
 
 
         
