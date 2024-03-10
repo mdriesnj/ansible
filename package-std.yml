@@ -11,8 +11,15 @@
 
     
     - name: get eza key
-      ansible.builtin.shell: wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc |  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      ansible.builtin.shell: wget -q -o /etc/apt/keyrings/gierens.gpg https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: install eza key
+      ansible.builtin.shell: gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+
 
 #    - name: install eza key
 #      ansible.builtin.shell: echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" |  tee /etc/apt/sources.list.d/gierens.list
