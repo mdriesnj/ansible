@@ -3,21 +3,35 @@
 
   tasks:
 
-    - name: "get eza key"
-      become: true
-      get_url:
-        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-        dest: /tmp/
-        mode: 0755
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: "get eza key"
+#      become: true
+#      get_url:
+#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+#        dest: /tmp/
+#        mode: 0755
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+#    - name: "get eza key"
+#      become: true
+#      get_url:
+#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+#        dest: /tmp/
+#        mode: 0755
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     
-    - name: "Install gpg"
-      become: true
-      apt:
-        name: gpg
+#    - name: "Install gpg"
+#      become: true
+#      apt:
+#        name: gpg
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: Add an Apt signing key, uses whichever key is at the URL
+      ansible.builtin.apt_key:
+        url: https://ftp-master.debian.org/keys/archive-key-6.0.asc
         state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
 
     
 #    - name: get eza key
