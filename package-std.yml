@@ -31,8 +31,7 @@
 
 
   
-#    - name: "get eza key"
-#      
+    - name: "get eza key"      
       get_url:
         url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
         dest: /tmp/deb.asc
