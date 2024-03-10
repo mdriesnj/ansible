@@ -2,18 +2,21 @@
 - hosts: all
 
   tasks:
-    - name: "Install gpg"
-      become: true
-      apt:
-        name: gpg
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "get eza key"
       get_url:
         url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
         dest: ~/
         mode: 0755
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    
+    - name: "Install gpg"
+      become: true
+      apt:
+        name: gpg
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     
 #    - name: get eza key
