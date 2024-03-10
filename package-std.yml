@@ -1,0 +1,74 @@
+---
+- hosts: all
+
+  become: true
+  tasks:
+    - name: Install gpg
+#      debug: msg="{{ ansible_distribution }}"
+      apt:
+        name: gpg
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    
+    - name: get eza key
+      ansible.builtin.shell: wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc |  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: install eza key
+      ansible.builtin.shell: echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" |  tee /etc/apt/sources.list.d/gierens.list
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    -name: adjust permissions
+      ansible.builtin.shell: chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    
+    - name: update apt packages
+      apt:
+        update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+    - name: Install eza
+#      debug: msg="{{ ansible_distribution }}"
+      apt:
+        name: eza
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+
+    - name: Install gpg
+#      debug: msg="{{ ansible_distribution }}"
+      apt:
+        name: gpg
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+        
+    - name: update yum package
+      yum:
+        name: 'gpg'
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+
+
+    -name: 
+
+#
+#   - name: Update all packages on the system
+#      community.general.openbsd_pkg:
+#        name: '*'
+#        state: latest
+#      when: ansible_distribution == 'OpenBSD'
+#
+#    - name: Apply all patches and store result
+ #     community.general.syspatch:
+ #     register: syspatch
+  #    when: ansible_distribution == 'OpenBSD' 
+      
+ #   - name: Reboot if patch requires it
+  #    ansible.builtin.reboot:
+   #   when: ansible_distribution == 'OpenBSD' and syspatch.reboot_needed
