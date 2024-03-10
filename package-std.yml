@@ -16,17 +16,17 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-    - name: update apt packages
-      apt:
-        update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: update apt packages
+#      apt:
+#        update_cache: yes
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-    - name: Install eza
-      apt:
-        name: eza
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: Install eza
+#      apt:
+#        name: eza
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
 
