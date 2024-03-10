@@ -38,6 +38,9 @@
 #        mode: 0755
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: "install eza key"
+      command: gpg /tmp/deb.asc
+
 #    - name: "get eza key"
 #      become: true
 #      get_url:
