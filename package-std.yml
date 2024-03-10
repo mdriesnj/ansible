@@ -11,7 +11,7 @@
 
     
     - name: get eza key
-      command: wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc |  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      command: wget -q -o /tmp/deb.asc https://raw.githubusercontent.com/eza-community/eza/main/deb.asc #|  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: install eza key
