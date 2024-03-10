@@ -11,7 +11,7 @@
 
     
     - name: get eza key
-      ansible.builtin.shell: wget -q -o /etc/apt/keyrings/gierens.gpg https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+      command: curl -O /etc/apt/keyrings/gierens.gpg https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: install eza key
