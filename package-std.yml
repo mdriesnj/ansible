@@ -34,7 +34,7 @@
     - name: "get eza key"      
       get_url:
         url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-        dest: /tmp/deb.asc
+        dest: /etc/apt/keyrings
 #        mode: 0755
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
