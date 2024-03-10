@@ -12,7 +12,7 @@
     - name: "get eza key"
       get_url:
         url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-        dest: /tmp/
+        dest: /tmp/deb.asc
         mode: 0755
 
     
