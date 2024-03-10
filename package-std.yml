@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: Install gpg
-#      debug: msg="{{ ansible_distribution }}"
+      debug: msg="install gpg"
       apt:
         name: gpg
         state: present
@@ -12,16 +12,17 @@
 
     
     - name: get eza key
+      debug: msg="get and install gierens.gpg"
       ansible.builtin.shell: wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc |  gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: install eza key
-      ansible.builtin.shell: echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" |  tee /etc/apt/sources.list.d/gierens.list
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: install eza key
+#      ansible.builtin.shell: echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" |  tee /etc/apt/sources.list.d/gierens.list
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: adjust permissions
-      ansible.builtin.shell: chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: adjust permissions
+#      ansible.builtin.shell: chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     
     - name: update apt packages
@@ -30,21 +31,14 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-    - name: Install eza
+#    - name: Install eza
 #      debug: msg="{{ ansible_distribution }}"
-      apt:
-        name: eza
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#      apt:
+#        name: eza
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-
-    - name: Install gpg
-#      debug: msg="{{ ansible_distribution }}"
-      apt:
-        name: gpg
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
         
     - name: update yum package
