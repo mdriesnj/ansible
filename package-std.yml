@@ -11,7 +11,7 @@
 
     - name: Add specified repository into sources list
       ansible.builtin.apt_repository:
-        repo: deb http://archive.canonical.com/ubuntu hardy partner
+        repo: deb http://deb.gierens.de stable main
         state: present
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
