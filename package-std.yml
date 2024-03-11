@@ -11,37 +11,37 @@
         update_cache: yes
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: Update apt cache
-      apt:
-        name: gpg
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: Update apt cache
+#      apt:
+#        name: gpg
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-    - name: Add an Apt signing key, uses whichever key is at the URL
-      ansible.builtin.apt_key:
-        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: Add an Apt signing key, uses whichever key is at the URL
+#      ansible.builtin.apt_key:
+#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: Add specified repository into sources list
-      ansible.builtin.apt_repository:
-        repo: deb http://deb.gierens.de stable main
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
-
-
-    - name: update apt packages
-      apt:
-        update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: Add specified repository into sources list
+#      ansible.builtin.apt_repository:
+#        repo: deb http://deb.gierens.de stable main
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
-    - name: Install eza
-      apt:
-        name: eza
-        state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#    - name: update apt packages
+#      apt:
+#        update_cache: yes
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+#    - name: Install eza
+#      apt:
+#        name: eza
+#        state: present
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
 
@@ -63,15 +63,14 @@
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
-
-
+      
     - name: "get eza"
       become: true
       get_url:
         url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /tmp/
         mode: 0755
-      when: ansible_distribution == 'AlmaLinux'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: "extract"
 #      ansible.builtin.shell: tar -xvf /tmp/eza_x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
@@ -83,8 +82,8 @@
       unarchive:
         remote_src: yes
         src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
-        dest: /usr/local/bin/
-      when: ansible_distribution == 'AlmaLinux'
+        dest: /usr/bin/
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: "file mode"
 #      become: true
