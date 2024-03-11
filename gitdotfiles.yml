@@ -65,26 +65,26 @@
       become: true
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
-        dest: /home/root/dotfiles
+        dest: /root/dotfiles
 #        version: master
 
     - name: root Remove file zshrc
       become: true
       ansible.builtin.file:
-        path: /home/root/.zshrc
+        path: /root/.zshrc
         state: absent
 
     - name: root Remove file vimrc
       become: true
       ansible.builtin.file:
-        path: /home/root/.vimrc
+        path: /root/.vimrc
         state: absent
 
     - name: root Symlink zshrc
       become: true
       ansible.builtin.file:
         src: /home/root/dotfiles/.zshrc
-        dest: /home/root/.zshrc
+        dest: /root/.zshrc
         owner: mdries
         group: mdries
         state: link
@@ -93,7 +93,7 @@
       become: true
       ansible.builtin.file:
         src: /home/root/dotfiles/.vimrc
-        dest: /home/root/.vimrc
+        dest: /root/.vimrc
         owner: mdries
         group: mdries
         state: link
