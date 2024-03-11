@@ -48,6 +48,19 @@
 
 #-------------------- root dotfiles-----------------------------
 
+    - name: Download Oh My Zsh installation script
+      become: yes
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/install_ohmyzsh.sh
+
+    - name: Run Oh My Zsh installation script
+      become: yes
+      command: sh /tmp/install_ohmyzsh.sh --unattended
+      register: ohmyzsh_result
+      failed_when: "'FAILED' in ohmyzsh_result.stderr"
+
+
     - name: git clone https://github.com/mdriesnj/dotfiles
       become: true
       ansible.builtin.git:
@@ -90,18 +103,6 @@
       user:
         name: root
         shell: /bin/zsh
-
-    - name: Download Oh My Zsh installation script
-      become: yes
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: /tmp/install_ohmyzsh.sh
-
-    - name: Run Oh My Zsh installation script
-      become: yes
-      command: sh /tmp/install_ohmyzsh.sh --unattended
-      register: ohmyzsh_result
-      failed_when: "'FAILED' in ohmyzsh_result.stderr"
 
         
 
