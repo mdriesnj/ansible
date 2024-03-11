@@ -11,7 +11,24 @@
         update_cache: yes
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+
+    - name: root Download Oh My Zsh installation script
+      become: yes
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/install_ohmyzsh.sh
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      
+
 #-------------------- mdries dotfiles-----------------------------
+
+
+    - name: mdries Run Oh My Zsh installation script
+      command: sh /tmp/install_ohmyzsh.sh --unattended
+      register: ohmyzsh_result
+      failed_when: "'FAILED' in ohmyzsh_result.stderr"
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
@@ -52,13 +69,6 @@
 
 #-------------------- root dotfiles-----------------------------
 
-    - name: root Download Oh My Zsh installation script
-      become: yes
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: /tmp/install_ohmyzsh.sh
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
     - name: root Run Oh My Zsh installation script
       become: yes
       command: sh /tmp/install_ohmyzsh.sh --unattended
