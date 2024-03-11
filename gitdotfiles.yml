@@ -15,4 +15,4 @@
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles
-        version: master
+#        version: master
