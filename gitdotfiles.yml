@@ -16,3 +16,20 @@
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles
 #        version: master
+
+    - name: Symlink zshrc
+      ansible.builtin.file:
+        src: /home/mdries/dotfiles/.zshrc
+        dest: /home/mdries/.zshrc
+        owner: mdries
+        group: mdries
+        state: link
+
+
+    - name: Symlink zshrc
+      ansible.builtin.file:
+        src: /home/mdries/dotfiles/.vimrc
+        dest: /home/mdries/.vimrc
+        owner: mdries
+        group: mdries
+        state: link
