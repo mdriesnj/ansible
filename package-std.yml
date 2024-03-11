@@ -53,12 +53,27 @@
 #    - name: "install eza key"
 #      command: gpg -o /etc/apt/keyrings/gierens.gpg /tmp/deb.asc
 
-    - name: "get eza key"
+    - name: "get eza"
       become: true
       get_url:
         url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /tmp/
         mode: 0755
+      when: ansible_distribution == 'AlmaLinux'
+
+
+    - name: "extract"
+      become: true
+      unarchive:
+        src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
+        dest: /usr/local/bin/
+      when: ansible_distribution == 'AlmaLinux'
+
+    - name: "extract"
+      become: true
+      file:
+        path: /usr/local/bin/eza
+        mode: '0755'
       when: ansible_distribution == 'AlmaLinux'
 
     
