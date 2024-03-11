@@ -11,9 +11,33 @@
         update_cache: yes
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: install tar package
+
+    - name: alma packages
+      apt:
+        name: 
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+          - stow
+          - net-utils   
+        state: latest
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: alma packages
       yum:
-        name: 'tar'
+        name: 
+          - tar
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+          - stow
+          - net-utils          
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
@@ -87,16 +111,6 @@
 #      ansible.builtin.shell: tar -xvf /tmp/eza_x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 #      when: ansible_distribution == 'AlmaLinux'
 
-
-    - name: "extract"
-      become: true
-      unarchive:
-        remote_src: yes
-        src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
-        dest: /usr/bin/
-      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
-
-#    - name: "file mode"
 #      become: true
 #      file:
 #        path: /usr/local/bin/eza
