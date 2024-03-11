@@ -13,23 +13,23 @@
 
 #-------------------- mdries dotfiles-----------------------------
 
-    - name: git clone https://github.com/mdriesnj/dotfiles
+    - name: git clone mdries https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles
 #        version: master
 
-    - name: Remove file zshrc
+    - name: Remove mdries file zshrc
       ansible.builtin.file:
         path: /home/mdries/.zshrc
         state: absent
 
-    - name: Remove file vimrc
+    - name: Remove mdries file vimrc
       ansible.builtin.file:
         path: /home/mdries/.vimrc
         state: absent
 
-    - name: Symlink zshrc
+    - name: Symlink mdries zshrc
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.zshrc
         dest: /home/mdries/.zshrc
@@ -37,7 +37,7 @@
         group: mdries
         state: link
         
-    - name: Symlink vimrc
+    - name: Symlink mdries vimrc
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.vimrc
         dest: /home/mdries/.vimrc
@@ -48,39 +48,39 @@
 
 #-------------------- root dotfiles-----------------------------
 
-    - name: Download Oh My Zsh installation script
+    - name: root Download Oh My Zsh installation script
       become: yes
       get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/install_ohmyzsh.sh
 
-    - name: Run Oh My Zsh installation script
+    - name: root Run Oh My Zsh installation script
       become: yes
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
 
 
-    - name: git clone https://github.com/mdriesnj/dotfiles
+    - name: root git clone https://github.com/mdriesnj/dotfiles
       become: true
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/root/dotfiles
 #        version: master
 
-    - name: Remove file zshrc
+    - name: root Remove file zshrc
       become: true
       ansible.builtin.file:
         path: /home/root/.zshrc
         state: absent
 
-    - name: Remove file vimrc
+    - name: root Remove file vimrc
       become: true
       ansible.builtin.file:
         path: /home/root/.vimrc
         state: absent
 
-    - name: Symlink zshrc
+    - name: root Symlink zshrc
       become: true
       ansible.builtin.file:
         src: /home/root/dotfiles/.zshrc
@@ -89,7 +89,7 @@
         group: mdries
         state: link
         
-    - name: Symlink vimrc
+    - name: root Symlink vimrc
       become: true
       ansible.builtin.file:
         src: /home/root/dotfiles/.vimrc
@@ -98,7 +98,7 @@
         group: mdries
         state: link
 
-    - name: change user shell to zsh 
+    - name: root change user shell to zsh 
       become: yes
       user:
         name: root
