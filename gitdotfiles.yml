@@ -9,7 +9,7 @@
       apt:
         upgrade: yes
         update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #-------------------- mdries dotfiles-----------------------------
 
