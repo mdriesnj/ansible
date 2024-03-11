@@ -7,45 +7,11 @@
       apt:
         update_cache: yes
 
-    - name: Install dependencies
-      apt:
-        name:
-          - wget
-          - tar
+    - name: Add an Apt signing key, uses whichever key is at the URL
+      ansible.builtin.apt_key:
+        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
         state: present
-
-    - name: Download eza binary
-      shell: "wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz"
-      args:
-        executable: /bin/bash
-
-    - name: Set permissions and move eza binary
-      shell: |
-        chmod +x eza
-        chown root:root eza
-        mv eza /usr/local/bin/eza
-      args:
-        executable: /bin/bash
-
-    - name: Replace exa with eza (if exa was installed)
-      shell: "apt remove -y exa && apt install -y eza"
-      ignore_errors: yes
-      args:
-        executable: /bin/bash
-
-    - name: Verify eza installation
-      command: eza --version
-      register: eza_version
-
-    - name: Display eza version
-      debug:
-        var: eza_version.stdout_lines
-
-#    - name: Add an Apt signing key, uses whichever key is at the URL
-#      ansible.builtin.apt_key:
-#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-#        state: present
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: Add specified repository into sources list
 #      ansible.builtin.apt_repository:
