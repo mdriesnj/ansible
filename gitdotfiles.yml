@@ -46,7 +46,7 @@
         state: link
 
 
-#-------------------- mdries dotfiles-----------------------------
+#-------------------- root dotfiles-----------------------------
 
     - name: git clone https://github.com/mdriesnj/dotfiles
       become: true
@@ -84,4 +84,10 @@
         owner: mdries
         group: mdries
         state: link
+
+    - name: change user shell to zsh 
+      become: yes
+      user:
+        name: root
+        shell: /bin/zsh
 
