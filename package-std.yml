@@ -66,8 +66,8 @@
       become: true
       unarchive:
         remote_src: yes
-        remote_src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
-        remote_dest: /usr/local/bin/
+        src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
+        dest: /usr/local/bin/
       when: ansible_distribution == 'AlmaLinux'
 
     - name: "file mode"
