@@ -1,12 +1,11 @@
 ---
 - hosts: all
-  
   tasks:
-    become: true
-
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
+    
     - name: update apt packages
+      become: true
       apt:
         upgrade: yes
         update_cache: yes
