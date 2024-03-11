@@ -14,5 +14,5 @@
     - name: git clone https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
-        dest: /home/mdries/
+        dest: /home/mdries/dotfiles
         version: master
