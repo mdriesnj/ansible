@@ -17,6 +17,16 @@
         dest: /home/mdries/dotfiles
 #        version: master
 
+    - name: Remove file zshrc
+      ansible.builtin.file:
+        path: /home/mdries/.zshrc
+        state: absent
+
+    - name: Remove file vimrc
+      ansible.builtin.file:
+        path: /home/mdries/.vimrc
+        state: absent
+
     - name: Symlink zshrc
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.zshrc
@@ -24,9 +34,8 @@
         owner: mdries
         group: mdries
         state: link
-
-
-    - name: Symlink zshrc
+        
+    - name: Symlink vimrc
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.vimrc
         dest: /home/mdries/.vimrc
