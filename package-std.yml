@@ -22,7 +22,7 @@
           - zsh
           - vim
  #         - stow
-          - net-utils   
+          - net-tools   
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
@@ -37,7 +37,7 @@
           - zsh
           - vim
  #         - stow
-          - net-utils          
+          - net-tools          
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
