@@ -1,13 +1,12 @@
 ---
 - hosts: all
 #assuming the first user is root
-
+  become: true
   tasks:
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
     
     - name: update apt packages
-      become: true
       apt:
         upgrade: yes
         update_cache: yes
@@ -42,13 +41,13 @@
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
-      - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
-        ansible.builtin.user:
-          name: mdries
-          shell: /bin/zsh
-          groups: sudo,users
-          home: /home/mdries
-          password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
+    - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+      ansible.builtin.user:
+        name: mdries
+        shell: /bin/zsh
+        groups: sudo,users
+        home: /home/mdries
+        password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
   #        append: yes
 
 
