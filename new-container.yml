@@ -2,4 +2,4 @@
 - hosts: all
   become: true
   tasks:
-    - include https://github.com/mdriesnj/ansible/blob/main/new-user-tasks.yml
+    - include new-user-tasks.yml
