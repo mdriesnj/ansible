@@ -95,7 +95,7 @@
     - name: root Symlink zshrc
       become: true
       ansible.builtin.file:
-        src: /home/root/dotfiles/.zshrc
+        src: /root/dotfiles/.zshrc
         dest: /root/.zshrc
         owner: mdries
         group: mdries
@@ -105,7 +105,7 @@
     - name: root Symlink vimrc
       become: true
       ansible.builtin.file:
-        src: /home/root/dotfiles/.vimrc
+        src: /root/dotfiles/.vimrc
         dest: /root/.vimrc
         owner: mdries
         group: mdries
