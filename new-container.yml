@@ -1,0 +1,55 @@
+#assuming the first user is root
+
+---
+- hosts: all
+  tasks:
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+    
+    - name: update apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: debian packages
+      apt:
+        name: 
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+ #         - stow
+          - net-tools   
+        state: latest
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: alma packages
+      yum:
+        name: 
+          - tar
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+ #         - stow
+          - net-tools          
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+      - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+        ansible.builtin.user:
+          name: mdries
+          shell: /bin/zsh
+          groups: sudo,users
+          home: /home/mdries
+          password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
+          append: yes
+
+
+        
