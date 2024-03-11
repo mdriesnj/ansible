@@ -42,23 +42,23 @@
 
 
   
-#    - name: "get eza key"      
-#      get_url:
-#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-#        dest: /etc/apt/keyrings
+#    - name: "get eza executable"      
+ #     get_url:
+ #       url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+ #       dest: /etc/apt/keyrings
 #        mode: 0755
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #    - name: "install eza key"
 #      command: gpg -o /etc/apt/keyrings/gierens.gpg /tmp/deb.asc
 
-#    - name: "get eza key"
-#      become: true
-#      get_url:
-#        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
-#        dest: /tmp/
-#        mode: 0755
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+    - name: "get eza key"
+      become: true
+      get_url:
+        url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
+        dest: /tmp/
+        mode: 0755
+       when: ansible_distribution == 'AlmaLinux'
 
     
 #    - name: "Install gpg"
@@ -95,11 +95,17 @@
 
 
         
-    - name: update yum package
-      yum:
-        name: 'gpg'
-        state: latest
-      when: ansible_distribution == 'AlmaLinux'
+#    - name: update yum package
+#      yum:
+#        name: 'gpg'
+#        state: latest
+#      when: ansible_distribution == 'AlmaLinux'
+
+#    - name: update yum package
+#      yum:
+#        name: 'gpg'
+#        state: latest
+#      when: ansible_distribution == 'AlmaLinux'
 
 
 
