@@ -1,7 +1,10 @@
 ---
 - hosts: all
   become: true
-
+  vars:
+    # Setting this for unarchive to work
+    ansible_remote_tmp: /tmp
+    
   tasks:
     - name: Update apt cache
       apt:
