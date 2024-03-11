@@ -74,7 +74,7 @@
       when: ansible_distribution == 'AlmaLinux'
 
     - name: "extract"
-      ansible.builtin.shell: tar -xvf /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
+      ansible.builtin.shell: tar -xvf /tmp/eza_x86_64-unknown-linux-gnu.tar.gz -C /usr/loca/bin/
       when: ansible_distribution == 'AlmaLinux'
 
 
@@ -86,12 +86,12 @@
 #        dest: /usr/local/bin/
 #      when: ansible_distribution == 'AlmaLinux'
 
-    - name: "file mode"
-      become: true
-      file:
-        path: /usr/local/bin/eza
-        mode: '0755'
-      when: ansible_distribution == 'AlmaLinux'
+#    - name: "file mode"
+#      become: true
+#      file:
+#        path: /usr/local/bin/eza
+#        mode: '0755'
+#      when: ansible_distribution == 'AlmaLinux'
 
     
 #    - name: "Install gpg"
