@@ -17,7 +17,6 @@
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #        version: master
 
@@ -25,14 +24,12 @@
       ansible.builtin.file:
         path: /home/mdries/.zshrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
     - name: Remove mdries file vimrc
       ansible.builtin.file:
         path: /home/mdries/.vimrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: Symlink mdries zshrc
       ansible.builtin.file:
@@ -41,7 +38,6 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
         
     - name: Symlink mdries vimrc
       ansible.builtin.file:
@@ -50,7 +46,6 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
 #-------------------- root dotfiles-----------------------------
@@ -60,14 +55,12 @@
       get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/install_ohmyzsh.sh
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: root Run Oh My Zsh installation script
       become: yes
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
     - name: root git clone https://github.com/mdriesnj/dotfiles
@@ -76,21 +69,18 @@
         repo: https://github.com/mdriesnj/dotfiles
         dest: /root/dotfiles
 #        version: master
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: root Remove file zshrc
       become: true
       ansible.builtin.file:
         path: /root/.zshrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: root Remove file vimrc
       become: true
       ansible.builtin.file:
         path: /root/.vimrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: root Symlink zshrc
       become: true
@@ -100,7 +90,6 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
         
     - name: root Symlink vimrc
       become: true
@@ -110,14 +99,12 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: root change user shell to zsh 
       become: yes
       user:
         name: root
         shell: /bin/zsh
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
         
 
