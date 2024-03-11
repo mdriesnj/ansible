@@ -75,6 +75,8 @@
 
     - name: "extract"
       ansible.builtin.shell: tar -xvf /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
+      when: ansible_distribution == 'AlmaLinux'
+
 
 #    - name: "extract"
 #      become: true
