@@ -41,14 +41,29 @@
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
+
     - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       ansible.builtin.user:
         name: mdries
         shell: /bin/zsh
-        groups: sudo,users
+        groups: sudo,users,mdries
         home: /home/mdries
         password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
+        
   #        append: yes
+
+    - name: Create SSH directory for mdries
+      file:
+        path: /home/mdries/.ssh
+        state: directory
+        owner: mdries
+        group: mdries
+        mode: 0700
+
+    - name: Transfer public key to the target host
+      authorized_key:
+        user: mdries
+        key: "{{ lookup('file', '/root/authorized_keys') }}" 
 
 
         
