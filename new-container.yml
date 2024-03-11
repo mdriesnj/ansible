@@ -49,7 +49,7 @@
           groups: sudo,users
           home: /home/mdries
           password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
-          append: yes
+  #        append: yes
 
 
         
