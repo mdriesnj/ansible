@@ -41,6 +41,10 @@
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
+    - name: create group mdries
+      group:
+        name: mdries
+        
 
     - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       ansible.builtin.user:
