@@ -1,6 +1,9 @@
 ---
 - hosts: all
-
+  vars:
+    # Setting this for unarchive to work
+    ansible_remote_tmp: /tmp
+  
   become: true
   tasks:
     - name: Distribution
@@ -16,6 +19,60 @@
         name: '*'
         state: latest
       when: ansible_distribution == 'AlmaLinux'
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
+    - name: alma packages
+      apt:
+        name: 
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+          - stow
+          - net-utils   
+        state: latest
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: alma packages
+      yum:
+        name: 
+          - tar
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+          - stow
+          - net-utils          
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+      
+    - name: "get eza"
+      become: true
+      get_url:
+        url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
+        dest: /tmp/
+        mode: 0755
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: "extract"
+      become: true
+      unarchive:
+        remote_src: yes
+        src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
+        dest: /usr/bin/
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+
 
     - name: Update all packages on the system
       community.general.openbsd_pkg:
