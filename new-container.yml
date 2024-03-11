@@ -67,7 +67,7 @@
     - name: Transfer public key to the target host
       authorized_key:
         user: mdries
-        key: "{{ lookup('file', '/root/authorized_keys') }}" 
+        key: "{{ lookup('file', '/root/.ssh/authorized_keys') }}" 
 
 
         
