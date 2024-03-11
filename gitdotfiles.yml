@@ -11,6 +11,8 @@
         update_cache: yes
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+#-------------------- mdries dotfiles-----------------------------
+
     - name: git clone https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
@@ -42,3 +44,44 @@
         owner: mdries
         group: mdries
         state: link
+
+
+#-------------------- mdries dotfiles-----------------------------
+
+    - name: git clone https://github.com/mdriesnj/dotfiles
+      become: true
+      ansible.builtin.git:
+        repo: https://github.com/mdriesnj/dotfiles
+        dest: /home/root/dotfiles
+#        version: master
+
+    - name: Remove file zshrc
+      become: true
+      ansible.builtin.file:
+        path: /home/root/.zshrc
+        state: absent
+
+    - name: Remove file vimrc
+      become: true
+      ansible.builtin.file:
+        path: /home/root/.vimrc
+        state: absent
+
+    - name: Symlink zshrc
+      become: true
+      ansible.builtin.file:
+        src: /home/root/dotfiles/.zshrc
+        dest: /home/root/.zshrc
+        owner: mdries
+        group: mdries
+        state: link
+        
+    - name: Symlink vimrc
+      become: true
+      ansible.builtin.file:
+        src: /home/root/dotfiles/.vimrc
+        dest: /home/root/.vimrc
+        owner: mdries
+        group: mdries
+        state: link
+
