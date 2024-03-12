@@ -105,7 +105,7 @@
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: copy html file
-      copy: src=/root/.oh-my-zsh/ dest=/home/mdries/ remote_src=yes directory_mode=yes
+      copy: src=/root/.oh-my-zsh/ dest=/home/mdries/.oh-my-zsh/ remote_src=yes directory_mode=yes
 
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
