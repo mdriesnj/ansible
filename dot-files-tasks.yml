@@ -104,7 +104,14 @@
 #      command: "sudo -i -u mdries sh -c /tmp/install_ohmyzsh.sh --unattended"
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
-    - name: copy html file
+    - name: make /home/mdries/.oh-my-zsh
+      file:
+        path: /home/mdries/.oh-my-zsh
+        state: directory
+        mode: '0700'
+
+    - name: copy oh-my-zsh
+      become: true
       copy: src=/root/.oh-my-zsh/ dest=/home/mdries/.oh-my-zsh/ remote_src=yes directory_mode=yes
 
 
