@@ -86,7 +86,7 @@
         recurse: yes
         owner: mdries
         group: mdries
-        
+      when: justdotfiles == true  
     
 #    - name: mdries Run Oh My Zsh installation script
 #      become_user: mdries
@@ -110,11 +110,12 @@
         path: /home/mdries/.oh-my-zsh
         state: directory
         mode: '0700'
+      when: justdotfiles == false
 
     - name: copy oh-my-zsh
       become: true
       copy: src=/root/.oh-my-zsh/ dest=/home/mdries/.oh-my-zsh/ remote_src=yes directory_mode=yes
-
+      when: justdotfiles == false
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
