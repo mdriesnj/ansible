@@ -97,11 +97,7 @@
 
 
     - name: install omz as mdries
-      shell: |
-          cd /home/mdries
-          su mdries
-          sh /tmp/install_ohmyzsh.sh --unattended
-          exit 0
+      shell: su mdries sh -c /tmp/install_ohmyzsh.sh --unattended
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
