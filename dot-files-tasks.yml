@@ -131,4 +131,12 @@
         state: link
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
-
+    - name: chown mdries
+      become: true
+      file:
+        path: /home/mdries
+        state: directory
+        recurse: yes
+        owner: mdries
+        group: mdries
+        
