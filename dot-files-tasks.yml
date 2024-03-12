@@ -101,7 +101,7 @@
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: install omz as mdries
-      command: "sudo -E -u mdries sh -c /tmp/install_ohmyzsh.sh --unattended"
+      command: "sudo -i -u mdries sh -c /tmp/install_ohmyzsh.sh --unattended"
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
 
