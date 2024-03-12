@@ -76,8 +76,8 @@
 
 #-------------------- mdries dotfiles-----------------------------
     - name: mdries Run Oh My Zsh installation script
-      become: true
-      become_user: mdries
+      remote_user: mdries
+ #     become_user: mdries
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
