@@ -87,14 +87,20 @@
         group: mdries
         
     
-    - name: mdries Run Oh My Zsh installation script
-      become_user: mdries
- #     become_user: mdries
-      command: sh /tmp/install_ohmyzsh.sh --unattended
-      register: ohmyzsh_result
-      failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#    - name: mdries Run Oh My Zsh installation script
+#      become_user: mdries
+#      become_user: mdries
+#      command: sh /tmp/install_ohmyzsh.sh --unattended
+#      register: ohmyzsh_result
+#      failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+
+    - name: install omz as mdries
+      shell: su mdries
+      args:
+        executable: sh /tmp/install_ohmyzsh.sh --unattended
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
       become: true
