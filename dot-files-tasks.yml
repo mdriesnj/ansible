@@ -76,8 +76,8 @@
 
 #-------------------- mdries dotfiles-----------------------------
     - name: mdries Run Oh My Zsh installation script
-      sudo: true
-      sudo_user: mdries
+      become: true
+      become_user: mdries
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
@@ -85,8 +85,8 @@
       
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
-      sudo: true
-      sudo_user: mdries      
+      become: true
+      become_user: mdries
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles
@@ -94,24 +94,24 @@
 #        version: master
 
     - name: Remove mdries file zshrc
-      sudo: true
-      sudo_user: mdries
+      become: true
+      become_user: mdries
       ansible.builtin.file:
         path: /home/mdries/.zshrc
         state: absent
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: Remove mdries file vimrc
-      sudo: true
-      sudo_user: mdries
+      become: true
+      become_user: mdries
       ansible.builtin.file:
         path: /home/mdries/.vimrc
         state: absent
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: Symlink mdries zshrc
-      sudo: true
-      sudo_user: mdries
+      become: true
+      become_user: mdries
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.zshrc
         dest: /home/mdries/.zshrc
@@ -121,8 +121,8 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: Symlink mdries vimrc
-      sudo: true
-      sudo_user: mdries
+      become: true
+      become_user: mdries
       ansible.builtin.file:
         src: /home/mdries/dotfiles/.vimrc
         dest: /home/mdries/.vimrc
