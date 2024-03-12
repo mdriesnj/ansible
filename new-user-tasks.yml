@@ -51,10 +51,11 @@
         name: mdries
         shell: /bin/zsh
         groups: sudo,users,mdries
-        home: /home/mdries
+        create_home: yes
  #       password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
         password: "{{ password | password_hash('sha512') }}"
-  #        append: yes
+        append: yes
+        shell: /bin/zsh
 
     - name: Create SSH directory for mdries
       become: true
