@@ -76,7 +76,9 @@
 
 #-------------------- mdries dotfiles-----------------------------
     - name: mdries Run Oh My Zsh installation script
-      remote_user: mdries
+      remote_user: root
+      sudo: true
+      sudo_user: mdries
  #     become_user: mdries
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
