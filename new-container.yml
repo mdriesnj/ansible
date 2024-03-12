@@ -4,3 +4,4 @@
     - include_tasks: new-user-tasks.yml
     - include_tasks: package-updates-tasks.yml
     - include_tasks: package-std-tasks.yml
+    - include_tasks: dot-files-tasks.yml
