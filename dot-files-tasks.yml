@@ -88,7 +88,6 @@
         
     
     - name: mdries Run Oh My Zsh installation script
-      become: true
       become_user: mdries
  #     become_user: mdries
       command: sh /tmp/install_ohmyzsh.sh --unattended
