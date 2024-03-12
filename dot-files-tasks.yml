@@ -2,7 +2,6 @@
       debug: msg="{{ ansible_distribution }}"
     
     - name: update apt packages
-      become: true
       apt:
         upgrade: yes
         update_cache: yes
@@ -10,7 +9,6 @@
 
 
     - name: root Download Oh My Zsh installation script
-      become: yes
       get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/install_ohmyzsh.sh
