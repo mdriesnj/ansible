@@ -51,8 +51,8 @@
       ansible.builtin.file:
         src: /root/dotfiles/.zshrc
         dest: /root/.zshrc
-        owner: mdries
-        group: mdries
+        owner: root
+        group: root
         state: link
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
@@ -61,8 +61,8 @@
       ansible.builtin.file:
         src: /root/dotfiles/.vimrc
         dest: /root/.vimrc
-        owner: mdries
-        group: mdries
+        owner: root
+        group: root
         state: link
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
