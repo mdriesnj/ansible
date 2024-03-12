@@ -52,7 +52,7 @@
         shell: /bin/zsh
         groups: sudo,users,mdries
         home: /home/mdries
-        password: "{{ '$6$muxgzehLh7fQ/D24$1cTKsc/74f0bO.ENhyH.tUoLY1Y7MqTicfjS3s91KTCA0aO.bdYiwwfpQNcl9RUpPIJWLplLjMvNioTw.WZPJ.' | password_hash('sha512') }}"
+        password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
         
   #        append: yes
 
