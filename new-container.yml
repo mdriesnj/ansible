@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - include_tasks: new-user-tasks.yml
-    - include_tasks: package-updates-tasks.yml
-    - include_tasks: package-std-tasks.yml
-    - include_tasks: dot-files-tasks.yml
+    - include_tasks: tasks-update-packages.yml
+    - include_tasks: tasks-newuser.yml
+    - include_tasks: tasks-standard-packages.yml
+    - include_tasks: tasks-dotfiles.yml
