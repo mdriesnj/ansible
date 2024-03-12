@@ -14,8 +14,9 @@
         dest: /tmp/install_ohmyzsh.sh
         mode: 0755
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-#-------------------- root dotfiles-----------------------------
 
+
+#-------------------- root dotfiles-----------------------------
     - name: root Run Oh My Zsh installation script
       become: yes
       command: sh /tmp/install_ohmyzsh.sh --unattended
@@ -76,7 +77,6 @@
 
 
 #-------------------- mdries dotfiles-----------------------------
-
     - name: chown mdries
       become: true
       file:
@@ -102,7 +102,7 @@
       become_user: mdries
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
-        dest: /home/mdries/dotfiles
+        dest: /home/mdries/
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 #        version: master
 
