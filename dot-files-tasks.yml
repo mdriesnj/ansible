@@ -76,6 +76,17 @@
 
 
 #-------------------- mdries dotfiles-----------------------------
+
+    - name: chown mdries
+      become: true
+      file:
+        path: /home/mdries
+        state: directory
+        recurse: yes
+        owner: mdries
+        group: mdries
+        
+    
     - name: mdries Run Oh My Zsh installation script
       become: true
       become_user: mdries
