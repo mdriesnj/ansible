@@ -2,4 +2,4 @@
 - hosts: all
   become: true
   tasks:
-    - include new-user-tasks.yml
+    - include_tasks: new-user-tasks.yml
