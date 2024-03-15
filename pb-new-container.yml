@@ -3,7 +3,8 @@
   vars:
     # Setting this for unarchive to work
     ansible_remote_tmp: /tmp
-  
+    justdotfiles: false
+    
   tasks:
     - include_tasks: tasks-update-packages.yml
     - include_tasks: tasks-newuser.yml
