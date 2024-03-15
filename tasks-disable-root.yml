@@ -1,4 +1,4 @@
-  - name: Disable root login
-    user:
-      name: root
-      password: '!'
+    - name: Disable root login
+      user:
+        name: root
+        password: '!'
