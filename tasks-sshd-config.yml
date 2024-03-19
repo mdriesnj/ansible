@@ -44,6 +44,7 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
     
     - name: openbsd sshd restart 
+      become: true
       ansible.builtin.service:
         name: sshd
         state: restarted
