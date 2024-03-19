@@ -45,7 +45,7 @@
     
     - name: openbsd sshd restart 
       ansible.builtin.service:
-        name: httpd
+        name: sshd
         state: restarted
       when: ansible_distribution == 'OpenBSD'
 
