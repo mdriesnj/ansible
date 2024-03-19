@@ -20,11 +20,6 @@
         - { key: "PermitEmptyPasswords", value: "no" }
         - { key: "AllowUsers", value: "mdries root" } 
         - { key: "Port", value: "51723" } 
-
-
-        - { key: "Protocol", value: "2" } 
-        - { key: "Protocol", value: "2" } 
-
     - name: restart sshd
       service:
         name: sshd
