@@ -21,12 +21,24 @@
         - { key: "PermitEmptyPasswords", value: "no" }
         - { key: "AllowUsers", value: "mdries root" } 
         - { key: "Port", value: "51723" } 
-    - name: systemd stuff
+
+    - name: configure sshd socket port
       become: true
-      systemd:
-        name: ssh.socket
-        masked: yes
-        enabled: no
+      lineinfile:
+        path: "/etc/systemd/system/sockets.target.wants/ssh.socket"
+        #regex: "^(#)?{{item.key}}"
+        regex: ^(# *)?{{item.key}}
+        line: "{{item.key}} {{item.value}}"
+        #state: present
+      loop:
+        - { key: "ListenStream", value: "51723" }
+
+#    - name: systemd stuff
+#      become: true
+#      systemd:
+#        name: ssh.socket
+#        masked: yes
+#        enabled: no
 #        name: sshd.socket
 #        masked: yes
 #        name: sshd
