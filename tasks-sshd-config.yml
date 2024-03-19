@@ -28,10 +28,10 @@
         path: "/etc/systemd/system/sockets.target.wants/ssh.socket"
         #regex: "^(#)?{{item.key}}"
         regex: ^(# *)?{{item.key}}
-        line: "{{item.key}} {{item.value}}"
+        line: "ListenStream=51723"
         #state: present
       loop:
-        - { key: "ListenStream=", value: "51723" }
+        - { key: "ListenStream", value: "51723" }
 
     - name: systemd stuff
       become: true
