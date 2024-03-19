@@ -20,34 +20,34 @@
         - { key: "AllowTcpForwarding", value: "no" } 
         - { key: "PermitEmptyPasswords", value: "no" }
         - { key: "AllowUsers", value: "mdries root" } 
-        - { key: "Port", value: "51723" } 
+        - { key: "Port", value: "22" } 
 
-    - name: configure sshd socket port
-      become: true
-      lineinfile:
-        path: "/etc/systemd/system/sockets.target.wants/ssh.socket"
+#    - name: configure sshd socket port
+#      become: true
+#      lineinfile:
+#        path: "/etc/systemd/system/sockets.target.wants/ssh.socket"
         #regex: "^(#)?{{item.key}}"
-        regex: ^(# *)?{{item.key}}
-        line: "ListenStream=51723"
+#        regex: ^(# *)?{{item.key}}
+#        line: "ListenStream=22"
         #state: present
-      loop:
-        - { key: "ListenStream", value: "51723" }
+ #     loop:
+ #       - { key: "ListenStream", value: "22" }
 
 
-    - name: systemd stuff
-      become: true
-      systemd:
-        daemon_reload: yes
-      systemd:
-        name: sshd
-        state: restarted
-      systemd:
-        name: systemd-logind
-        masked: no
-        state: started
+#    - name: systemd stuff
+#      become: true
+#      systemd:
+#        daemon_reload: yes
+#      systemd:
+#        name: sshd
+#        state: restarted
+#      systemd:
+#        name: systemd-logind
+#        masked: no
+#        state: started
 
-    - name: Unconditionally reboot the machine with all defaults
-      reboot:
+ #   - name: Unconditionally reboot the machine with all defaults
+ #     reboot:
 
 
 #        masked: yes
