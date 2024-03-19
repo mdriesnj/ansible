@@ -7,7 +7,7 @@
         line: "{{item.key}} {{item.value}}"
         #state: present
       loop:
-        - { key: "PermitRootLogin", value: "forced-commands-only" }
+        - { key: "PermitRootLogin", value: "no" }
         - { key: "Protocol", value: "2" } 
         - { key: "HostBasedAuthentication", value: "no" } 
         - { key: "IgnoreRHosts", value: "yes" }
