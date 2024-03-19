@@ -33,7 +33,7 @@
  #     loop:
  #       - { key: "ListenStream", value: "22" }
 
-
+    
     - name: systemd stuff
       become: true
 #      systemd:
@@ -41,7 +41,14 @@
       systemd:
         name: sshd
         state: restarted
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+    
+    - name: openbsd sshd restart 
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+      when: ansible_distribution == 'OpenBSD'
+
 
 
 #      systemd:
