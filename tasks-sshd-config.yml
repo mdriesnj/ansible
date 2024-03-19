@@ -23,7 +23,12 @@
         - { key: "Port", value: "51723" } 
     - name: restart sshd
       become: true
-      service:
+      systemd:
+        name: ssh.socket
+        masked: yes
+        name: sshd.socket
+        masked: yes
         name: sshd
-        state: restarted
-
+        enabled: no
+        name: ssh
+        enabled: yes
