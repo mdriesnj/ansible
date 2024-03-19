@@ -22,6 +22,7 @@
         - { key: "AllowUsers", value: "mdries root" } 
         - { key: "Port", value: "51723" } 
     - name: restart sshd
+      become: true
       service:
         name: sshd
         state: restarted
