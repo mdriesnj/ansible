@@ -21,6 +21,9 @@
         - { key: "PermitEmptyPasswords", value: "no" }
         - { key: "AllowUsers", value: "mdries root" } 
         - { key: "Port", value: "22" } 
+        - { key: "SyslogFacility", value: "AUTH" } 
+        - { key: "LogLevel", value: "INFO" } 
+
 
 #    - name: configure sshd socket port
 #      become: true
