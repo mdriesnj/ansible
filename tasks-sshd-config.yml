@@ -33,10 +33,11 @@
       loop:
         - { key: "ListenStream=", value: "51723" }
 
-#    - name: systemd stuff
-#      become: true
-#      systemd:
-#        name: ssh.socket
+    - name: systemd stuff
+      become: true
+      systemd:
+        name: sshd
+         state: restarted
 #        masked: yes
 #        enabled: no
 #        name: sshd.socket
