@@ -5,7 +5,7 @@
         #regex: "^(#)?{{item.key}}"
         regex: ^(# *)?{{item.key}}
         line: "{{item.key}} {{item.value}}"
-        state: present
+        #state: present
       loop:
         - { key: "PermitRootLogin", value: "forced-commands-only" }
         - { key: "Protocol", value: "2" } 
