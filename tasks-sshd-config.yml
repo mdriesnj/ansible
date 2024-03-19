@@ -48,7 +48,8 @@
     
     - name: openbsd sshd restart 
       become: true
-      ansible.builtin.service:
+      #ansible.builtin.service:
+      service:
         name: sshd
         state: restarted
       when: ansible_distribution == 'OpenBSD'
