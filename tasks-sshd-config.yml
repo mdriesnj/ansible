@@ -2,7 +2,8 @@
       become: true
       lineinfile:
         path: "/etc/ssh/sshd_config"
-        regex: "^(#)?{{item.key}}"
+        #regex: "^(#)?{{item.key}}"
+        regex: ^(# *)?{{item.key}}
         line: "{{item.key}} {{item.value}}"
         state: present
       loop:
