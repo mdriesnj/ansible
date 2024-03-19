@@ -34,13 +34,13 @@
  #       - { key: "ListenStream", value: "22" }
 
 
-#    - name: systemd stuff
-#      become: true
+    - name: systemd stuff
+      become: true
 #      systemd:
 #        daemon_reload: yes
-#      systemd:
-#        name: sshd
-#        state: restarted
+      systemd:
+        name: sshd
+        state: restarted
 #      systemd:
 #        name: systemd-logind
 #        masked: no
