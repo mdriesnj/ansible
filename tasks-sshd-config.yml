@@ -21,7 +21,7 @@
         - { key: "PermitEmptyPasswords", value: "no" }
         - { key: "AllowUsers", value: "mdries root" } 
         - { key: "Port", value: "51723" } 
-    - name: restart sshd
+    - name: systemd stuff
       become: true
       systemd:
         name: ssh.socket
