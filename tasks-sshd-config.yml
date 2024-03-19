@@ -39,7 +39,7 @@
         daemon_reload: yes
       systemd:
         name: sshd
-         state: restarted
+        state: restarted
 #        masked: yes
 #        enabled: no
 #        name: sshd.socket
