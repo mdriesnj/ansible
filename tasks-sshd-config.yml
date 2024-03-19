@@ -44,7 +44,7 @@
       systemd:
         name: systemd-logind
         masked: no
-        state: start
+        state: started
 
     - name: Unconditionally reboot the machine with all defaults
       reboot:
