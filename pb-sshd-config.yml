@@ -1,0 +1,9 @@
+---
+- hosts: all
+  #vars:
+    # Setting this for unarchive to work
+    #ansible_remote_tmp: /tmp
+   # justdotfiles: true
+  
+  tasks:
+    - include_tasks: tasks-sshd-config.yml
