@@ -23,6 +23,7 @@
         - { key: "Port", value: "22" } 
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
 
 #    - name: configure sshd socket port
