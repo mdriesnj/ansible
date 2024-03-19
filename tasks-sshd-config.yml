@@ -26,9 +26,10 @@
       systemd:
         name: ssh.socket
         masked: yes
-        name: sshd.socket
-        masked: yes
-        name: sshd
         enabled: no
-        name: ssh
-        enabled: yes
+#        name: sshd.socket
+#        masked: yes
+#        name: sshd
+#        enabled: no
+#        name: ssh
+#        enabled: yes
