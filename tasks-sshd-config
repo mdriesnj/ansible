@@ -1,0 +1,32 @@
+    - name: configure sshd
+      become: true
+      lineinfile:
+        path: "/etc/ssh/sshd_config"
+        regex: "^(#)?{{item.key}}"
+        line: "{{item.key}} {{item.value}}"
+        state: present
+      loop:
+        - { key: "PermitRootLogin", value: "forced-commands-only" }
+        - { key: "Protocol", value: "2" } 
+        - { key: "HostBasedAuthentication", value: "no" } 
+        - { key: "IgnoreRHosts", value: "yes" }
+        - { key: "AuthorizedKeysFile", value: ".ssh/authorized_keys" } 
+        - { key: "PubkeyAuthentication", value: "yes" }
+        - { key: "MaxAuthTries", value: "3" }
+        - { key: "PermitUserEnvironment", value: "no" } 
+        - { key: "UsePAM", value: "yes" }
+        - { key: "X11Forwarding", value: "no" } 
+        - { key: "AllowTcpForwarding", value: "no" } 
+        - { key: "PermitEmptyPasswords", value: "no" }
+        - { key: "AllowUsers", value: "mdries root" } 
+        - { key: "Port", value: "51723" } 
+
+
+        - { key: "Protocol", value: "2" } 
+        - { key: "Protocol", value: "2" } 
+
+    - name: restart sshd
+      service:
+        name: sshd
+        state: restarted
+
