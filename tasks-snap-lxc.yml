@@ -1,0 +1,9 @@
+    - name: take snapshot
+      community.general.proxmox_snap:
+        api_user: mdries@pam!mdriesapi
+        api_password: 1bdaa920-ca80-4f38-8b6e-ec7ff35878e9
+        api_host: midlandpve.digitaldiscord.net
+        vmid: {{lxcid}}
+        state: present
+        snapname: postsetup
+        
