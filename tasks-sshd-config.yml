@@ -66,9 +66,9 @@
     
     - name: systemd stuff
       become: true
-#      systemd:
-#        daemon_reload: yes
       systemd:
+        daemon_reload: yes
+      service:
         name: sshd
         state: restarted
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
