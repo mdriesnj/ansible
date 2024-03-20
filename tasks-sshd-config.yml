@@ -50,24 +50,14 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
       when: ansible_distribution == 'OpenBSD'
-
-
-#    - name: configure sshd socket port
-#      become: true
-#      lineinfile:
-#        path: "/etc/systemd/system/sockets.target.wants/ssh.socket"
-        #regex: "^(#)?{{item.key}}"
-#        regex: ^(# *)?{{item.key}}
-#        line: "ListenStream=22"
-        #state: present
- #     loop:
- #       - { key: "ListenStream", value: "22" }
-
     
     - name: systemd stuff
       become: true
       systemd:
         daemon_reload: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+
+    - name: service stuff    
       service:
         name: sshd
         state: restarted
