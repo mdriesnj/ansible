@@ -2,4 +2,4 @@
       become: true
       community.general.timezone:
         name: America/New_York
-  
+        hwclock: local
