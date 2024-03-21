@@ -1,4 +1,4 @@
-    - name: Disable root login
+    - name: set ny tz
       become: true
       community.general.timezone:
         name: America/New_York
