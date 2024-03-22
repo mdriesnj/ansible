@@ -63,6 +63,7 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
     - name: service stuff    
+      become: true
       service:
         name: sshd
         state: restarted
