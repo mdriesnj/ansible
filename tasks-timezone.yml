@@ -1,5 +1,5 @@
     - name: set ny tz
       become: true
-      community.general.timezone:
-        name: America/New_York
-        hwclock: local
+      - name: Set the timezone
+        ansible.builtin.timezone:
+          name: America/New_York
