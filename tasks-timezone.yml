@@ -1,5 +1,4 @@
-    - name: set ny tz
+    - name: Set the timezone
       become: true
-      - name: Set the timezone
-        ansible.builtin.timezone:
-          name: America/New_York
+      ansible.builtin.timezone:
+        name: America/New_York
