@@ -34,7 +34,7 @@
           - vim
  #         - stow
           - net-tools  
-          - ranger
+  #        - ranger not in yum
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
