@@ -1,6 +1,6 @@
     - name: Set ping capabilitiy
       become: true
-     capabilities:
+      capabilities:
         path: /bin/ping
         capability: cap_net_raw+p
         state: present
