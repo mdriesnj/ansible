@@ -6,13 +6,13 @@
     justdotfiles: false
     
   tasks:
-    - include_tasks: tasks-update-packages.yml
-    - include_tasks: tasks-newuser.yml
-    - include_tasks: tasks-standard-packages.yml
-    - include_tasks: tasks-dotfiles.yml
-    - include_tasks: tasks-sshd-config.yml
-    - include_tasks: tasks-disable-root.yml
-    - include_tasks: tasks.add-ping-cap.yml
+#    - include_tasks: tasks-update-packages.yml
+#    - include_tasks: tasks-newuser.yml
+#    - include_tasks: tasks-standard-packages.yml
+#    - include_tasks: tasks-dotfiles.yml
+#    - include_tasks: tasks-sshd-config.yml
+#    - include_tasks: tasks-disable-root.yml
+    - include_tasks: tasks-add-ping-cap.yml
 #    - include_tasks: tasks-snap-lxc.yml
 #    - name: Unconditionally reboot the machine with all defaults
 #      reboot:
