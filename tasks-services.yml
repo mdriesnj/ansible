@@ -1,0 +1,5 @@
+- name: start the service if it's enabled
+  service:
+    name: postfix
+    enabled: no
+    state: stopped
