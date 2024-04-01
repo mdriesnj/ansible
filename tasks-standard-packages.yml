@@ -89,6 +89,30 @@
         dest: /usr/bin/
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: openbsd packages
+      become: true
+      community.general.openbsd_pkg:
+        name: 
+          - tar
+          - wget
+          - curl
+          - sudo
+          - git 
+          - zsh
+          - vim
+ #         - stow
+          - net-tools  
+          - neofetch
+          - neovim 
+          - bat 
+          - ncdu
+          - btop
+          - fzf
+          - tldr
+       #   - gdu
+  #        - ranger not in yum
+        state: latest
+      when: ansible_distribution == 'OpenBSD'
 
 
 #    - name: Update apt cache
