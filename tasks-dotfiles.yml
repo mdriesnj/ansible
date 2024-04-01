@@ -48,6 +48,14 @@
         path: /root/.vimrc
         state: absent
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+    - name: root Remove file vimrc
+      become: true
+      ansible.builtin.file:
+        path: /root/.config
+        state: absent
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
       
     - name: root Symlink zshrc
       become: true
@@ -57,7 +65,7 @@
         owner: root
         group: root
         state: link
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: root Symlink vimrc
       become: true
@@ -67,7 +75,48 @@
         owner: root
         group: root
         state: link
- #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+    - name: root Symlink config
+      become: true
+      ansible.builtin.file:
+        src: /root/dotfiles/.config
+        dest: /root/.config
+        owner: root
+        group: root
+        state: link
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+
+    - name: root Symlink zshrc
+      become: true
+      ansible.builtin.file:
+        src: /root/dotfiles/.zshrc
+        dest: /root/.zshrc
+        owner: root
+        group: wheel
+        state: link
+      when: ansible_distribution == 'OpenBSD'
+    - name: root Symlink vimrc
+      become: true
+      ansible.builtin.file:
+        src: /root/dotfiles/.vimrc
+        dest: /root/.vimrc
+        owner: root
+        group: wheel
+        state: link
+      when: ansible_distribution == 'OpenBSD'
+  
+    - name: root Symlink config
+      become: true
+      ansible.builtin.file:
+        src: /root/dotfiles/.config
+        dest: /root/.config
+        owner: root
+        group: wheel
+        state: link
+      when: ansible_distribution == 'OpenBSD'
+
       
     - name: root change user shell to zsh 
       become: yes
@@ -139,6 +188,16 @@
         path: /home/mdries/.vimrc
         state: absent
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+
+    - name: Remove mdries file vimrc
+      become: true
+      become_user: mdries
+      ansible.builtin.file:
+        path: /home/mdries/.config
+        state: absent
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
       
     - name: Symlink mdries zshrc
       become: true
@@ -150,6 +209,18 @@
         group: mdries
         state: link
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+    
+    - name: Symlink mdries config
+      become: true
+      become_user: mdries
+      ansible.builtin.file:
+        src: /home/mdries/dotfiles/.config
+        dest: /home/mdries/.config
+        owner: mdries
+        group: mdries
+        state: link
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+      
       
     - name: Symlink mdries vimrc
       become: true
