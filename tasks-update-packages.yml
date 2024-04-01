@@ -25,7 +25,7 @@
     - name: reboot host debian or alma
       become: true
       reboot:
-        msg: "rebooting into bsd.rd to upgrade"
+        msg: "rebooting to upgrade"
         reboot_timeout: 90
     
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
