@@ -20,6 +20,12 @@
           - ranger
           - neofetch
           - neovim 
+          - bat
+          - ncdu
+          - btop
+          - fzf
+          - tldr
+          - gdu
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
@@ -36,6 +42,14 @@
           - vim
  #         - stow
           - net-tools  
+          - neofetch
+          - neovim 
+          - bat 
+          - ncdu
+          - btop
+          - fzf
+          - tldr
+          - gdu
   #        - ranger not in yum
         state: latest
       when: ansible_distribution == 'AlmaLinux'
