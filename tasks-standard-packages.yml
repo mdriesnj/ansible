@@ -18,6 +18,8 @@
  #         - stow
           - net-tools   
           - ranger
+          - neofetch
+          - neovim 
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
