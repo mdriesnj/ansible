@@ -67,7 +67,7 @@
           - btop
           - fzf
           - tldr
-          - gdu
+       #   - gdu
   #        - ranger not in yum
         state: latest
       when: ansible_distribution == 'AlmaLinux'
