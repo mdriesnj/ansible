@@ -28,7 +28,7 @@
         msg: "rebooting to upgrade"
         reboot_timeout: 90
     
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution == 'AlmaLinux'
 
 
 #    - name: Apply all patches and store result
