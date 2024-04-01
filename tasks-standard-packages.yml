@@ -89,12 +89,7 @@
         dest: /usr/bin/
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: openbsd packages
-      become: true
-      openbsd_pkg:
-        name: tar
-        state: latest
-      when: ansible_distribution == 'OpenBSD'
+
 
 
 #    - name: Update apt cache
