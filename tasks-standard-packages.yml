@@ -29,6 +29,20 @@
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: alma dnf install
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
+      when: ansible_distribution == 'AlmaLinux'
+      
+    - name: alma dnf install
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        state: present
+      when: ansible_distribution == 'AlmaLinux'        
+
     - name: alma packages
       become: true
       yum:
