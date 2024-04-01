@@ -34,6 +34,7 @@
       dnf:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
         state: present
+        validate_certs: no
       when: ansible_distribution == 'AlmaLinux'
       
     - name: alma dnf install
@@ -41,6 +42,7 @@
       dnf:
         name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
         state: present
+        validate_certs: no
       when: ansible_distribution == 'AlmaLinux'        
 
     - name: alma packages
