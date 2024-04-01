@@ -23,7 +23,7 @@
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
 
     - name: root git clone https://github.com/mdriesnj/dotfiles
@@ -32,7 +32,7 @@
         repo: https://github.com/mdriesnj/dotfiles
         dest: /root/dotfiles
 #        version: master
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
       
     - name: root Remove file zshrc
@@ -40,14 +40,14 @@
       ansible.builtin.file:
         path: /root/.zshrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: root Remove file vimrc
       become: true
       ansible.builtin.file:
         path: /root/.vimrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: root Symlink zshrc
       become: true
@@ -57,7 +57,7 @@
         owner: root
         group: root
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: root Symlink vimrc
       become: true
@@ -67,14 +67,14 @@
         owner: root
         group: root
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+ #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: root change user shell to zsh 
       become: yes
       user:
         name: root
         shell: /bin/zsh
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+  #    when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
 
 #-------------------- mdries dotfiles-----------------------------
@@ -94,7 +94,7 @@
       command: sh /tmp/install_ohmyzsh.sh --unattended
       register: ohmyzsh_result
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux") and justdotfiles == true
+   #   when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux") and justdotfiles == true
 
 
 #    - name: install omz as mdries
@@ -110,18 +110,18 @@
         path: /home/mdries/.oh-my-zsh
         state: directory
         mode: '0700'
-      when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
+   #   when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
 
     - name: copy oh-my-zsh
       become: true
       copy: src=/root/.oh-my-zsh/ dest=/home/mdries/.oh-my-zsh/ remote_src=yes directory_mode=yes
-      when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
+    #  when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
 
     - name: git clone mdries https://github.com/mdriesnj/dotfiles
       ansible.builtin.git:
         repo: https://github.com/mdriesnj/dotfiles
         dest: /home/mdries/dotfiles/
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+  #    when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 #        version: master
 
     - name: Remove mdries file zshrc
@@ -130,7 +130,7 @@
       ansible.builtin.file:
         path: /home/mdries/.zshrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+ #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: Remove mdries file vimrc
       become: true
@@ -138,7 +138,7 @@
       ansible.builtin.file:
         path: /home/mdries/.vimrc
         state: absent
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: Symlink mdries zshrc
       become: true
@@ -149,7 +149,7 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
     - name: Symlink mdries vimrc
       become: true
@@ -160,7 +160,7 @@
         owner: mdries
         group: mdries
         state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
     - name: chown mdries
       become: true
@@ -170,5 +170,5 @@
         recurse: yes
         owner: mdries
         group: mdries
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+ #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
  
