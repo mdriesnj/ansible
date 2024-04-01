@@ -91,26 +91,8 @@
 
     - name: openbsd packages
       become: true
-      community.general.openbsd_pkg:
-        name: 
-          - tar
-          - wget
-          - curl
-          - sudo
-          - git 
-          - zsh
-          - vim
- #         - stow
-          - net-tools  
-          - neofetch
-          - neovim 
-          - bat 
-          - ncdu
-          - btop
-          - fzf
-          - tldr
-       #   - gdu
-  #        - ranger not in yum
+      openbsd_pkg:
+        name: tar
         state: latest
       when: ansible_distribution == 'OpenBSD'
 
