@@ -81,7 +81,7 @@
         mode: 0755
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: "extract"
+    - name: "extract eza"
       become: true
       unarchive:
         remote_src: yes
@@ -89,7 +89,7 @@
         dest: /usr/bin/
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: "get eza"
+    - name: "get nvim"
       become: true
       get_url:
         url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -97,7 +97,7 @@
         mode: 0755
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: "extract"
+    - name: "extract nvim"
       become: true
       unarchive:
         remote_src: yes
@@ -105,7 +105,7 @@
         dest: /usr/bin/
       when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: "extract"
+    - name: "extract nvim2"
       become: true
       unarchive:
         remote_src: yes
