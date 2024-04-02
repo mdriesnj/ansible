@@ -102,15 +102,21 @@
       unarchive:
         remote_src: yes
         src: /tmp/nvim-linux64.tar.gz
-        dest: /usr/bin/
+        dest: /tmp
       when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: "extract nvim2"
+    - name: "copy nvim /bin"
       become: true
-      unarchive:
-        remote_src: yes
-        src: /tmp/nvim-linux64.tar.gz
+      copy:
+        src: /tmp/nvim-linux64/bin/nvim
         dest: /bin/
+      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: "copy nvim /bin"
+      become: true
+      copy:
+        src: /tmp/nvim-linux64/bin/nvim
+        dest: /usr/bin/
       when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
