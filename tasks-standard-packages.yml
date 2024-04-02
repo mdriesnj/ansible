@@ -89,7 +89,29 @@
         dest: /usr/bin/
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: "get eza"
+      become: true
+      get_url:
+        url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+        dest: /tmp/
+        mode: 0755
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - name: "extract"
+      become: true
+      unarchive:
+        remote_src: yes
+        src: /tmp/nvim-linux64.tar.gz
+        dest: /usr/bin/
+      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+
+    - name: "extract"
+      become: true
+      unarchive:
+        remote_src: yes
+        src: /tmp/nvim-linux64.tar.gz
+        dest: /bin/
+      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
 #    - name: Update apt cache
