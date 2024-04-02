@@ -14,6 +14,7 @@
     - include_tasks: tasks-disable-root.yml
     - include_tasks: tasks-add-ping-cap.yml
     - include_tasks: tasks-timezone.yml
+    - include_tasks: tasks-services.yml
 #    - include_tasks: tasks-snap-lxc.yml
 #    - name: Unconditionally reboot the machine with all defaults
 #      reboot:
