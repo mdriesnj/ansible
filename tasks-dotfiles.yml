@@ -25,6 +25,15 @@
       failed_when: "'FAILED' in ohmyzsh_result.stderr"
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
       
+    - name: root delete dotfiles
+      become: true
+     file:
+        path: /root/dotfiles
+        state: absent
+#        version: master
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+
 
     - name: root git clone https://github.com/mdriesnj/dotfiles
       become: true
@@ -190,13 +199,18 @@
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
 
 
-    - name: Remove mdries file vimrc
+    - name: Remove mdries file config
       become: true
       become_user: mdries
       ansible.builtin.file:
         path: /home/mdries/.config
         state: absent
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+
+    - name: mdries delete dotfiles
+      file:
+        path: /home/mdries/dotfiles
+        state: absent
 
       
     - name: Symlink mdries zshrc
