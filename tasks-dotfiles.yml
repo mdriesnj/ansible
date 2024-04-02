@@ -145,6 +145,12 @@
         owner: mdries
         group: mdries
       when: justdotfiles == false  
+
+    - name: mdries delete dotfiles
+      file:
+        path: /home/mdries/dotfiles
+        state: absent
+
     
     - name: mdries Run Oh My Zsh installation script
 #      become_user: mdries
@@ -206,12 +212,6 @@
         path: /home/mdries/.config
         state: absent
 #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: mdries delete dotfiles
-      file:
-        path: /home/mdries/dotfiles
-        state: absent
-
       
     - name: Symlink mdries zshrc
       become: true
