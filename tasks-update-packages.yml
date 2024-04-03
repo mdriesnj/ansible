@@ -26,7 +26,7 @@
       become: true
       reboot:
         msg: "rebooting to upgrade"
-        reboot_timeout: 90
+        reboot_timeout: 15
     
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution == 'AlmaLinux'
 
