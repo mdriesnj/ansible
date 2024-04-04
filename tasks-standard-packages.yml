@@ -103,8 +103,8 @@
         remote_src: yes
         src: /tmp/nvim-linux64.tar.gz
         dest: /tmp
-        extra_opts:
-        - 'nvim-linux64/bin/nvim'
+#        extra_opts:
+#        - 'nvim-linux64/bin/nvim'
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "copy nvim /bin"
