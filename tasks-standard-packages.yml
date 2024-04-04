@@ -95,7 +95,7 @@
         url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
         dest: /tmp/
         mode: 0755
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "extract nvim"
       become: true
@@ -105,7 +105,7 @@
         dest: /tmp
         extra_opts:
         - 'nvim-linux64/bin/nvim'
-      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "copy nvim /bin"
       become: true
@@ -113,7 +113,7 @@
         remote_src: yes
         src: /tmp/nvim-linux64/bin/nvim
         dest: /bin/
-      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "copy nvim /bin"
       become: true
@@ -121,7 +121,7 @@
         remote_src: yes
         src: /tmp/nvim-linux64/bin/nvim
         dest: /usr/bin/
-      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "copy nvim share"
       become: true
@@ -129,7 +129,7 @@
         remote_src: yes
         src: /tmp/nvim-linux64/share/nvim
         dest: /usr/share/
-      when:  ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
 #    - name: Update apt cache
