@@ -92,10 +92,9 @@
 
   - name: mdries copy .oh-my-zsh
     copy:
-      remote_src: false
       src: /home/mdries/src_dot_files/.oh-my-zsh/
       dest: /home/mdries/.oh-my-zsh/
-      remote_src: true
+      remote_src: false
 
   - name: mdries git clone astronvim
     git:
