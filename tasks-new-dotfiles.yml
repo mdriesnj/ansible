@@ -116,8 +116,7 @@
     become: true
     file:
       path: /root/.zshrc
-      state: present
-      recurse: yes
+      state: file
       owner: root
       group: root
     when: inventory_hostname in groups['pve']    
@@ -126,8 +125,7 @@
     become: true
     file:
       path: /root/.vimrc
-      state: present
-      recurse: yes
+      state: file
       owner: root
       group: root
     when: inventory_hostname in groups['pve']    
