@@ -120,7 +120,7 @@
       state: absent
 
   - name: mdries run nvim  +'LspInstall lua_ls' +q
-    command: /bin/nvim +'LspInstall lua_ls' +q  
+    command: /bin/nvim +'LspInstall lua_ls' +q +q
  
   
 #  - name: chown mdries
