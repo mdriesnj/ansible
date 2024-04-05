@@ -31,6 +31,7 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: npm install tree-sitter-cli
+      become: true
       community.general.npm:
         name: tree-sitter-cli
         state: present
