@@ -26,6 +26,7 @@
           - fzf
           - tldr
           - gdu
+          - fd-find
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
@@ -67,6 +68,7 @@
           - btop
           - fzf
           - tldr
+          - fd-find
        #   - gdu
   #        - ranger not in yum
         state: latest
