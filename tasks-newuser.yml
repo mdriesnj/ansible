@@ -7,10 +7,10 @@
         name: mdries
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
-    - name: create group mdries
-      group:
-        name: mdries
-      when: ansible_distribution == 'Alpine'
+#    - name: create group mdries
+#      group:
+#        name: mdries
+#      when: ansible_distribution == 'Alpine'
         
     - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       become: true
@@ -29,12 +29,11 @@
       user:
         name: mdries
         shell: /bin/zsh
-        groups: sudo,users,mdries
+        groups: users,mdries
         create_home: yes
  #       password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
         password: "{{ password | password_hash('sha512') }}"
         append: yes
-        shell: /bin/zsh
       when: ansible_distribution == 'Alpine'
 
 
