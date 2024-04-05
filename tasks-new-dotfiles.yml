@@ -1,6 +1,7 @@
-  - name: Distribution
-    debug: msg="{{ ansible_hostname }}"
-    debug: msg="{{ ansible_default_ipv4 }}"
+  #- name: Distribution
+  #  debug: msg="{{ ansible_hostname }}"
+  #  debug: msg="{{ ansible_default_ipv4 }}"
+  
   - name: copy dotfiles.tar to other systems
     copy:
       remote_src: false
