@@ -7,7 +7,6 @@
 #      remote_src: false
 #      src: /home/mdries/dotfiles.tar
 #      dest: /tmp/ 
-
 #------ mdries ---------------
 #------ Clean up first -------
   - name: chown mdries
@@ -18,61 +17,73 @@
       recurse: yes
       owner: mdries
       group: mdries
+    when: ansible_distribution != 'Alpine'
         
   - name: clean gitfiles
     file:
       path: /home/mdries/.git
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .zshrc			
     file:
       path: /home/mdries/.zshrc
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .vimrc
     file:
       path: /home/mdries/.vimrc
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .config
     file:
       path: /home/mdries/.config
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .local
     file:
       path: /home/mdries/.local
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .cache
     file:
       path: /home/mdries/.cache
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .oh-my-zsh
     file:
       path: /home/mdries/.oh-my-zsh
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .zshrc.old
     file:
       path: /home/mdries/.zshrc.old
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean .zshrc.stock
     file:
       path: /home/mdries/.zshrc.stock
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean ssh-config
     file:
       path: /home/mdries/ssh-config
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: clean dotfiles
     file:
       path: /home/mdries/dotfiles
       state: absent
+    when: ansible_distribution != 'Alpine'
 
 #----- extract dotfiles.tar ------
 
@@ -90,12 +101,51 @@
 #      dest: /home/mdries/.oh-my-zsh/
 #      remote_src: false
 
+#----------Alpine----------
+  - name: root download oh-my-zsh
+    become: true
+    become_user: root
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /home/mdries/install_ohmyzsh.sh
+      mode: 0755
+    when: ansible_distribution == 'Alpine'
+
+  - name: root Run Oh My Zsh installation script
+    become: true
+    become_user: root
+    command: sh /home/mdries/install_ohmyzsh.sh --unattended
+    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution == 'Alpine'
+
+
+  - name: mdries download oh-my-zsh
+    become: true
+    become_user: mdries
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /home/mdries/install_ohmyzsh.sh
+      mode: 0755
+    when: ansible_distribution == 'Alpine'
+
+  - name: mdries Run Oh My Zsh installation script
+    become: true
+    become_user: mdries
+    command: sh /home/mdries/install_ohmyzsh.sh --unattended
+    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution == 'Alpine'
+
+
+
   - name: using root Download Oh My Zsh installation script
     become: true
     get_url:
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
       dest: /tmp/install_ohmyzsh.sh
       mode: 0755
+    when: ansible_distribution != 'Alpine'
 
   - name: mdries Run Oh My Zsh installation script
     command: sh /tmp/install_ohmyzsh.sh --unattended
@@ -107,12 +157,14 @@
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
+    when: ansible_distribution != 'Alpine'
 
   - name: mdries copy neofetch/config
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
+    when: ansible_distribution != 'Alpine'
 
 
   
@@ -162,72 +214,84 @@
     file:
       path: /root/.git
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .zshrc
     become: true
     file:
       path: /root/.zshrc
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .vimrc
     become: true
     file:
       path: /root/.vimrc
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .config
     become: true
     file:
       path: /root/.config
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .local
     become: true
     file:
       path: /root/.local
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .cache
     become: true
     file:
       path: /root/.cache
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .on-my-zsh
     become: true
     file:
       path: /root/.oh-my-zsh
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .zshrc.old
     become: true
     file:
       path: /root/.zshrc.old
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean .zshrc.stock
     become: true
     file:
       path: /root/.zshrc.stock
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean ssh-config
     become: true
     file:
       path: /root/ssh-config
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root clean dotfiles
     become: true
     file:
       path: /root/dotfiles
       state: absent
+    when: ansible_distribution != 'Alpine'
 
   - name: root Run Oh My Zsh installation script
     become: true
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+ #   failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution != 'Alpine'
 
   - name: root copy .zshrc
     become: true
@@ -235,6 +299,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /root/
+    when: ansible_distribution != 'Alpine'
 
   - name: root copy neofetch/config
     become: true
@@ -242,6 +307,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /root/.config/neofetch/
+    when: ansible_distribution != 'Alpine'
 
 
 #----- extract dotfiles.tar ------
