@@ -19,7 +19,7 @@
       owner: mdries
       group: mdries
         
-  - name: clean git 	files
+  - name: clean gitfiles
     file:
       path: /home/mdries/.git
       state: absent
@@ -76,99 +76,77 @@
 
 #----- extract dotfiles.tar ------
 
-  - name: extract dotfiles
-    unarchive:
-      src: /tmp/dotfiles.tar
-      dest: /home/mdries/
-      remote_src: true
-  
-  - name: chown mdries
-    become: true
+#  - name: extract dotfiles
+#    unarchive:
+#      src: /tmp/dotfiles.tar
+#      dest: /home/mdries/
+#      remote_src: true
+
+#------- copy dotfiles -----------
+
+  - name: mdries copy .zshrc
+    copy:
+      remote_src: false
+      src: /home/mdries/.zshrc
+      dest: /home/mdries
+
+  - name: mdries copy .oh-my-zsh
+    copy:
+      remote_src: false
+      src: /home/mdries/.oh-my-zsh
+      dest: /home/mdries
+
+  - name: mdries git clone astronvim
+    git:
+      repo: https://github.com/AstroNvim/template
+      dest: /home/mdries/.config/nvim
+      depth: 1
+
+  - name: mdries remove .git from .config/nvim
     file:
-      path: /home/mdries
-      state: directory
-      recurse: yes
-      owner: mdries
-      group: mdries
+      path: /home/mdries/.config/nvim/.git
+      state: absent
+  
+#  - name: chown mdries
+#    become: true
+#    file:
+#      path: /home/mdries
+#      state: directory
+#      recurse: yes
+#      owner: mdries
+#      group: mdries
   
 #------ root ---------------
 #------ Clean up first -------
-  - name: chown root regular hosts
-    become: true
-    file:
-      path: /root
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    #when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
-    when: inventory_hostname in groups['normal']
-      
-#  - name: find root files pve
+#  - name: chown root regular hosts
 #    become: true
-#    find: 
-#      paths: /root
-#      excludes: '.ssh'
-#    register: files_to_fix
-    #when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
-#    when: inventory_hostname in groups['pve']
-  - name: chown root pve .zshrc
-    become: true
-    file:
-      path: /root/.zshrc
-      state: file
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
+#    file:
+#      path: /root
+#      state: directory
+#      recurse: yes
+#      owner: root
+#      group: root
+    #when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
+#    when: inventory_hostname in groups['normal']
+      
+#  - name: chown root pve .vimrc
+#    become: true
+#    file:
+#      path: /root/.vimrc
+#      state: file
+#      owner: root
+#      group: root
+#    when: inventory_hostname in groups['pve']    
 
-  - name: chown root pve .vimrc
-    become: true
-    file:
-      path: /root/.vimrc
-      state: file
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .config
-    become: true
-    file:
-      path: /root/.config
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .local
-    become: true
-    file:
-      path: /root/.local
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-  
-  - name: chown root pve .cache
-    become: true
-    file:
-      path: /root/.cache
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .oh-my-zsh
-    become: true
-    file:
-      path: /root/.oh-my-zsh
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
+#  - name: chown root pve .oh-my-zsh
+#    become: true
+#    file:
+#      path: /root/.oh-my-zsh
+#      state: directory
+#      recurse: yes
+#      owner: root
+#      group: root
+#    when: inventory_hostname in groups['pve']    
 
   - name: root clean gitfiles
     become: true
@@ -238,23 +216,23 @@
 
 #----- extract dotfiles.tar ------
 
-  - name: root extract dotfiles
-    become: true
-    unarchive:
-      src: /tmp/dotfiles.tar
-      dest: /root/
-      remote_src: true
+#  - name: root extract dotfiles
+#    become: true
+#    unarchive:
+#      src: /tmp/dotfiles.tar
+#      dest: /root/
+#      remote_src: true
       
-  - name: chown root regular hosts
-    become: true
-    file:
-      path: /root
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
+#  - name: chown root regular hosts
+#    become: true
+#    file:
+#      path: /root
+#      state: directory
+#      recurse: yes
+#      owner: root
+#      group: root
     #when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
-    when: inventory_hostname in groups['normal']
+#    when: inventory_hostname in groups['normal']
       
 #  - name: find root files pve
 #    become: true
@@ -264,60 +242,12 @@
 #    register: files_to_fix
     #when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
 #    when: inventory_hostname in groups['pve']
-  - name: chown root pve .zshrc
-    become: true
-    file:
-      path: /root/.zshrc
-      state: file
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
 
-  - name: chown root pve .vimrc
-    become: true
-    file:
-      path: /root/.vimrc
-      state: file
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .config
-    become: true
-    file:
-      path: /root/.config
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .local
-    become: true
-    file:
-      path: /root/.local
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-  
-  - name: chown root pve .cache
-    become: true
-    file:
-      path: /root/.cache
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
-
-  - name: chown root pve .oh-my-zsh
-    become: true
-    file:
-      path: /root/.oh-my-zsh
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
-    when: inventory_hostname in groups['pve']    
+#  - name: chown root pve .zshrc
+#    become: true
+#    file:
+#      path: /root/.zshrc
+#      state: file
+#      owner: root
+#      group: root
+#    when: inventory_hostname in groups['pve']    
