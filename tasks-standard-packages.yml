@@ -129,8 +129,8 @@
       become: true
       copy:
         remote_src: yes
-        src: /tmp/nvim-linux64/share/nvim
-        dest: /usr/share/
+        src: /tmp/nvim-linux64/share/nvim/runtime/.
+        dest: /usr/share/nvim/runtime
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
