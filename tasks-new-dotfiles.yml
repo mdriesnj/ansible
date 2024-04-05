@@ -1,6 +1,6 @@
   - name: Distribution
     debug: msg="{{ ansible_hostname }}"
-
+    debug: msg="{{ ansible_default_ipv4 }}"
   - name: copy dotfiles.tar to other systems
     copy:
       remote_src: false
@@ -100,7 +100,7 @@
       recurse: yes
       owner: root
       group: root
-    when: ansible_hostname != 'midlandpve' or ansible_hostname != 'hopperspve'
+    when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
 
   - name: find root files pve
     become: true
@@ -108,7 +108,7 @@
       paths: /root
       excludes: '.ssh'
     register: files_to_fix
-    when: ansible_hostname == 'midlandpve' or ansible_hostname == 'hopperspve'
+    when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
 
   - name: chown root pve
     become: true
@@ -119,7 +119,7 @@
       owner: root
       group: root
     with_items: "{{ files_to_delete.files }}"
-    when: ansible_hostname == 'midlandpve' or ansible_hostname == 'hopperspve'
+    when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
     
 
   - name: root clean gitfiles
