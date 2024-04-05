@@ -111,7 +111,7 @@
   - name: mdries copy neofetch/config
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/config.conf
+      src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
 
 
