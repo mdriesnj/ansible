@@ -268,7 +268,7 @@
     become: true
     file:
       path: /root/.zshrc
-      state: present
+      state: file
       recurse: yes
       owner: root
       group: root
@@ -278,7 +278,7 @@
     become: true
     file:
       path: /root/.vimrc
-      state: present
+      state: file
       recurse: yes
       owner: root
       group: root
