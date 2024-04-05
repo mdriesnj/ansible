@@ -26,14 +26,14 @@
           - tldr
           - gdu
           - fd-find
-          - npm
+#          - npm
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: npm install tree-sitter-cli
-      community.general.npm:
-        name: tree-sitter-cli
-        state: present
+#    - name: npm install tree-sitter-cli
+#      community.general.npm:
+#        name: tree-sitter-cli
+#        state: present
 
     - name: alma dnf install
       become: true
