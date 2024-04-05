@@ -3,8 +3,8 @@
       
     - name: copy dotfiles.tar to other systems
       copy:
-      remote_src: false
-      src: /home/mdries/dotfiles.tar
-      dest: /tmp/ 
-      owner: mdries
-      group: root
+        remote_src: false
+        src: /home/mdries/dotfiles.tar
+        dest: /tmp/ 
+        owner: mdries
+        group: root
