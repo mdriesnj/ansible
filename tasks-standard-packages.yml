@@ -164,6 +164,12 @@
         dest: /usr/bin/
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
+    - hame: "make helix runtime location"
+      become: true
+      file:
+        path: /usr/share/helix/runtime
+        state: present
+
     - name: "copy helix runtime /usr/share"
       become: true
       copy:
