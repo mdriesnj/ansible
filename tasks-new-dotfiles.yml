@@ -87,13 +87,13 @@
   - name: mdries copy .zshrc
     copy:
       remote_src: false
-      src: /home/mdries/.zshrc
+      src: /home/mdries/dotfiles/.zshrc
       dest: /home/mdries
 
   - name: mdries copy .oh-my-zsh
     copy:
       remote_src: false
-      src: /home/mdries/.oh-my-zsh/
+      src: /home/mdries/dotfiles/.oh-my-zsh/
       dest: /home/mdries
 
   - name: mdries git clone astronvim
