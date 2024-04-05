@@ -92,7 +92,7 @@
   
 #------ root ---------------
 #------ Clean up first -------
-  - name: chown root
+  - name: chown root regular hosts
     become: true
     file:
       path: /root
@@ -102,7 +102,7 @@
       group: root
     when: ansible_hostname != 'midlandpve' or ansible_hostname != 'hopperspve'
 
-  - name: find root files 
+  - name: find root files pve
     become: true
     find: 
       paths: /root
@@ -110,11 +110,11 @@
     register: files_to_fix
     when: ansible_hostname == 'midlandpve' or ansible_hostname == 'hopperspve'
 
-  - name: chown root
+  - name: chown root pve
     become: true
     file:
       path: "{{ item.path }}"
-      state: present
+      state: directory
       recurse: yes
       owner: root
       group: root
