@@ -104,24 +104,72 @@
     #when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
     when: inventory_hostname in groups['normal']
       
-  - name: find root files pve
-    become: true
-    find: 
-      paths: /root
-      excludes: '.ssh'
-    register: files_to_fix
+#  - name: find root files pve
+#    become: true
+#    find: 
+#      paths: /root
+#      excludes: '.ssh'
+#    register: files_to_fix
     #when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
-    when: inventory_hostname in groups['pve']
-
-  - name: chown root pve
+#    when: inventory_hostname in groups['pve']
+  - name: chown root pve .zshrc
     become: true
     file:
-      path: "{{ item.path }}"
+      path: /root/.zshrc
+      state: present
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .vimrc
+    become: true
+    file:
+      path: /root/.vimrc
+      state: present
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .config
+    become: true
+    file:
+      path: /root/.config
       state: directory
       recurse: yes
       owner: root
       group: root
-    with_items: "{{ files_to_delete.files }}"
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .local
+    become: true
+    file:
+      path: /root/.local
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+  
+  - name: chown root pve .cache
+    become: true
+    file:
+      path: /root/.cache
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .oh-my-zsh
+    become: true
+    file:
+      path: /root/.oh-my-zsh
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
     when: inventory_hostname in groups['pve']    
 
   - name: root clean gitfiles
@@ -198,8 +246,8 @@
       src: /tmp/dotfiles.tar
       dest: /root/
       remote_src: true
-  
-  - name: chown root
+      
+  - name: chown root regular hosts
     become: true
     file:
       path: /root
@@ -207,4 +255,73 @@
       recurse: yes
       owner: root
       group: root
+    #when: ansible_hostname != 'pve' or ansible_hostname != 'hopperspve'
+    when: inventory_hostname in groups['normal']
+      
+#  - name: find root files pve
+#    become: true
+#    find: 
+#      paths: /root
+#      excludes: '.ssh'
+#    register: files_to_fix
+    #when: ansible_hostname == 'pve' or ansible_hostname == 'hopperspve'
+#    when: inventory_hostname in groups['pve']
+  - name: chown root pve .zshrc
+    become: true
+    file:
+      path: /root/.zshrc
+      state: present
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .vimrc
+    become: true
+    file:
+      path: /root/.vimrc
+      state: present
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .config
+    become: true
+    file:
+      path: /root/.config
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .local
+    become: true
+    file:
+      path: /root/.local
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
   
+  - name: chown root pve .cache
+    become: true
+    file:
+      path: /root/.cache
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
+
+  - name: chown root pve .oh-my-zsh
+    become: true
+    file:
+      path: /root/.oh-my-zsh
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    when: inventory_hostname in groups['pve']    
