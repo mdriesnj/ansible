@@ -1,6 +1,7 @@
-- name: start the service if it's enabled
+- name: stop and disable postfix on containers
   become: true
   service:
     name: postfix
     enabled: no
     state: stopped
+  when: inventory_hostname in groups['newlxc']
