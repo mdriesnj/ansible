@@ -237,6 +237,7 @@
       dest: /root/
 
   - name: root copy neofetch/config
+    become: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
