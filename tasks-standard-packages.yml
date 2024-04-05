@@ -1,10 +1,20 @@
-    - name: Update apt cache
+#-------- Alpine------------------------
+
+    - name: Alpine install 
+      community.general.apk:
+        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd
+        state: latest
+        update_cache: true
+      when: ansible_distribution == 'Alpine'
+      
+#-------- Debian-------------------------    
+    - name: Debian Update apt cache
       become: true
       apt:
         update_cache: yes
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: debian packages
+    - name: Debian packages
       become: true
       apt:
         name: 
@@ -31,12 +41,9 @@
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-#    - name: npm install tree-sitter-cli
-#      community.general.npm:
-#        name: tree-sitter-cli
-#        state: present
+#-------- Alm-------------------------    
 
-    - name: alma dnf install
+    - name: alma dnf install 1
       become: true
       dnf:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -45,7 +52,7 @@
         disable_gpg_check: true
       when: ansible_distribution == 'AlmaLinux'
       
-    - name: alma dnf install
+    - name: alma dnf install 2
       become: true
       dnf:
         name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
@@ -172,6 +179,7 @@
       file:
         path: /usr/share/helix/runtime
         state: directory
+      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "copy helix runtime /usr/share"
       become: true
