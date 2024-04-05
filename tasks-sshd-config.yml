@@ -23,10 +23,7 @@
         - { key: "Port", value: "22" } 
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
-        - { key: "ClientAliveInterval", value: "300" } 
-
-
-        
+        - { key: "ClientAliveInterval", value: "300" }   
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
     - name: configure sshd without pam
@@ -68,8 +65,6 @@
         name: sshd
         state: restarted
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
-
-
   
     - name: restart sshd
       become: true
