@@ -35,7 +35,7 @@
 
     - name: clean .on-my-zsh
       file:
-        path: /home/mdries/.on-my-zsh
+        path: /home/mdries/.oh-my-zsh
         state: absent
 
     - name: clean .zshrc.old
@@ -57,3 +57,11 @@
       file:
         path: /home/mdries/dotfiles
         state: absent
+
+#----- extract dotfiles.tar ------
+
+    - name: extract dotfiles
+      unarchive:
+        src: /tmp/dotfiles.tar
+        dest: /home/mdries/
+        remote_src: true
