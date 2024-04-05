@@ -164,7 +164,7 @@
         remote_src: yes
         src: /tmp/helix-24.03-x86_64-linux/hx
         dest: /usr/bin/
-        mode: 755
+        mode: 0755
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: "make helix runtime location"
@@ -178,8 +178,8 @@
       copy:
         remote_src: yes
         src: /tmp/helix-24.03-x86_64-linux/runtime
-        dest: /usr/share/helix/runtime
-        mode: 755
+        dest: /usr/share/helix/
+        mode: 0755
       when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 
