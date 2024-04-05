@@ -169,7 +169,7 @@
       become: true
       file:
         path: /usr/share/helix/runtime
-        state: present
+        state: directory
 
     - name: "copy helix runtime /usr/share"
       become: true
