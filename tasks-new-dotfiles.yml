@@ -108,20 +108,13 @@
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
 
-  - name: mdries git clone astronvim
-    git:
-      repo: https://github.com/AstroNvim/template
-      dest: /home/mdries/.config/nvim
-      depth: 1
+  - name: mdries copy neofetch/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/config.conf
+      dest: /home/mdries/.config/neofetch/
 
-  - name: mdries remove .git from .config/nvim
-    file:
-      path: /home/mdries/.config/nvim/.git
-      state: absent
 
-  - name: mdries run nvim  +'LspInstall lua_ls' +q
-    command: /bin/nvim -e +'LspInstall lua_ls' +q
- 
   
 #  - name: chown mdries
 #    become: true
