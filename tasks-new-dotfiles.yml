@@ -269,7 +269,6 @@
     file:
       path: /root/.zshrc
       state: file
-      recurse: yes
       owner: root
       group: root
     when: inventory_hostname in groups['pve']    
@@ -279,7 +278,6 @@
     file:
       path: /root/.vimrc
       state: file
-      recurse: yes
       owner: root
       group: root
     when: inventory_hostname in groups['pve']    
