@@ -34,6 +34,11 @@
       path: /home/mdries/.local
       state: absent
 
+  - name: clean .cache
+    file:
+      path: /home/mdries/.cache
+      state: absent
+
   - name: clean .on-my-zsh
     file:
       path: /home/mdries/.oh-my-zsh
@@ -97,6 +102,12 @@
     become: true
     file:
       path: /root/.local
+      state: absent
+
+  - name: root clean .cache
+    become: true
+    file:
+      path: /root/.cache
       state: absent
 
   - name: root clean .on-my-zsh
