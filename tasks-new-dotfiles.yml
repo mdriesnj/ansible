@@ -9,6 +9,15 @@
 
 #------ mdries ---------------
 #------ Clean up first -------
+  - name: chown mdries
+    become: true
+    file:
+      path: /home/mdries
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+  
   - name: clean git 	files
     file:
       path: /home/mdries/.git
@@ -71,9 +80,27 @@
       src: /tmp/dotfiles.tar
       dest: /home/mdries/
       remote_src: true
-
+  
+  - name: chown mdries
+    become: true
+    file:
+      path: /home/mdries
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+  
 #------ root ---------------
 #------ Clean up first -------
+  - name: chown root
+    become: true
+    file:
+      path: /root
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+    
   - name: root clean gitfiles
     become: true
     file:
@@ -148,3 +175,13 @@
       src: /tmp/dotfiles.tar
       dest: /root/
       remote_src: true
+  
+  - name: chown root
+    become: true
+    file:
+      path: /root
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+  
