@@ -2,11 +2,11 @@
   #  debug: msg="{{ ansible_hostname }}"
   #  debug: msg="{{ ansible_default_ipv4 }}"
   
-  - name: copy dotfiles.tar to other systems
-    copy:
-      remote_src: false
-      src: /home/mdries/dotfiles.tar
-      dest: /tmp/ 
+#  - name: copy dotfiles.tar to other systems
+#    copy:
+#      remote_src: false
+#      src: /home/mdries/dotfiles.tar
+#      dest: /tmp/ 
 
 #------ mdries ---------------
 #------ Clean up first -------
