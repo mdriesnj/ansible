@@ -8,52 +8,52 @@
         dest: /tmp/ 
 
 #------ Clean up first -------
-    -name: clean git files
+    - name: clean git files
       file:
         path: /home/mdries/.git
         state: absent
 
-    -name: clean .zshrc
+    - name: clean .zshrc
       file:
         path: /home/mdries/.zshrc
         state: absent
 
-    -name: clean .vimrc
+    - name: clean .vimrc
       file:
         path: /home/mdries/.vimrc
         state: absent
 
-    -name: clean .config
+    - name: clean .config
       file:
         path: /home/mdries/.config
         state: absent
 
-    -name: clean .local
+    - name: clean .local
       file:
         path: /home/mdries/.local
         state: absent
 
-    -name: clean .on-my-zsh
+    - name: clean .on-my-zsh
       file:
         path: /home/mdries/.on-my-zsh
         state: absent
 
-    -name: clean .zshrc.old
+    - name: clean .zshrc.old
       file:
         path: /home/mdries/.zshrc.old
         state: absent
 
-    -name: clean .zshrc.stock
+    - name: clean .zshrc.stock
       file:
         path: /home/mdries/.zshrc.stock
         state: absent
 
-    -name: clean ssh-config
+    - name: clean ssh-config
       file:
         path: /home/mdries/ssh-config
         state: absent
 
-    -name: clean dotfiles
+    - name: clean dotfiles
       file:
         path: /home/mdries/dotfiles
         state: absent
