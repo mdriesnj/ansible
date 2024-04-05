@@ -26,6 +26,7 @@
           - tldr
           - gdu
           - fd-find
+          - xz-utils
 #          - npm
         state: latest
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
@@ -74,6 +75,7 @@
           - fzf
           - tldr
           - fd-find
+          - xz
        #   - gdu
   #        - ranger not in yum
         state: latest
