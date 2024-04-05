@@ -17,7 +17,7 @@
       recurse: yes
       owner: mdries
       group: mdries
-  
+        
   - name: clean git 	files
     file:
       path: /home/mdries/.git
@@ -100,7 +100,28 @@
       recurse: yes
       owner: root
       group: root
+    when: ansible_hostname != 'midlandpve' OR ansible_hostname != 'hopperspve'
+
+  - name: find root files 
+    become: true
+    find: 
+      paths: /root
+      excludes: '.ssh'
+    register: files_to_fix
+    when: ansible_hostname == 'midlandpve' OR ansible_hostname == 'hopperspve'
+
+  - name: chown root
+    become: true
+    file:
+      path: "{{ item.path }}"
+      state: present
+      recurse: yes
+      owner: root
+      group: root
+    with_items: "{{ files_to_delete.files }}"
+    when: ansible_hostname == 'midlandpve' OR ansible_hostname == 'hopperspve'
     
+
   - name: root clean gitfiles
     become: true
     file:
