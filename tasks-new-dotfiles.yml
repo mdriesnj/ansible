@@ -6,5 +6,4 @@
         remote_src: false
         src: /home/mdries/dotfiles.tar
         dest: /tmp/ 
-        owner: mdries
-        group: root
+
