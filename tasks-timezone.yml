@@ -1,13 +1,13 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - name: Set the timezone
+    - name: Set the timezone alpine
 #      become: true
       ansible.builtin.timezone:
         name: America/New_York
       when: ansible_distribution == 'Alpine' and firstrun == true
 
-    - name: Set the timezone
+    - name: Set the timezone debian
 #      become: true
       ansible.builtin.timezone:
         name: America/New_York
