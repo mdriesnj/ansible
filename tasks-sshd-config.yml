@@ -27,34 +27,34 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" }   
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' or ansible_distibution == 'Alpine' 
+#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' or ansible_distibution == 'Alpine' 
 
-    - name: configure sshd without pam
-      become: true
-      lineinfile:
-        path: "/etc/ssh/sshd_config"
+#    - name: configure sshd without pam
+#      become: true
+#      lineinfile:
+#        path: "/etc/ssh/sshd_config"
         #regex: "^(#)?{{item.key}}"
-        regex: ^(# *)?{{item.key}}
-        line: "{{item.key}} {{item.value}}"
+#        regex: ^(# *)?{{item.key}}
+#        line: "{{item.key}} {{item.value}}"
         #state: present
-      loop:
-        - { key: "PermitRootLogin", value: "no" }
-        - { key: "Protocol", value: "2" } 
-        - { key: "HostBasedAuthentication", value: "no" } 
-        - { key: "IgnoreRHosts", value: "yes" }
-        - { key: "AuthorizedKeysFile", value: ".ssh/authorized_keys" } 
-        - { key: "PubkeyAuthentication", value: "yes" }
-        - { key: "MaxAuthTries", value: "3" }
-        - { key: "PermitUserEnvironment", value: "no" } 
-        - { key: "X11Forwarding", value: "no" } 
-        - { key: "AllowTcpForwarding", value: "no" } 
-        - { key: "PermitEmptyPasswords", value: "no" }
-        - { key: "AllowUsers", value: "mdries root" } 
-        - { key: "Port", value: "22" } 
-        - { key: "SyslogFacility", value: "AUTH" } 
-        - { key: "LogLevel", value: "INFO" } 
-        - { key: "ClientAliveInterval", value: "300" } 
-      when: ansible_distribution == 'OpenBSD'
+#      loop:
+#        - { key: "PermitRootLogin", value: "no" }
+#        - { key: "Protocol", value: "2" } 
+#        - { key: "HostBasedAuthentication", value: "no" } 
+#        - { key: "IgnoreRHosts", value: "yes" }
+#        - { key: "AuthorizedKeysFile", value: ".ssh/authorized_keys" } 
+#        - { key: "PubkeyAuthentication", value: "yes" }
+#        - { key: "MaxAuthTries", value: "3" }
+#        - { key: "PermitUserEnvironment", value: "no" } 
+#        - { key: "X11Forwarding", value: "no" } 
+#        - { key: "AllowTcpForwarding", value: "no" } 
+#        - { key: "PermitEmptyPasswords", value: "no" }
+#        - { key: "AllowUsers", value: "mdries root" } 
+#        - { key: "Port", value: "22" } 
+#        - { key: "SyslogFacility", value: "AUTH" } 
+#        - { key: "LogLevel", value: "INFO" } 
+#        - { key: "ClientAliveInterval", value: "300" } 
+#      when: ansible_distribution == 'OpenBSD'
     
     - name: systemd stuff
       become: true
@@ -63,25 +63,25 @@
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
     - name: service stuff    
-      become: true
+ #     become: true
       service:
         name: sshd
         state: restarted
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' or ansible_distribution =='Alpine'
   
-    - name: restart sshd
-      become: true
+#    - name: restart sshd
+#      become: true
    #   command: rcctl restart sshd
-      service:
-        name: sshd
-        state: restarted
+#      service:
+#        name: sshd
+#        state: restarted
    # - name: openbsd sshd restart 
    #   become: true
    #   #ansible.builtin.service:
    #   service:
    #     name: sshd
    #     state: restarted
-      when: ansible_distribution == 'OpenBSD'
+#      when: ansible_distribution == 'OpenBSD'
 
 
 
