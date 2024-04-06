@@ -15,7 +15,7 @@
 #        dest: /etc/sysctl.d/ping.conf
 #        content:
 #          net.ipv4.ping_group_range="0 1000"
-      when: firstrun == true and ansible_distribution == 'Alpine'
+#      when: firstrun == true and ansible_distribution == 'Alpine'
 
     - ansible.posix.sysctl:
       name: net.ipv4.ping_group_range
