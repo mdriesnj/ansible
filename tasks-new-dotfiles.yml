@@ -118,7 +118,7 @@
 #    become_user: root
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
-#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: root copy .zshrc
@@ -156,7 +156,7 @@
     become_user: mdries
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
-#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy .zshrc
@@ -200,13 +200,13 @@
     become_user: root
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
-#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == false
 
   - name: mdries Run Oh My Zsh installation script
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
-#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == false
 
 
@@ -345,7 +345,7 @@
     become: true
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
- #   failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution != 'Alpine'
 
   - name: root copy .zshrc
