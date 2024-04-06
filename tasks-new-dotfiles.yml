@@ -141,6 +141,19 @@
       dest: /root/.config/neofetch/
     when: ansible_distribution == 'Alpine' and firstrun == true
 
+  - name: root create helix/config
+    file:
+      path: /root/.config/helix/
+      state: directory
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root copy helix/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /root/.config/helix/
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
 
 #  - name: first time mdries download oh-my-zsh
 #    become: true
@@ -156,6 +169,7 @@
     become_method: doas
     become_user: mdries
     command: sh /tmp/install_ohmyzsh.sh --unattended
+    chdir: /home/mdries
     register: ohmyzsh_result
     failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
@@ -188,6 +202,27 @@
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
     when: ansible_distribution == 'Alpine' and firstrun == true
+
+
+  - name: mdries create helix/config
+    become: true
+    become_method: doas
+    become_user: mdries
+    file:
+      path: /home/mdries/.config/helix/
+      state: directory
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: mdries copy helix/config
+    become: true
+    become_method: doas
+    become_user: mdries
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /home/mdries/.config/helix/
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
 
 #---------not first time-------------------
   - name: root download oh-my-zsh
