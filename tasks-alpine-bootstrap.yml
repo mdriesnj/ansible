@@ -1,0 +1,7 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+
+    - name: bootstrap - apk update
+      raw: apk update
+      when: ansible_distribution == 'Alpine'
+      
