@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  #vars:
+  vars:
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
     firstrun: true
