@@ -3,7 +3,7 @@
 
     - name: Set the timezone alpine
 #      become: true
-      ansible.builtin.timezone:
+      timezone:
         name: America/New_York
       when: ansible_distribution == 'Alpine' and firstrun == true
 
