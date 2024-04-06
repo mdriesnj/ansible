@@ -3,7 +3,7 @@
   #vars:
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
-   # justdotfiles: true
+    firstrun: true
   
   tasks:
     - include_tasks: tasks-update-packages.yml
