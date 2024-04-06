@@ -1,3 +1,6 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+    
     - name: configure sshd with pam
       become: true
       lineinfile:
