@@ -16,8 +16,8 @@
 #        content:
 #          net.ipv4.ping_group_range="0 1000"
 #      when: firstrun == true and ansible_distribution == 'Alpine'
-    - name: set sysctl for ping alpine
-        ansible.posix.sysctl:
+  #  - name: set sysctl for ping alpine
+    - ansible.posix.sysctl:
         name: net.ipv4.ping_group_range
         value: '0 1000'
         sysctl_set: true
