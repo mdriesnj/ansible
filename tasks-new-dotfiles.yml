@@ -131,7 +131,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
-    when: ansible_distribution -= 'Alpine' and firstrun == 'true'
+    when: ansible_distribution == 'Alpine' and firstrun == 'true'
 
 
 #  - name: first time mdries download oh-my-zsh
@@ -167,7 +167,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
-    when: ansible_distribution -= 'Alpine' and firstrun == 'true'
+    when: ansible_distribution == 'Alpine' and firstrun == 'true'
 
 #---------not first time-------------------
   - name: root download oh-my-zsh
