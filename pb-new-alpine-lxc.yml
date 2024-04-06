@@ -6,6 +6,7 @@
     firstrun: true
   
   tasks:
+    - include_tasks: tasks-alpine-bootstrap.yml
     - include_tasks: tasks-update-packages.yml
     - include_tasks: tasks-newuser.yml
     - include_tasks: tasks-standard-packages.yml
