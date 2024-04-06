@@ -2,7 +2,7 @@
       debug: msg="{{ ansible_distribution }}"
     
     - name: configure sshd with pam
-      become: true
+    #  become: true
       lineinfile:
         path: "/etc/ssh/sshd_config"
         #regex: "^(#)?{{item.key}}"
