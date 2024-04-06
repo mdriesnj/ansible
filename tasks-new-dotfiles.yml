@@ -111,7 +111,7 @@
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
       dest: /tmp/install_ohmyzsh.sh
       mode: 0755
-    when: ansible_distribution == 'Alpine' and firstrun == 'true'
+    when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: first time root Run Oh My Zsh installation script
 #    become: true
