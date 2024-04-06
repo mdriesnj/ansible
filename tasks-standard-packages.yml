@@ -5,7 +5,7 @@
 
     - name: Alpine install 
       community.general.apk:
-        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata
+        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, sudo 
         state: latest
         update_cache: true
       when: ansible_distribution == 'Alpine'
