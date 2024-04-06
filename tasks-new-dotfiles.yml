@@ -153,7 +153,7 @@
 
   - name: first time mdries Run Oh My Zsh installation script
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
@@ -162,7 +162,7 @@
 
   - name: mdries copy .zshrc
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     copy:
       remote_src: false
@@ -172,7 +172,7 @@
 
   - name: mdries create neofetch/config
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     file:
       path: /home/mdries/.config/neofetch/
@@ -181,7 +181,7 @@
 
   - name: mdries copy neofetch/config
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     copy:
       remote_src: false
@@ -192,7 +192,7 @@
 #---------not first time-------------------
   - name: root download oh-my-zsh
     become: true
-    become_method: su
+    become_method: doas
     become_user: root
     get_url:
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
@@ -202,7 +202,7 @@
 
   - name: root Run Oh My Zsh installation script
     become: true
-    become_method: su
+    become_method: doas
     become_user: root
     command: sh /tmp/install_ohmyzsh.sh --unattended
     register: ohmyzsh_result
