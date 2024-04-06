@@ -183,6 +183,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
+      owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries create neofetch/config
@@ -192,6 +193,7 @@
     file:
       path: /home/mdries/.config/neofetch/
       state: directory
+      owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy neofetch/config
@@ -202,6 +204,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
+      owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
 
@@ -212,6 +215,7 @@
     file:
       path: /home/mdries/.config/helix/
       state: directory
+      owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy helix/config
@@ -222,6 +226,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/helix/config.toml
       dest: /home/mdries/.config/helix/
+      owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
 
