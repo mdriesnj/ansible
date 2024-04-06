@@ -11,7 +11,7 @@
     - include_tasks: tasks-standard-packages.yml
     - include_tasks: tasks-new-dotfiles.yml
     - include_tasks: tasks-sshd-config.yml
-  #  - include_tasks: tasks-disable-root.yml
+    - include_tasks: tasks-disable-root.yml
     - include_tasks: tasks-add-ping-cap.yml
     - include_tasks: tasks-timezone.yml
     - include_tasks: tasks-services.yml
