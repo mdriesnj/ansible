@@ -5,3 +5,11 @@
       raw: apk update
       when: ansible_distribution == 'Alpine'
       
+    - name: bootstrap - install Python 
+      raw: apk add python3 
+      when: ansible_distribution == 'Alpine'
+
+    - name: bootstrap - install openssh 
+      raw: apk add openssh
+      when: ansible_distribution == 'Alpine'
+
