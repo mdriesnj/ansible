@@ -129,6 +129,12 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: root copy neofetch/config
+    file:
+      path: /root/.config/neofetch/
+      state: directory
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root copy neofetch/config
     copy:
       remote_src: false
       src: /root/src_dot_files/neofetch/config.conf
@@ -160,6 +166,14 @@
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: mdries copy neofetch/config
+    become: true
+    become_user: mdries
+    file:
+      path: /home/mdries/.config/neofetch/
+      state: directory
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy neofetch/config
@@ -341,6 +355,7 @@
       src: /home/mdries/src_dot_files/.zshrc
       dest: /root/
     when: ansible_distribution != 'Alpine'
+
 
   - name: root copy neofetch/config
     become: true
