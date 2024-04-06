@@ -128,7 +128,7 @@
       dest: /root
     when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: root copy neofetch/config
+  - name: root create neofetch/config
     file:
       path: /root/.config/neofetch/
       state: directory
@@ -168,7 +168,7 @@
       dest: /home/mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: mdries copy neofetch/config
+  - name: mdries create neofetch/config
     become: true
     become_user: mdries
     file:
