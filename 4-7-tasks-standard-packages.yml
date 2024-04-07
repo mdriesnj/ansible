@@ -6,6 +6,7 @@
         seconds: 10
 #-------- Alpine------------------------
     - name: Alpine install 
+      become: true
       apk:
         name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
         state: latest
