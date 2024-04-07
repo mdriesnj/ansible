@@ -6,7 +6,7 @@
         seconds: 10
 #-------- Alpine------------------------
     - name: Alpine install 
-      community.general.apk:
+      apk:
         name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
         state: latest
         update_cache: true
@@ -14,11 +14,11 @@
 
     - name: Alpine install not first run
       beome: true
-      community.general.apk:
+      apk:
         name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
         state: latest
         update_cache: true
-      when: ansible_distribution == 'Alpine' #and inventory_hostname not in groups['new_alpine_container']
+      when: ansible_distribution == 'Alpine' and inventory_hostname not in groups['new_alpine_container']
 
 
 #-------- Debian-------------------------    
