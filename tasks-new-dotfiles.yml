@@ -119,21 +119,21 @@
       mode: 0755
     when: ansible_distribution == 'Alpine' and firstrun == true
 
-#  - name: root - clone Oh My Zsh # noqa: latest
-#    ansible.builtin.git:
-#      repo: https://github.com/ohmyzsh/ohmyzsh.git
-#      dest: /root/.oh-my-zsh
-#      force: yes
-#      depth: 1
-#    when: ansible_distribution == 'Alpine' and firstrun == true
-    
-  - name: root - install oh my zsh
-    command: /root/install_ohmyzsh.sh --unattended --keep-zshrc
-    args:
-      chdir: /root
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+  - name: root - clone Oh My Zsh # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/ohmyzsh/ohmyzsh.git
+      dest: /root/.oh-my-zsh
+      force: yes
+      depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
+    
+#  - name: root - install oh my zsh
+#    command: /root/install_ohmyzsh.sh --unattended --keep-zshrc
+#    args:
+#      chdir: /root
+#    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#    when: ansible_distribution == 'Alpine' and firstrun == true
      
 #  - name: root - Install zsh-autosuggestions plugin # noqa: latest
 #    ansible.builtin.git:
@@ -240,16 +240,28 @@
       mode: 0755
     when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: first time mdries Run Oh My Zsh installation script
+  - name: root - clone Oh My Zsh # noqa: latest
     become: true
     become_method: doas
-    become_user: mdries
-    command: /home/mdries/install_ohmyzsh.sh --unattended --keep-zshrc
-    args:
-      chdir: /home/mdries
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    become_user: mdries   
+    ansible.builtin.git:
+      repo: https://github.com/ohmyzsh/ohmyzsh.git
+      dest: /home/mdries/.oh-my-zsh
+      force: yes
+      depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
+    
+
+#  - name: first time mdries Run Oh My Zsh installation script
+#    become: true
+#    become_method: doas
+#    become_user: mdries
+#    command: /home/mdries/install_ohmyzsh.sh --unattended --keep-zshrc
+#    args:
+#      chdir: /home/mdries
+#    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#    when: ansible_distribution == 'Alpine' and firstrun == true
    
 #  - name: mdries -Install zsh-autosuggestions plugin # noqa: latest
 #    become: true
