@@ -128,7 +128,7 @@
 #    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: root - install oh my zsh
-    command: ~/install_ohmyzsh.sh
+    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
       chdir: /root
 #    register: ohmyzsh_result
@@ -214,7 +214,7 @@
     become: true
     become_method: doas
     become_user: mdries
-    command: ~/install_ohmyzsh.sh --unattended
+    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
       chdir: /home/mdries
     register: ohmyzsh_result
