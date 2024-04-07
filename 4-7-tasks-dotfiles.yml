@@ -1,0 +1,96 @@
+  - name: Distribution
+    debug: msg="{{ ansible_distribution }}"
+#  - name: First run
+#    debug: msg="{{ firstrun }}"
+#  - name: ansible
+#    debug: msg="{{ ansible_boot_image }}"
+#  - name: Print all available facts
+#    ansible.builtin.debug:
+#      var: ansible_facts    
+  #  debug: msg="{{ ansible_default_ipv4 }}"
+
+#----------Alpine----------
+#---------- mdries ------------------
+  - name: root copy .zshrc
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/.zshrc
+      dest: /root
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root create neofetch/config
+    file:
+      path: /root/.config/neofetch/
+      state: directory
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root copy neofetch/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/neofetch/config.conf
+      dest: /root/.config/neofetch/
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root create helix/config
+    file:
+      path: /root/.config/helix/
+      state: directory
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root copy helix/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /root/.config/helix/
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+#---------- mdries ------------------    
+  - name: mdries copy .zshrc
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/.zshrc
+      dest: /home/mdries
+      owner: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: mdries create neofetch/config
+    file:
+      path: /home/mdries/.config/neofetch/
+      state: directory
+      owner: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: mdries copy neofetch/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/neofetch/config.conf
+      dest: /home/mdries/.config/neofetch/
+      owner: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+
+  - name: mdries create helix/config
+    file:
+      path: /home/mdries/.config/helix/
+      state: directory
+      owner: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: mdries copy helix/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /home/mdries/.config/helix/
+      owner: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: chown mdries
+#    become: true
+    file:
+      path: /home/mdries
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
+

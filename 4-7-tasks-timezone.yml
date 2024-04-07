@@ -1,0 +1,16 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+
+    - name: Set the timezone alpine
+#      become: true
+      file:
+        src: /usr/share/zoneinfo/America/New_York
+        dest: /etc/localtime
+        state: link
+      when: ansible_distribution == 'Alpine' and firstrun == true
+
+    - name: Set the timezone debian
+#      become: true
+      ansible.builtin.timezone:
+        name: America/New_York
+      when: ansible_distribution != 'Alpine' 
