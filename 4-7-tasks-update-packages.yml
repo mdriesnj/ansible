@@ -1,9 +1,9 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - name: pause
-      pause:
-        seconds: 10
+#    - name: pause
+#      pause:
+#        seconds: 10
 
 # Alpine
     - name: Update all installed packages to the latest versions
