@@ -168,9 +168,9 @@
   #  become: true
   #  become_method: su
   #  become_user: mdries
-    command: sh /tmp/install_ohmyzsh.sh --unattended
-    args:
-      chdir: /home/mdries
+    command: cd /home/mdries && sh /tmp/install_ohmyzsh.sh --unattended
+  #  args:
+  #    chdir: /home/mdries
     register: ohmyzsh_result
     failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
