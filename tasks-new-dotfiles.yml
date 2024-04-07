@@ -128,7 +128,7 @@
 #    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: root - install oh my zsh
-    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
+    command: /root/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
       chdir: /root
     register: ohmyzsh_result
@@ -234,6 +234,7 @@
     become: true
     become_method: su
     become_user: mdries
+    become_password: "{{ password | password_hash('sha512') }}"
     get_url:
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
       dest: ~/install_ohmyzsh.sh
@@ -244,7 +245,8 @@
     become: true
     become_method: su
     become_user: mdries
-    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
+    become_password: "{{ password | password_hash('sha512') }}"
+    command: /home/mdries/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
       chdir: /home/mdries
     register: ohmyzsh_result
@@ -255,6 +257,7 @@
     become: true
     become_user: mdries
     become_method: su
+    become_password: "{{ password | password_hash('sha512') }}"
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
       dest: /home/mdries/.oh-my-zsh
@@ -266,6 +269,7 @@
     become: true
     become_user: mdries
     become_method: su
+    become_password: "{{ password | password_hash('sha512') }}"
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-completions
       dest: /home/mdries/.oh-my-zsh
@@ -277,6 +281,7 @@
     become: true
     become_user: mdries
     become_method: su
+    become_password: "{{ password | password_hash('sha512') }}"
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
       dest: /home/mdries/.oh-my-zsh
