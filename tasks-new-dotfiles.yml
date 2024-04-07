@@ -130,7 +130,7 @@
   - name: root - install oh my zsh
     command: make install
     args:
-      chdir: /root
+      chdir: /root/.oh-my-zsh
     register: ohmyzsh_result
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
@@ -238,7 +238,7 @@
     become_method: doas
     command: make install
     args:
-      chdir: /home/mdries
+      chdir: /home/mdries/.oh-my-zsh
     register: ohmyzsh_result
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
