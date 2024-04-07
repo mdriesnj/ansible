@@ -202,12 +202,29 @@
 #    when: ansible_distribution == 'Alpine' and firstrun == true
 
 
-  - name: mdries Install Oh My Zsh # noqa: latest
+  - name: Install Oh My Zsh # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/ohmyzsh/ohmyzsh.git
-      dest: /home/mdries/.oh-my-zsh
+      dest: /home/mdries
       depth: 1
 
+  - name: Install zsh-autosuggestions plugin # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/zsh-users/zsh-autosuggestions
+      dest: /root/.oh-my-zsh
+      depth: 1
+
+  - name: Install zsh-completions plugin # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/zsh-users/zsh-completions
+      dest: /home/mdries
+      depth: 1
+
+  - name: Install zsh-syntax-highlighting plugin # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+      ddest: /home/mdries
+      depth: 1
 
   - name: mdries copy .zshrc
     copy:
