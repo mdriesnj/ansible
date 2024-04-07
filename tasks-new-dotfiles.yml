@@ -231,7 +231,7 @@
 
   - name: chown mdries
 #    become: true
-#    file:
+    file:
       path: /home/mdries
       state: directory
       recurse: yes
