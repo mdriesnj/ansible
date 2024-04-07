@@ -2,3 +2,4 @@
 apk add python3 openssh
 rc-update add sshd
 rc-service sshd start
+ip addr
