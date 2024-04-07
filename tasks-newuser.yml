@@ -16,10 +16,10 @@
         name: mdries
       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
-#    - name: create group mdries
-#      group:
-#        name: mdries
-#      when: ansible_distribution == 'Alpine'
+    - name: create group sudo
+      group:
+        name: sudo
+      when: ansible_distribution == 'Alpine'
         
     - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       become: true
