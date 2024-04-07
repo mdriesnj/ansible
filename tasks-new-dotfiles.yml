@@ -232,7 +232,7 @@
   
   - name: first time mdries download oh-my-zsh
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     get_url:
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
@@ -242,7 +242,7 @@
 
   - name: first time mdries Run Oh My Zsh installation script
     become: true
-    become_method: su
+    become_method: doas
     become_user: mdries
     command: /home/mdries/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
@@ -250,39 +250,39 @@
     register: ohmyzsh_result
     failed_when: "'FAILED' in ohmyzsh_result.stderr"
     when: ansible_distribution == 'Alpine' and firstrun == true
+   
+#  - name: mdries -Install zsh-autosuggestions plugin # noqa: latest
+#    become: true
+#    become_user: mdries
+#    become_method: su
+#    ansible.builtin.git:
+#      repo: https://github.com/zsh-users/zsh-autosuggestions
+#      dest: /home/mdries/.oh-my-zsh
+#      force: yes
+#      depth: 1
+#    when: ansible_distribution == 'Alpine' and firstrun == true
     
-  - name: mdries -Install zsh-autosuggestions plugin # noqa: latest
-    become: true
-    become_user: mdries
-    become_method: su
-    ansible.builtin.git:
-      repo: https://github.com/zsh-users/zsh-autosuggestions
-      dest: /home/mdries/.oh-my-zsh
-      force: yes
-      depth: 1
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#  - name: mdries - Install zsh-completions plugin # noqa: latest
+#    become: true
+#    become_user: mdries
+#    become_method: su
+#    ansible.builtin.git:
+#      repo: https://github.com/zsh-users/zsh-completions
+#      dest: /home/mdries/.oh-my-zsh
+#      force: yes
+#      depth: 1
+#    when: ansible_distribution == 'Alpine' and firstrun == true
     
-  - name: mdries - Install zsh-completions plugin # noqa: latest
-    become: true
-    become_user: mdries
-    become_method: su
-    ansible.builtin.git:
-      repo: https://github.com/zsh-users/zsh-completions
-      dest: /home/mdries/.oh-my-zsh
-      force: yes
-      depth: 1
-    when: ansible_distribution == 'Alpine' and firstrun == true
-    
-  - name: mdries - Install zsh-syntax-highlighting plugin # noqa: latest
-    become: true
-    become_user: mdries
-    become_method: su
-    ansible.builtin.git:
-      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-      dest: /home/mdries/.oh-my-zsh
-      force: yes
-      depth: 1
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#  - name: mdries - Install zsh-syntax-highlighting plugin # noqa: latest
+#    become: true
+#    become_user: mdries
+#    become_method: su
+#    ansible.builtin.git:
+#      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+#      dest: /home/mdries/.oh-my-zsh
+#      force: yes
+#      depth: 1
+#    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: mdries copy .zshrc
     copy:
