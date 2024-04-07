@@ -127,13 +127,13 @@
       depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
     
-  - name: root - install oh my zsh
-    command: make install
-    args:
-      chdir: /root/.oh-my-zsh
-    register: ohmyzsh_result
+#  - name: root - install oh my zsh
+#    command: make install
+#    args:
+#      chdir: /root/.oh-my-zsh
+#    register: ohmyzsh_result
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: root - Install zsh-autosuggestions plugin # noqa: latest
     ansible.builtin.git:
@@ -232,16 +232,16 @@
       depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: mdries- install oh my zsh
-    become: true
-    become_user: mdries
-    become_method: doas
-    command: make install
-    args:
-      chdir: /home/mdries/.oh-my-zsh
-    register: ohmyzsh_result
+#  - name: mdries- install oh my zsh
+#    become: true
+#    become_user: mdries
+#    become_method: doas
+#    command: make install
+#    args:
+#      chdir: /home/mdries/.oh-my-zsh
+#    register: ohmyzsh_result
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#    when: ansible_distribution == 'Alpine' and firstrun == true
   
     
   - name: mdries -Install zsh-autosuggestions plugin # noqa: latest
