@@ -6,7 +6,7 @@
         seconds: 10
 
     - name: alpine - change root shell with chsh
-      beome: true
+      become: true
       shell: chsh -s /bin/zsh
       when: inventory_hostname in groups['new_alpine_container']
 
@@ -17,7 +17,7 @@
     #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
    # - name: alpine - create group sudo
-   #   beome: true
+   #   become: true
    #   group:
    #     name: sudo
    #   when: inventory_hostname in groups['new_alpine_container']
@@ -36,7 +36,7 @@
     # when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
 
     - name: alpine - update user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
-      beome: true
+      become: true
       user:
         name: mdries
         shell: /bin/zsh
@@ -49,7 +49,7 @@
       when: inventory_hostname in groups['new_alpine_container']
 
 #    - name: alpine - add sudo to sudoers
-#      beome: true
+#      become: true
 #      community.general.sudoers:
 #        name: sudo to sudoers
 #        group: sudo
