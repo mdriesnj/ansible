@@ -3,7 +3,7 @@
   - name: First run
     debug: msg="{{ firstrun }}"
   - name: ansible
-    debug: msg="{{ ansible_cmdline_boot_image }}"
+    debug: msg="{{ ansible_boot_image }}"
 
     
   #  debug: msg="{{ ansible_default_ipv4 }}"
