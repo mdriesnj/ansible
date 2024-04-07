@@ -12,37 +12,42 @@
 #----------Alpine----------
 #---------- mdries ------------------
   - name: root copy .zshrc
+    beome: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /root
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: root create neofetch/config
+    beome: true
     file:
       path: /root/.config/neofetch/
       state: directory
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: root copy neofetch/config
+    beome: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /root/.config/neofetch/
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: root create helix/config
+    beome: true
     file:
       path: /root/.config/helix/
       state: directory
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: root copy helix/config
+    beome: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/helix/config.toml
       dest: /root/.config/helix/
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
 #---------- mdries ------------------    
   - name: mdries copy .zshrc
@@ -51,14 +56,14 @@
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
       owner: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: mdries create neofetch/config
     file:
       path: /home/mdries/.config/neofetch/
       state: directory
       owner: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: mdries copy neofetch/config
     copy:
@@ -66,7 +71,7 @@
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
       owner: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
 
   - name: mdries create helix/config
@@ -74,7 +79,7 @@
       path: /home/mdries/.config/helix/
       state: directory
       owner: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: mdries copy helix/config
     copy:
@@ -82,7 +87,7 @@
       src: /home/mdries/src_dot_files/helix/config.toml
       dest: /home/mdries/.config/helix/
       owner: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 
   - name: chown mdries
 #    become: true
@@ -92,5 +97,5 @@
       recurse: yes
       owner: mdries
       group: mdries
-    when: ansible_distribution == 'Alpine' and firstrun == true
+    when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
 

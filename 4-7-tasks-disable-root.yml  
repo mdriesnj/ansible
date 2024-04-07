@@ -1,5 +1,7 @@
+ #---Alpine
     - name: Disable root login
       become: true
       user:
         name: root
         password: '!'
+      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']

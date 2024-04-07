@@ -1,6 +1,16 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+#---Alpine
+    - ansible.posix.sysctl:
+        become: true
+        name: net.ipv4.ping_group_range
+        value: '0 1000'
+        sysctl_set: true
+        state: present
+        reload: true
+      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+
     - name: Set ping capabilitiy
 #      become: true
       capabilities:
@@ -8,11 +18,3 @@
         capability: cap_net_raw+p
         state: present
       when: ansible_distribution == 'Debian' or ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Ubunutu'
-
-    - ansible.posix.sysctl:
-        name: net.ipv4.ping_group_range
-        value: '0 1000'
-        sysctl_set: true
-        state: present
-        reload: true
-      when: ansible_distribution == 'Alpine' and  firstrun == true

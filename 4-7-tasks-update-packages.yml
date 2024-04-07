@@ -4,10 +4,12 @@
 
 # Alpine
     - name: Update all installed packages to the latest versions
+      become: true
       community.general.apk:
         upgrade: true
-      when: ansible_distribution == 'Alpine'
-      
+        update_cache: true
+      when: ansible_distribution == 'Alpine' 
+
     - name: update apt packages
       become: true
       apt:
