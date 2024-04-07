@@ -1,6 +1,10 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: pause
+      pause:
+        seconds: 10
+
     - name: Alpine Set the timezone alpine
       become: true
       file:

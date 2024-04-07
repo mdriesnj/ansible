@@ -1,4 +1,8 @@
  #---Alpine
+     - name: pause
+      pause:
+        seconds: 10
+
     - name: Disable root login
       become: true
       user:

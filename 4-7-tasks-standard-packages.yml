@@ -1,6 +1,9 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: pause
+      pause:
+        seconds: 10
 #-------- Alpine------------------------
     - name: Alpine install 
       community.general.apk:

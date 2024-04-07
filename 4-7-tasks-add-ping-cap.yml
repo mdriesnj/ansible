@@ -1,6 +1,11 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: pause
+      pause:
+        seconds: 10
+  
+
 #---Alpine
     - ansible.posix.sysctl:
         become: true
