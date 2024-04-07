@@ -81,6 +81,6 @@
       when: ansible_distribution == 'Alpine'
 
     - name: add sudo to sudoers
-      sudoers:
+      community.general.sudoers:
         group: sudo
         commands: ALL
