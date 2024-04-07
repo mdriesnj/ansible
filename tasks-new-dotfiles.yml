@@ -2,9 +2,11 @@
     debug: msg="{{ ansible_distribution }}"
   - name: First run
     debug: msg="{{ firstrun }}"
-  - name: ansible
-    debug: msg="{{ ansible_boot_image }}"
-
+#  - name: ansible
+#    debug: msg="{{ ansible_boot_image }}"
+  - name: Print all available facts
+    ansible.builtin.debug:
+      var: ansible_facts
     
   #  debug: msg="{{ ansible_default_ipv4 }}"
   
