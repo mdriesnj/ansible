@@ -18,7 +18,7 @@
 #----Debian
     - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       become: true
-        user:
+      user:
         name: mdries
         shell: /bin/zsh
         append: yes
