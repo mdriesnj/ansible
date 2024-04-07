@@ -117,24 +117,28 @@
     ansible.builtin.git:
       repo: https://github.com/ohmyzsh/ohmyzsh.git
       dest: /root/.oh-my-zsh
+      force: yes
       depth: 1
 
   - name: Install zsh-autosuggestions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
       dest: /root/.oh-my-zsh
+      force: yes
       depth: 1
 
   - name: Install zsh-completions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-completions
       dest: /root/.oh-my-zsh
+      force: yes
       depth: 1
 
   - name: Install zsh-syntax-highlighting plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
       dest: /root/.oh-my-zsh
+      force: yes
       depth: 1
 
 
@@ -208,9 +212,11 @@
     become_method: doas
     ansible.builtin.git:
       repo: https://github.com/ohmyzsh/ohmyzsh.git
-      dest: /home/mdries
+      dest: /home/mdries/.oh-my-zsh
+      force: yes
       depth: 1
-
+    when: ansible_distribution == 'Alpine' and firstrun == true
+    
   - name: Install zsh-autosuggestions plugin # noqa: latest
     become: true
     become_user: mdries
@@ -218,8 +224,10 @@
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
       dest: /home/mdries/.oh-my-zsh
+      force: yes
       depth: 1
-
+    when: ansible_distribution == 'Alpine' and firstrun == true
+    
   - name: Install zsh-completions plugin # noqa: latest
     become: true
     become_user: mdries
@@ -227,8 +235,10 @@
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-completions
       dest: /home/mdries/.oh-my-zsh
+      force: yes
       depth: 1
-
+    when: ansible_distribution == 'Alpine' and firstrun == true
+    
   - name: Install zsh-syntax-highlighting plugin # noqa: latest
     become: true
     become_user: mdries
@@ -236,8 +246,10 @@
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
       ddest: /home/mdries/.oh-my-zsh
+      force: yes
       depth: 1
-
+    when: ansible_distribution == 'Alpine' and firstrun == true
+    
   - name: mdries copy .zshrc
     copy:
       remote_src: false
