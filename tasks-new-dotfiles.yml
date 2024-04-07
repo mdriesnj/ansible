@@ -133,8 +133,8 @@
       chdir: /root
     register: ohmyzsh_result
     failed_when: "'FAILED' in ohmyzsh_result.stderr"
-#    when: ansible_distribution == 'Alpine' and firstrun == true
-    
+    when: ansible_distribution == 'Alpine' and firstrun == true
+     
   - name: root - Install zsh-autosuggestions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
@@ -200,26 +200,6 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
 
-  - name: first time mdries download oh-my-zsh
-    become: true
-    become_method: doas
-    become_user: mdries
-    get_url:
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-      dest: ~/install_ohmyzsh.sh
-      mode: 0755
-    when: ansible_distribution == 'Alpine' and firstrun == true
-
-  - name: first time mdries Run Oh My Zsh installation script
-    become: true
-    become_method: doas
-    become_user: mdries
-    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
-    args:
-      chdir: /home/mdries
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
-    when: ansible_distribution == 'Alpine' and firstrun == true
 
 
 #  - name: mdries -Install Oh My Zsh # noqa: latest
@@ -250,6 +230,26 @@
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
 #    when: ansible_distribution == 'Alpine' and firstrun == true
   
+  - name: first time mdries download oh-my-zsh
+    become: true
+    become_method: doas
+    become_user: mdries
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: ~/install_ohmyzsh.sh
+      mode: 0755
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: first time mdries Run Oh My Zsh installation script
+    become: true
+    become_method: doas
+    become_user: mdries
+    command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
+    args:
+      chdir: /home/mdries
+    register: ohmyzsh_result
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: mdries -Install zsh-autosuggestions plugin # noqa: latest
     become: true
