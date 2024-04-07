@@ -165,9 +165,9 @@
 #    when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: first time mdries Run Oh My Zsh installation script
-    become: true
-    become_method: su
-    become_user: mdries
+  #  become: true
+  #  become_method: su
+  #  become_user: mdries
     command: sh /tmp/install_ohmyzsh.sh --unattended
     args:
       chdir: /home/mdries
@@ -229,6 +229,15 @@
       owner: mdries
     when: ansible_distribution == 'Alpine' and firstrun == true
 
+  - name: chown mdries
+#    become: true
+#    file:
+      path: /home/mdries
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+    when: ansible_distribution == 'Alpine' and firstrun == true
 
 #---------not first time-------------------
   - name: root download oh-my-zsh
