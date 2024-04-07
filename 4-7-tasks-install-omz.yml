@@ -12,7 +12,7 @@
         dest: /root/.oh-my-zsh
         force: yes
         depth: 1
-        when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
