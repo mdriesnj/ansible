@@ -5,7 +5,7 @@
 
     - name: Disable root login
       become: true
-      user:
-        name: root
-        password: '!'
+        user:
+          name: root
+          password: '!'
       when: inventory_hostname in groups['new_alpine_container']

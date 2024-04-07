@@ -12,7 +12,7 @@
         regex: ^(# *)?{{item.key}}
         line: "{{item.key}} {{item.value}}"
       loop:
-        - { key: "PermitRootLogin", value: "yes" }
+        - { key: "PermitRootLogin", value: "no" }
         - { key: "Protocol", value: "2" } 
         - { key: "HostBasedAuthentication", value: "no" } 
         - { key: "IgnoreRHosts", value: "yes" }
