@@ -18,10 +18,9 @@
       when: inventory_hostname in groups['new_alpine_container']
 
     - name: Set ping capabilitiy
-    #      become: true
       become: true
       capabilities:
         path: /bin/ping
         capability: cap_net_raw+p
         state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Ubunutu'
+      when: inventory_hostname in groups['new_debian_container']

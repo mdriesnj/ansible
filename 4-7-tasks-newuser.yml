@@ -5,6 +5,7 @@
     #   pause:
     #     seconds: 10
 
+#----Alpine
     - name: alpine - change root shell with chsh
       become: true
       shell: chsh -s /bin/zsh
@@ -13,6 +14,17 @@
     - name: alpine - change mdries shell with chsh
       shell: chsh -s /bin/zsh
       when: inventory_hostname in groups['new_alpine_container']
+
+#----Debian
+    - name: debian - change root shell with chsh
+      become: true
+      shell: chsh -s /bin/zsh
+      when: inventory_hostname in groups['new_debian_container']
+
+    - name: debian - change mdries shell with chsh
+      shell: chsh -s /bin/zsh
+      when: inventory_hostname in groups['new_debian_container']
+
 
     #    - name: create group mdries
     #      become: true

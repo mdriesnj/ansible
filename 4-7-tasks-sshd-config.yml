@@ -31,14 +31,12 @@
       when: inventory_hostname in groups['new_alpine_container']
 
 
-    - name: configure sshd with pam
-    #  become: true
+    - name: debian - configure sshd with pam
+      become: true
       lineinfile:
         path: "/etc/ssh/sshd_config"
-        #regex: "^(#)?{{item.key}}"
         regex: ^(# *)?{{item.key}}
         line: "{{item.key}} {{item.value}}"
-        #state: present
       loop:
         - { key: "PermitRootLogin", value: "no" } # change back
         - { key: "Protocol", value: "2" } 
@@ -57,13 +55,13 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" }   
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' 
+      when: inventory_hostname in groups['new_debian_container']
     
     - name: systemd stuff
       become: true
       systemd:
         daemon_reload: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+      when: inventory_hostname in groups['new_debian_container']
 
     - name: service stuff    
       become: true

@@ -14,7 +14,7 @@
       when: inventory_hostname in groups['new_alpine_container']
 
     - name: Set the timezone debian
-#      become: true
+      become: true
       ansible.builtin.timezone:
         name: America/New_York
-      when: ansible_distribution != 'Alpine' 
+      when: inventory_hostname in groups['new_debian_container']

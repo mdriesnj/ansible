@@ -8,7 +8,7 @@
     - name: Alpine install 
       become: true
       apk:
-        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow
+        name: btop, curl, eza, fd, fzf, git, helix, libcap-getcap, libcap-setcap, neofetch, qemu-guest-agent, ranger, ripgrep, shadow, tzdata, wget, zsh
         state: latest
         update_cache: true
       when: inventory_hostname in groups['new_alpine_container']
@@ -27,34 +27,27 @@
       become: true
       apt:
         update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: inventory_hostname in groups['new_debian_container']
 
     - name: Debian packages
       become: true
       apt:
         name: 
-          - wget
+          - btop
           - curl
-          - sudo
+          - fd-find
+          - fzf
           - git 
-          - zsh
-          - vim
- #         - stow
+          - neofetch
+          - qemu-guest-agent
           - net-tools   
           - ranger
-          - neofetch
-          - neovim 
-          - bat
-          - ncdu
-          - btop
-          - fzf
+          - ripgrep
           - tldr
-          - gdu
-          - fd-find
-          - xz-utils
-#          - npm
+          - wget
+          - zsh
         state: latest
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: inventory_hostname in groups['new_debian_container']
 
 #-------- Alm-------------------------    
 
@@ -110,7 +103,7 @@
         url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /tmp/
         mode: 0755
-      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: inventory_hostname in groups['new_debian_container']
 
     - name: "extract eza"
       become: true
@@ -118,5 +111,5 @@
         remote_src: yes
         src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /usr/bin/
-      when: ansible_distribution == 'AlmaLinux' or ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: inventory_hostname in groups['new_debian_container']
 
