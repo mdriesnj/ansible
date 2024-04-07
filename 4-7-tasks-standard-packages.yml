@@ -12,7 +12,7 @@
         update_cache: true
       when: inventory_hostname in groups['new_alpine_container']
 
-    - name: Alpine install 
+    - name: Alpine install not first run
       beome: true
       community.general.apk:
         name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
