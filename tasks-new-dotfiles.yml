@@ -206,7 +206,7 @@
     become_user: mdries
     get_url:
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-      dest: /~/install_ohmyzsh.sh
+      dest: ~/install_ohmyzsh.sh
       mode: 0755
     when: ansible_distribution == 'Alpine' and firstrun == true
 
