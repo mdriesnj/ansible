@@ -22,14 +22,14 @@
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
       dest: /root
-    when: inventory_hostname in groups['new_alpine_container']
+ #   when: inventory_hostname in groups['new_alpine_container']
 
   - name: root create neofetch/config
     become: true
     file:
       path: /root/.config/neofetch/
       state: directory
-    when: inventory_hostname in groups['new_alpine_container']
+ #   when: inventory_hostname in groups['new_alpine_container']
 
   - name: root copy neofetch/config
     become: true
@@ -37,14 +37,14 @@
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /root/.config/neofetch/
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: root create helix/config
     become: true
     file:
       path: /root/.config/helix/
       state: directory
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: root copy helix/config
     become: true
@@ -52,7 +52,7 @@
       remote_src: false
       src: /home/mdries/src_dot_files/helix/config.toml
       dest: /root/.config/helix/
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
 #---------- mdries ------------------    
   - name: mdries copy .zshrc
@@ -61,14 +61,14 @@
       src: /home/mdries/src_dot_files/.zshrc
       dest: /home/mdries
       owner: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: mdries create neofetch/config
     file:
       path: /home/mdries/.config/neofetch/
       state: directory
       owner: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: mdries copy neofetch/config
     copy:
@@ -76,7 +76,7 @@
       src: /home/mdries/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
       owner: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
 
   - name: mdries create helix/config
@@ -84,7 +84,7 @@
       path: /home/mdries/.config/helix/
       state: directory
       owner: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: mdries copy helix/config
     copy:
@@ -92,15 +92,15 @@
       src: /home/mdries/src_dot_files/helix/config.toml
       dest: /home/mdries/.config/helix/
       owner: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
   - name: chown mdries
-#    become: true
+    become: true
     file:
       path: /home/mdries
       state: directory
       recurse: yes
       owner: mdries
       group: mdries
-    when: inventory_hostname in groups['new_alpine_container']
+    # when: inventory_hostname in groups['new_alpine_container']
 
