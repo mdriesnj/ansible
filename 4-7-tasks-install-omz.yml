@@ -1,9 +1,10 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - name: pause
-      pause:
-        seconds: 10
+    # - name: pause
+    #   pause:
+    #     seconds: 10
+
     - name: root - clone Oh My Zsh # noqa: latest
       beome: true
       ansible.builtin.git:
