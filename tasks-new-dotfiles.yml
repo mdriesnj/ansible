@@ -122,19 +122,19 @@
   - name: Install zsh-autosuggestions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
-      dest: /root/.oh-my-zsh
+      dest: /home/mdries/.oh-my-zsh
       depth: 1
 
   - name: Install zsh-completions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-completions
-      dest: /root/.oh-my-zsh
+      dest: /home/mdries/.oh-my-zsh
       depth: 1
 
   - name: Install zsh-syntax-highlighting plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-      dest: /root/.oh-my-zsh
+      dest: /home/mdries/.oh-my-zsh
       depth: 1
 
 
