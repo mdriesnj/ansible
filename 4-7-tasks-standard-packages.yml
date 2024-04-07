@@ -96,7 +96,8 @@
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
-      
+#-----Eza-------------------------------------------------------
+
     - name: "get eza"
       become: true
       get_url:
@@ -111,5 +112,47 @@
         remote_src: yes
         src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /usr/bin/
+      when: inventory_hostname in groups['new_debian_container']
+
+#----- Helix-----------------------------------------------------
+    - name: "get helix"
+      become: true
+      get_url:
+        url: https://github.com/helix-editor/helix/releases/download/24.03/helix-24.03-x86_64-linux.tar.xz
+        dest: /tmp/
+        mode: 0755
+      when: inventory_hostname in groups['new_debian_container']
+
+    - name: "extract helix"
+      become: true
+      unarchive:
+        remote_src: yes
+        src: /tmp/helix-24.03-x86_64-linux.tar.xz
+        dest: /tmp
+      when: inventory_hostname in groups['new_debian_container']
+
+    - name: "copy hx /bin"
+      become: true
+      copy:
+        remote_src: yes
+        src: /tmp/helix-24.03-x86_64-linux/hx
+        dest: /usr/bin/
+        mode: 0755
+      when: inventory_hostname in groups['new_debian_container']
+
+    - name: "make helix runtime location"
+      become: true
+      file:
+        path: /usr/share/helix/runtime
+        state: directory
+      when: inventory_hostname in groups['new_debian_container']
+
+    - name: "copy helix runtime /usr/share"
+      become: true
+      copy:
+        remote_src: yes
+        src: /tmp/helix-24.03-x86_64-linux/runtime
+        dest: /usr/share/helix/
+        mode: 0755
       when: inventory_hostname in groups['new_debian_container']
 

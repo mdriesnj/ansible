@@ -21,7 +21,14 @@
       user:
         name: mdries
         shell: /bin/zsh
-        append: yes
+      when: inventory_hostname in groups['new_debian_container']
+
+#----Debian
+    - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+      become: true
+      user:
+        name: root
+        shell: /bin/zsh
       when: inventory_hostname in groups['new_debian_container']
 
 
