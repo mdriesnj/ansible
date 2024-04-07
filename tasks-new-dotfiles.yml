@@ -119,13 +119,21 @@
 #      mode: 0755
 #    when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: Install Oh My Zsh # noqa: latest
+  - name: clone Oh My Zsh # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/ohmyzsh/ohmyzsh.git
       dest: /root/.oh-my-zsh
       force: yes
       depth: 1
 
+  - name: install oh my zsh
+    command: make install
+    args:
+      chdir: /home/mdries
+    register: ohmyzsh_result
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution == 'Alpine' and firstrun == false
+    
   - name: Install zsh-autosuggestions plugin # noqa: latest
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-autosuggestions
