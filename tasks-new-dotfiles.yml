@@ -2,6 +2,10 @@
     debug: msg="{{ ansible_distribution }}"
   - name: First run
     debug: msg="{{ firstrun }}"
+  - name: ansible
+    debug: msg="{{ ansible_cmdline_boot_image }}"
+
+    
   #  debug: msg="{{ ansible_default_ipv4 }}"
   
 #  - name: copy dotfiles.tar to other systems
@@ -245,7 +249,7 @@
     become_method: doas
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-      ddest: /home/mdries/.oh-my-zsh
+      dest: /home/mdries/.oh-my-zsh
       force: yes
       depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
