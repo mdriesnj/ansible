@@ -7,7 +7,7 @@
         src: /usr/share/zoneinfo/America/New_York
         dest: /etc/localtime
         state: link
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: Set the timezone debian
 #      become: true

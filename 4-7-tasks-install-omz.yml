@@ -6,7 +6,7 @@
         dest: /root/.oh-my-zsh
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
           
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       beome: true
@@ -15,7 +15,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: root - Install zsh-completions plugin # noqa: latest
       beome: true
@@ -24,7 +24,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: root - Install zsh-syntax-highlighting plugin # noqa: latest
       beome: true
@@ -33,7 +33,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: mdries - clone Oh My Zsh # noqa: latest
       ansible.builtin.git:
@@ -41,7 +41,7 @@
         dest: /home/mdries/.oh-my-zsh
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: mdries - Install zsh-autosuggestions plugin # noqa: latest
       ansible.builtin.git:
@@ -49,7 +49,7 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: mdries - Install zsh-completions plugin # noqa: latest
       ansible.builtin.git:
@@ -57,7 +57,7 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: mdries - Install zsh-syntax-highlighting plugin # noqa: latest
       ansible.builtin.git:
@@ -65,5 +65,5 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 

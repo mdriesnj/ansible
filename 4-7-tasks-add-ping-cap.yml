@@ -9,7 +9,7 @@
         sysctl_set: true
         state: present
         reload: true
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
 
     - name: Set ping capabilitiy
 #      become: true

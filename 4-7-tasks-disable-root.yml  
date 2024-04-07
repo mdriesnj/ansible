@@ -4,4 +4,4 @@
       user:
         name: root
         password: '!'
-      when: ansible_distribution == 'Alpine' and inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine_container']
