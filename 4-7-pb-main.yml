@@ -8,8 +8,8 @@
     
   tasks:
 #    - include_tasks: tasks-alpine-bootstrap.yml
-    - include_tasks: 4-7-tasks-update-packages.yml
     - include_tasks: 4-7-tasks-standard-packages.yml
+    - include_tasks: 4-7-tasks-update-packages.yml
     - include_tasks: 4-7-tasks-newuser.yml
     - include_tasks: 4-7-tasks-install-omz.yml
     - include_tasks: 4-7-tasks-dotfiles.yml
