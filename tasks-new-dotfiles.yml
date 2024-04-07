@@ -131,7 +131,7 @@
     command: ~/install_ohmyzsh.sh --unattended --keep-zshrc
     args:
       chdir: /root
-#    register: ohmyzsh_result
+    register: ohmyzsh_result
     failed_when: "'FAILED' in ohmyzsh_result.stderr"
 #    when: ansible_distribution == 'Alpine' and firstrun == true
     
