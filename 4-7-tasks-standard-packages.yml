@@ -8,7 +8,7 @@
     - name: Alpine install 
       become: true
       apk:
-        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
+        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow
         state: latest
         update_cache: true
       when: inventory_hostname in groups['new_alpine_container']
