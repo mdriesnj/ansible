@@ -127,10 +127,10 @@
       depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
     
-#  - name: root - install oh my zsh
-#    command: make install
-#    args:
-#      chdir: /root/.oh-my-zsh
+  - name: root - install oh my zsh
+    command: /tmp/install_ohmyzsh.sh
+    args:
+      chdir: /root
 #    register: ohmyzsh_result
     #failed_when: "'FAILED' in ohmyzsh_result.stderr"
 #    when: ansible_distribution == 'Alpine' and firstrun == true
@@ -231,6 +231,12 @@
       force: yes
       depth: 1
     when: ansible_distribution == 'Alpine' and firstrun == true
+
+  - name: root - install oh my zsh
+    command: /tmp/install_ohmyzsh.sh
+    args:
+      chdir: /home/mdries
+
 
 #  - name: mdries- install oh my zsh
 #    become: true
