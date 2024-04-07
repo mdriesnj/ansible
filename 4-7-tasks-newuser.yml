@@ -20,8 +20,8 @@
       become: true
         user:
         name: mdries
-          shell: /bin/zsh
-          append: yes
+        shell: /bin/zsh
+        append: yes
       when: inventory_hostname in groups['new_debian_container']
 
 
