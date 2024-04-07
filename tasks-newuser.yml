@@ -1,6 +1,11 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: change root shell to zsh
+      user:
+        name: root
+        shell: /bin/zsh
+
     - name: create group mdries
       become: true
       group:
