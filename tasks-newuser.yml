@@ -82,5 +82,6 @@
 
     - name: add sudo to sudoers
       community.general.sudoers:
+        name: sudo to sudoers
         group: sudo
         commands: ALL
