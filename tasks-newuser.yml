@@ -5,6 +5,7 @@
       user:
         name: root
         shell: /bin/zsh
+        state: present
 
     - name: create group mdries
       become: true
