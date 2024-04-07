@@ -1,0 +1,6 @@
+    - name: reboot host 
+      become: true
+      reboot:
+        msg: "rebooting"
+        reboot_timeout: 15
+      when: inventory_hostname in groups['new_debian_container'] or inventory_hostname in groups['new_alpine_container'] 
