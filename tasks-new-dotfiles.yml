@@ -110,25 +110,25 @@
 #      remote_src: false
 
 #----------Alpine----------
-#  - name: first time  download oh-my-zsh
+  - name: first time  download oh-my-zsh
    # become: true
    # become_user: root
-#    get_url:
-#      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-#      dest: /tmp/install_ohmyzsh.sh
-#      mode: 0755
-#    when: ansible_distribution == 'Alpine' and firstrun == true
-
-  - name: root - clone Oh My Zsh # noqa: latest
-    ansible.builtin.git:
-      repo: https://github.com/ohmyzsh/ohmyzsh.git
-      dest: /root/.oh-my-zsh
-      force: yes
-      depth: 1
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: ~/install_ohmyzsh.sh
+      mode: 0755
     when: ansible_distribution == 'Alpine' and firstrun == true
+
+#  - name: root - clone Oh My Zsh # noqa: latest
+#    ansible.builtin.git:
+#      repo: https://github.com/ohmyzsh/ohmyzsh.git
+#      dest: /root/.oh-my-zsh
+#      force: yes
+#      depth: 1
+#    when: ansible_distribution == 'Alpine' and firstrun == true
     
   - name: root - install oh my zsh
-    command: /tmp/install_ohmyzsh.sh
+    command: ~/install_ohmyzsh.sh
     args:
       chdir: /root
 #    register: ohmyzsh_result
@@ -200,40 +200,41 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
 
-#  - name: first time mdries download oh-my-zsh
-#    become: true
-#    become_user: mdries
-#    get_url:
-#      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-#      dest: /home/mdries/install_ohmyzsh.sh
-#      mode: 0755
-#    when: ansible_distribution == 'Alpine' and firstrun == true
-
-#  - name: first time mdries Run Oh My Zsh installation script
-  #  become: true
-  #  become_method: su
-  #  become_user: mdries
-#    command: cd /home/mdries && sh /tmp/install_ohmyzsh.sh --unattended
-  #  args:
-  #    chdir: /home/mdries
-#    register: ohmyzsh_result
-#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
-#    when: ansible_distribution == 'Alpine' and firstrun == true
-
-
-  - name: mdries -Install Oh My Zsh # noqa: latest
+  - name: first time mdries download oh-my-zsh
     become: true
-    become_user: mdries
     become_method: doas
-    ansible.builtin.git:
-      repo: https://github.com/ohmyzsh/ohmyzsh.git
-      dest: /home/mdries/.oh-my-zsh
-      force: yes
-      depth: 1
+    become_user: mdries
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /~/install_ohmyzsh.sh
+      mode: 0755
     when: ansible_distribution == 'Alpine' and firstrun == true
 
+  - name: first time mdries Run Oh My Zsh installation script
+    become: true
+    become_method: doas
+    become_user: mdries
+    command: ~/install_ohmyzsh.sh --unattended
+    args:
+      chdir: /home/mdries
+    register: ohmyzsh_result
+    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+    when: ansible_distribution == 'Alpine' and firstrun == true
+
+
+#  - name: mdries -Install Oh My Zsh # noqa: latest
+#    become: true
+#    become_user: mdries
+#    become_method: doas
+#    ansible.builtin.git:
+#      repo: https://github.com/ohmyzsh/ohmyzsh.git
+#      dest: /home/mdries/.oh-my-zsh
+#      force: yes
+#      depth: 1
+#    when: ansible_distribution == 'Alpine' and firstrun == true
+
   - name: root - install oh my zsh
-    command: /tmp/install_ohmyzsh.sh
+    command: ~/install_ohmyzsh.sh
     args:
       chdir: /home/mdries
 
