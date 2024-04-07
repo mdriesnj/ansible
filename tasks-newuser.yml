@@ -7,6 +7,9 @@
         shell: /bin/zsh
         state: present
 
+    - name : change root shell with chsh
+      shell: chsh -s /bin/zsh
+
     - name: create group mdries
       become: true
       group:
