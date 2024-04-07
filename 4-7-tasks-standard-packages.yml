@@ -12,13 +12,13 @@
         update_cache: true
       when: inventory_hostname in groups['new_alpine_container']
 
-    - name: Alpine install not first run
-      beome: true
-      apk:
-        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
-        state: latest
-        update_cache: true
-      when: ansible_distribution == 'Alpine' and inventory_hostname not in groups['new_alpine_container']
+#    - name: Alpine install not first run
+#      beome: true
+#      apk:
+#        name: wget, curl, git, zsh, helix, neofetch, ranger, btop, fzf, fd, qemu-guest-agent, eza, libcap-getcap, libcap-setcap, tzdata, ripgrep, shadow, sudo
+#        state: latest
+#        update_cache: true
+#      when: ansible_distribution == 'Alpine' and inventory_hostname not in groups['new_alpine_container']
 
 
 #-------- Debian-------------------------    
