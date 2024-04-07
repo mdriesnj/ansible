@@ -104,22 +104,28 @@
 #      remote_src: false
 
 #----------Alpine----------
-  - name: first time  download oh-my-zsh
+#  - name: first time  download oh-my-zsh
    # become: true
    # become_user: root
-    get_url:
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-      dest: /tmp/install_ohmyzsh.sh
-      mode: 0755
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#    get_url:
+#      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+#      dest: /tmp/install_ohmyzsh.sh
+#      mode: 0755
+#    when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: first time root Run Oh My Zsh installation script
+  - name: Install Oh My Zsh # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/ohmyzsh/ohmyzsh.git
+      dest: /root/.oh-my-zsh
+      depth: 1
+
+#  - name: first time root Run Oh My Zsh installation script
 #    become: true
 #    become_user: root
-    command: sh /tmp/install_ohmyzsh.sh --unattended
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#    command: sh /tmp/install_ohmyzsh.sh --unattended
+#    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#    when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: root copy .zshrc
     copy:
@@ -164,21 +170,26 @@
 #      mode: 0755
 #    when: ansible_distribution == 'Alpine' and firstrun == true
 
-  - name: first time mdries Run Oh My Zsh installation script
+#  - name: first time mdries Run Oh My Zsh installation script
   #  become: true
   #  become_method: su
   #  become_user: mdries
-    command: cd /home/mdries && sh /tmp/install_ohmyzsh.sh --unattended
+#    command: cd /home/mdries && sh /tmp/install_ohmyzsh.sh --unattended
   #  args:
   #    chdir: /home/mdries
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
-    when: ansible_distribution == 'Alpine' and firstrun == true
+#    register: ohmyzsh_result
+#    failed_when: "'FAILED' in ohmyzsh_result.stderr"
+#    when: ansible_distribution == 'Alpine' and firstrun == true
+
+
+  - name: mdries Install Oh My Zsh # noqa: latest
+    ansible.builtin.git:
+      repo: https://github.com/ohmyzsh/ohmyzsh.git
+      dest: /home/mdries/.oh-my-zsh
+      depth: 1
+
 
   - name: mdries copy .zshrc
-    become: true
-    become_method: su
-    become_user: mdries
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
@@ -187,9 +198,6 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries create neofetch/config
-    become: true
-    become_method: su
-    become_user: mdries
     file:
       path: /home/mdries/.config/neofetch/
       state: directory
@@ -197,9 +205,6 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy neofetch/config
-    become: true
-    become_method: su
-    become_user: mdries
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
@@ -209,9 +214,6 @@
 
 
   - name: mdries create helix/config
-    become: true
-    become_method: su
-    become_user: mdries
     file:
       path: /home/mdries/.config/helix/
       state: directory
@@ -219,9 +221,6 @@
     when: ansible_distribution == 'Alpine' and firstrun == true
 
   - name: mdries copy helix/config
-    become: true
-    become_method: su
-    become_user: mdries
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/helix/config.toml
