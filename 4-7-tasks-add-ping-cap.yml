@@ -9,16 +9,17 @@
     #---Alpine
     - name: alpine - fix ping
       become: true
-        ansible.posix.sysctl:
-          name: net.ipv4.ping_group_range
-          value: '0 1000'
-          sysctl_set: true
-          state: present
-          reload: true
+      ansible.posix.sysctl:
+        name: net.ipv4.ping_group_range
+        value: '0 1000'
+        sysctl_set: true
+        state: present
+        reload: true
       when: inventory_hostname in groups['new_alpine_container']
 
     - name: Set ping capabilitiy
     #      become: true
+      become: true
       capabilities:
         path: /bin/ping
         capability: cap_net_raw+p
