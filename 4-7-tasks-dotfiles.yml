@@ -17,7 +17,7 @@
 #----------Alpine----------
 #---------- mdries ------------------
   - name: root copy .zshrc
-    beome: true
+    become: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/.zshrc
@@ -25,14 +25,14 @@
     when: inventory_hostname in groups['new_alpine_container']
 
   - name: root create neofetch/config
-    beome: true
+    become: true
     file:
       path: /root/.config/neofetch/
       state: directory
     when: inventory_hostname in groups['new_alpine_container']
 
   - name: root copy neofetch/config
-    beome: true
+    become: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/neofetch/config.conf
@@ -40,14 +40,14 @@
     when: inventory_hostname in groups['new_alpine_container']
 
   - name: root create helix/config
-    beome: true
+    become: true
     file:
       path: /root/.config/helix/
       state: directory
     when: inventory_hostname in groups['new_alpine_container']
 
   - name: root copy helix/config
-    beome: true
+    become: true
     copy:
       remote_src: false
       src: /home/mdries/src_dot_files/helix/config.toml
