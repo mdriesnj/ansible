@@ -12,11 +12,11 @@
         dest: /root/.oh-my-zsh
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container']
-          
+        when: inventory_hostname in groups['new_alpine_container']
+
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
-      ansible.builtin.git:
+        ansible.builtin.git:
         repo: https://github.com/zsh-users/zsh-autosuggestions
         dest: /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
@@ -25,7 +25,7 @@
 
     - name: root - Install zsh-completions plugin # noqa: latest
       become: true
-      ansible.builtin.git:
+        ansible.builtin.git:
         repo: https://github.com/zsh-users/zsh-completions
         dest: /root/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
@@ -34,7 +34,7 @@
 
     - name: root - Install zsh-syntax-highlighting plugin # noqa: latest
       become: true
-      ansible.builtin.git:
+        ansible.builtin.git:
         repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
         dest: /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
