@@ -38,6 +38,7 @@
           - tldr
           - wget
           - zsh
+          - xy-util
         state: latest
       when: inventory_hostname in groups['new_debian']
 
