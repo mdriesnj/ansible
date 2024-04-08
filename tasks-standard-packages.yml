@@ -75,7 +75,7 @@
         state: present
         validate_certs: no
         disable_gpg_check: true
-    when: inventory_hostname in groups['new_alma']
+      when: inventory_hostname in groups['new_alma']
 
     - name: alma packages
       become: true
