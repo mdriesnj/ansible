@@ -5,6 +5,57 @@
     #   pause:
     #     seconds: 10
 
+#----Root Clean----------------
+    - name: root clean .config
+      file:
+        path: /root/.config
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: root clean .cache
+      file:
+        path: /root/.cache
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: root clean .oh-my-zsh
+      file:
+        path: /root/.oh-my-zsh
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: root clean .local
+      file:
+        path: /root/.local
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+#----mdries Clean----------------
+    - name: mdries clean .config
+      file:
+        path: /home/mdries/.config
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: mdries clean .cache
+      file:
+        path: /home/mdries/.cache
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: mdries clean .oh-my-zsh
+      file:
+        path: /home/mdries/.oh-my-zsh
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+    - name: mdries clean .local
+      file:
+        path: /rohome/mdriesot/.local
+        state: absent
+      when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
+
+
     - name: root - clone Oh My Zsh # noqa: latest
       become: true
       ansible.builtin.git:
@@ -12,7 +63,6 @@
         dest: /root/.oh-my-zsh
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
@@ -21,7 +71,6 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-completions plugin # noqa: latest
       become: true
@@ -30,7 +79,6 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-syntax-highlighting plugin # noqa: latest
       become: true
@@ -39,7 +87,6 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - clone Oh My Zsh # noqa: latest
       ansible.builtin.git:
@@ -47,7 +94,6 @@
         dest: /home/mdries/.oh-my-zsh
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-autosuggestions plugin # noqa: latest
       ansible.builtin.git:
@@ -55,7 +101,6 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-completions plugin # noqa: latest
       ansible.builtin.git:
@@ -63,7 +108,6 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-syntax-highlighting plugin # noqa: latest
       ansible.builtin.git:
@@ -71,5 +115,4 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
