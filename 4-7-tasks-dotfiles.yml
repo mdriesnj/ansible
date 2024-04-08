@@ -15,7 +15,7 @@
   #  debug: msg="{{ ansible_default_ipv4 }}"
 
 #----------Alpine----------
-#---------- mdries ------------------
+#---------- root ------------------
   - name: root copy .zshrc
     become: true
     copy:

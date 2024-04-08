@@ -24,7 +24,7 @@
       when: inventory_hostname in groups['new_debian'] 
 
 #----Debian
-    - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+    - name: debian - add user root #Add the user james with a bash shell, appending the group admins and developers to the users groups
       become: true
       user:
         name: root
