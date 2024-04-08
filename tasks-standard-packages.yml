@@ -109,6 +109,7 @@
       yum:
         name: 
           - ImageMagick
+          - ImageMagick-libs.x86_64
         state: absent
       when: inventory_hostname in groups['new_alma']
 
