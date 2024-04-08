@@ -104,7 +104,7 @@
         state: latest
       when: inventory_hostname in groups['new_alma']
 
-    - name: alma packages
+    - name: alma remove imagemagick
       become: true
       yum:
         name: 
