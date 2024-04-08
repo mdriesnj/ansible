@@ -104,6 +104,15 @@
         state: latest
       when: inventory_hostname in groups['new_alma']
 
+    - name: alma packages
+      become: true
+      yum:
+        name: 
+          - ImageMagick
+        state: absent
+      when: inventory_hostname in groups['new_alma']
+
+
 #-----Eza-------------------------------------------------------
 
     - name: "get eza"
