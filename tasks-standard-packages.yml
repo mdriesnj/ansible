@@ -98,7 +98,7 @@
           - fzf
           - tldr
           - fd-find
-         - xz
+          - xz
        #   - gdu
   #        - ranger not in yum
         state: latest
