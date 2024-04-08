@@ -1,11 +1,11 @@
 ---
-- hosts: all
+- hosts: new
   vars:
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
     #firstrun: true
     ansible_become_password: "{{ password | password_hash('sha512') }}"
-    
+   when: inventory_hostname in groups['new_alpine'] 
   tasks:
 #    - include_tasks: tasks-alpine-bootstrap.yml
     - include_tasks: tasks-standard-packages.yml
