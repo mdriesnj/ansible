@@ -113,7 +113,7 @@
           - ImageMagick-libs-6.9.12.93-1.el9.x86_64
           - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
           - ImageMagick-libs.x86_64
-        state: autoremove
+        state: absent
         autoremove: yes
       when: inventory_hostname in groups['new_alma']
 
