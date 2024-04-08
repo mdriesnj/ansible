@@ -20,7 +20,7 @@
     become: true
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/.zshrc
+      src: /tmp/src_dot_files/.zshrc
       dest: /root
  #   when: inventory_hostname in groups['new_alpine_container']
 
@@ -35,7 +35,7 @@
     become: true
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/neofetch/config.conf
+      src: /tmp/src_dot_files/neofetch/config.conf
       dest: /root/.config/neofetch/
     # when: inventory_hostname in groups['new_alpine_container']
 
@@ -50,7 +50,7 @@
     become: true
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/helix/config.toml
+      src: /tmp/src_dot_files/helix/config.toml
       dest: /root/.config/helix/
     # when: inventory_hostname in groups['new_alpine_container']
 
@@ -58,7 +58,7 @@
   - name: mdries copy .zshrc
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/.zshrc
+      src: /tmp/src_dot_files/.zshrc
       dest: /home/mdries
       owner: mdries
     # when: inventory_hostname in groups['new_alpine_container']
@@ -73,7 +73,7 @@
   - name: mdries copy neofetch/config
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/neofetch/config.conf
+      src: /tmp/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
       owner: mdries
     # when: inventory_hostname in groups['new_alpine_container']
@@ -89,7 +89,7 @@
   - name: mdries copy helix/config
     copy:
       remote_src: false
-      src: /home/mdries/src_dot_files/helix/config.toml
+      src: /tmp/src_dot_files/helix/config.toml
       dest: /home/mdries/.config/helix/
       owner: mdries
     # when: inventory_hostname in groups['new_alpine_container']
