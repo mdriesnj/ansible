@@ -1,5 +1,5 @@
 ---
-- hosts: new_alpine, new_debian
+- hosts: new_alpine, new_debian, new_alma
   vars:
   # Setting this for unarchive to work
   #ansible_remote_tmp: /tmp
