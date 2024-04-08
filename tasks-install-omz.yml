@@ -55,7 +55,7 @@
         state: absent
       when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian']
 
-
+#-----Root Install-----------------------------------------
     - name: root - clone Oh My Zsh # noqa: latest
       become: true
       ansible.builtin.git:
@@ -88,6 +88,7 @@
         force: yes
         depth: 1
 
+#-----Mdries install ----------------------------------------------------
     - name: mdries - clone Oh My Zsh # noqa: latest
       ansible.builtin.git:
         repo: 'http://github.com/ohmyzsh/ohmyzsh.git'
