@@ -59,23 +59,23 @@
 
 #-------- Alm-------------------------    
 
-#    - name: alma dnf install 1
-#      become: true
-#      dnf:
-#        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-#        state: present
-#        validate_certs: no
-#        disable_gpg_check: true
-#      when: inventory_hostname in groups['new_alma']
+   - name: alma dnf install 1
+     become: true
+     dnf:
+       name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+       state: present
+       validate_certs: no
+       disable_gpg_check: true
+     when: inventory_hostname in groups['new_alma']
       
-    # - name: alma dnf install 2
-    #   become: true
-    #   dnf:
-    #     name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-    #     state: present
-    #     validate_certs: no
-    #     disable_gpg_check: true
-    #   when: inventory_hostname in groups['new_alma']
+    - name: alma dnf install 2
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: inventory_hostname in groups['new_alma']
 
     - name: alma packages
       become: true
@@ -92,13 +92,13 @@
           - net-tools  
           - neofetch
  #         - neovim 
-          - bat 
+ #         - bat 
 #          - ncdu
           - btop
           - fzf
           - tldr
           - fd-find
-          - xz
+         - xz
        #   - gdu
   #        - ranger not in yum
         state: latest
