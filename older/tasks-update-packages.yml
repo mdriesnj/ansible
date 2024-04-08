@@ -1,0 +1,31 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+
+    - name: Update all installed packages to the latest versions
+      community.general.apk:
+        upgrade: true
+      when: ansible_distribution == 'Alpine'
+      
+    - name: update apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['normal']
+
+    - name: update yum package
+      become: true
+      yum:
+        name: '*'
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+
+#    - name: reboot host debian or alma
+#      become: true
+#      reboot:
+#        msg: "rebooting to upgrade"
+#        reboot_timeout: 15
+    
+#      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution == 'AlmaLinux') and inventory_hostname in groups['normal']
+

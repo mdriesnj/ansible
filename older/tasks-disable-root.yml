@@ -1,0 +1,5 @@
+    - name: Disable root login
+      become: true
+      user:
+        name: root
+        password: '!'

@@ -1,259 +1,106 @@
-    - name: Distribution
-      debug: msg="{{ ansible_distribution }}"
-    
-#    - name: update apt packages
-#      apt:
-#        upgrade: yes
-#        update_cache: yes
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+  - name: Distribution
+    debug: msg="{{ ansible_distribution }}"
+
+    # - name: pause
+    #   pause:
+    #     seconds: 10
+
+#  - name: First run
+#    debug: msg="{{ firstrun }}"
+#  - name: ansible
+#    debug: msg="{{ ansible_boot_image }}"
+#  - name: Print all available facts
+#    ansible.builtin.debug:
+#      var: ansible_facts    
+  #  debug: msg="{{ ansible_default_ipv4 }}"
+
+#----------Alpine----------
+#---------- root ------------------
+  - name: root copy .zshrc
+    become: true
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/.zshrc
+      dest: /root
+ #   when: inventory_hostname in groups['new_alpine_container']
+
+  - name: root create neofetch/config
+    become: true
+    file:
+      path: /root/.config/neofetch/
+      state: directory
+ #   when: inventory_hostname in groups['new_alpine_container']
+
+  - name: root copy neofetch/config
+    become: true
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/neofetch/config.conf
+      dest: /root/.config/neofetch/
+    # when: inventory_hostname in groups['new_alpine_container']
+
+  - name: root create helix/config
+    become: true
+    file:
+      path: /root/.config/helix/
+      state: directory
+    # when: inventory_hostname in groups['new_alpine_container']
+
+  - name: root copy helix/config
+    become: true
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /root/.config/helix/
+    # when: inventory_hostname in groups['new_alpine_container']
+
+#---------- mdries ------------------    
+  - name: mdries copy .zshrc
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/.zshrc
+      dest: /home/mdries
+      owner: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
+
+  - name: mdries create neofetch/config
+    file:
+      path: /home/mdries/.config/neofetch/
+      state: directory
+      owner: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
+
+  - name: mdries copy neofetch/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/neofetch/config.conf
+      dest: /home/mdries/.config/neofetch/
+      owner: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
 
 
-    - name: root Download Oh My Zsh installation script
-      become: true
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: /tmp/install_ohmyzsh.sh
-        mode: 0755
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+  - name: mdries create helix/config
+    file:
+      path: /home/mdries/.config/helix/
+      state: directory
+      owner: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
 
+  - name: mdries copy helix/config
+    copy:
+      remote_src: false
+      src: /home/mdries/src_dot_files/helix/config.toml
+      dest: /home/mdries/.config/helix/
+      owner: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
 
-#-------------------- root dotfiles-----------------------------
-    - name: root Run Oh My Zsh installation script
-      become: yes
-      command: sh /tmp/install_ohmyzsh.sh --unattended
-      register: ohmyzsh_result
-      failed_when: "'FAILED' in ohmyzsh_result.stderr"
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
-    - name: root delete dotfiles
-      become: true
-      file:
-        path: /root/dotfiles
-        state: absent
-#        version: master
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
+  - name: chown mdries
+    become: true
+    file:
+      path: /home/mdries
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+    # when: inventory_hostname in groups['new_alpine_container']
 
-
-
-    - name: root git clone https://github.com/mdriesnj/dotfiles
-      become: true
-      ansible.builtin.git:
-        repo: https://github.com/mdriesnj/dotfiles
-        dest: /root/dotfiles
-#        version: master
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-      
-    - name: root Remove file zshrc
-      become: true
-      ansible.builtin.file:
-        path: /root/.zshrc
-        state: absent
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
-    - name: root Remove file vimrc
-      become: true
-      ansible.builtin.file:
-        path: /root/.vimrc
-        state: absent
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: root Remove file vimrc
-      become: true
-      ansible.builtin.file:
-        path: /root/.config
-        state: absent
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-      
-    - name: root Symlink zshrc
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.zshrc
-        dest: /root/.zshrc
-        owner: root
-        group: root
-        state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
-    - name: root Symlink vimrc
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.vimrc
-        dest: /root/.vimrc
-        owner: root
-        group: root
-        state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: root Symlink config
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.config
-        dest: /root/.config
-        owner: root
-        group: root
-        state: link
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-
-    - name: root Symlink zshrc
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.zshrc
-        dest: /root/.zshrc
-        owner: root
-        group: wheel
-        state: link
-      when: ansible_distribution == 'OpenBSD'
-    - name: root Symlink vimrc
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.vimrc
-        dest: /root/.vimrc
-        owner: root
-        group: wheel
-        state: link
-      when: ansible_distribution == 'OpenBSD'
-  
-    - name: root Symlink config
-      become: true
-      ansible.builtin.file:
-        src: /root/dotfiles/.config
-        dest: /root/.config
-        owner: root
-        group: wheel
-        state: link
-      when: ansible_distribution == 'OpenBSD'
-
-      
-    - name: root change user shell to zsh 
-      become: yes
-      user:
-        name: root
-        shell: /bin/zsh
-  #    when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-
-#-------------------- mdries dotfiles-----------------------------
-    - name: chown mdries
-      become: true
-      file:
-        path: /home/mdries
-        state: directory
-        recurse: yes
-        owner: mdries
-        group: mdries
-      when: justdotfiles == false  
-
-    - name: mdries delete dotfiles
-      file:
-        path: /home/mdries/dotfiles
-        state: absent
-
-    
-    - name: mdries Run Oh My Zsh installation script
-#      become_user: mdries
-#      become_user: mdries
-      command: sh /tmp/install_ohmyzsh.sh --unattended
-      register: ohmyzsh_result
-      failed_when: "'FAILED' in ohmyzsh_result.stderr"
-   #   when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux") and justdotfiles == true
-
-
-#    - name: install omz as mdries
-#      shell: su mdries sh -c /tmp/install_ohmyzsh.sh --unattended
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-#    - name: install omz as mdries
-#      command: "sudo -i -u mdries sh -c /tmp/install_ohmyzsh.sh --unattended"
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: make /home/mdries/.oh-my-zsh
-      file:
-        path: /home/mdries/.oh-my-zsh
-        state: directory
-        mode: '0700'
-   #   when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
-
-    - name: copy oh-my-zsh
-      become: true
-      copy: src=/root/.oh-my-zsh/ dest=/home/mdries/.oh-my-zsh/ remote_src=yes directory_mode=yes
-    #  when: justdotfiles == false and (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux")
-
-    - name: git clone mdries https://github.com/mdriesnj/dotfiles
-      ansible.builtin.git:
-        repo: https://github.com/mdriesnj/dotfiles
-        dest: /home/mdries/dotfiles/
-  #    when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-#        version: master
-
-    - name: Remove mdries file zshrc
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        path: /home/mdries/.zshrc
-        state: absent
- #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: Remove mdries file vimrc
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        path: /home/mdries/.vimrc
-        state: absent
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-
-    - name: Remove mdries file config
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        path: /home/mdries/.config
-        state: absent
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
-    - name: Symlink mdries zshrc
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        src: /home/mdries/dotfiles/.zshrc
-        dest: /home/mdries/.zshrc
-        owner: mdries
-        group: mdries
-        state: link
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-    
-    - name: Symlink mdries config
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        src: /home/mdries/dotfiles/.config
-        dest: /home/mdries/.config
-        owner: mdries
-        group: mdries
-        state: link
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-      
-      
-    - name: Symlink mdries vimrc
-      become: true
-      become_user: mdries
-      ansible.builtin.file:
-        src: /home/mdries/dotfiles/.vimrc
-        dest: /home/mdries/.vimrc
-        owner: mdries
-        group: mdries
-        state: link
-#      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
-
-    - name: chown mdries
-      become: true
-      file:
-        path: /home/mdries
-        state: directory
-        recurse: yes
-        owner: mdries
-        group: mdries
- #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =="AlmaLinux"
- 

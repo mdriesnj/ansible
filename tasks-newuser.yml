@@ -1,87 +1,78 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-#    - name: change root shell to zsh
-#      user:
-#        name: root
-#        shell: /bin/zsh
-#        state: present
+    # - name: pause
+    #   pause:
+    #     seconds: 10
 
-    - name : change root shell with chsh
+#----Alpine
+    - name: alpine - change root shell with chsh
+      become: true
       shell: chsh -s /bin/zsh
+      when: inventory_hostname in groups['new_alpine']
 
-    - name: create group mdries
-      become: true
-      group:
-        name: mdries
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+    - name: alpine - change mdries shell with chsh
+      shell: chsh -s /bin/zsh
+      when: inventory_hostname in groups['new_alpine']
 
-    - name: create group sudo
-      group:
-        name: sudo
-      when: ansible_distribution == 'Alpine'
-        
-    - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+#----Debian
+    - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
       become: true
       user:
         name: mdries
-  #      shell: /bin/zsh
-        groups: users,mdries, sudo
-        create_home: yes
- #       password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
-        password: "{{ password | password_hash('sha512') }}"
-        append: yes
         shell: /bin/zsh
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+      when: inventory_hostname in groups['new_debian'] 
 
-    - name: add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+#----Debian
+    - name: debian - add user root #Add the user james with a bash shell, appending the group admins and developers to the users groups
+      become: true
       user:
-        name: mdries
+        name: root
         shell: /bin/zsh
-        groups: users, mdries, sudo
-        create_home: yes
- #       password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
-        password: "{{ password | password_hash('sha512') }}"
-        append: yes
-      when: ansible_distribution == 'Alpine'
+      when: inventory_hostname in groups['new_debian']
 
 
-    - name: Create SSH directory for mdries
-      become: true
-      file:
-        path: /home/mdries/.ssh
-        state: directory
-        owner: mdries
-        group: mdries
-        mode: 0700
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
-
-    - name: Create SSH directory for mdries
-      file:
-        path: /home/mdries/.ssh
-        state: directory
-        owner: mdries
-        group: mdries
-        mode: 0700
-      when: ansible_distribution == 'Alpine'
+    # - name: debian - change root shell with chsh
+    #   become: true
+    #   shell: chsh -s /bin/zsh
+    #   when: inventory_hostname in groups['new_debian_container']
 
 
-    - name: Transfer public key to the target host
-      become: true
-      authorized_key:
-        user: mdries
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/XPmIClmIRxAU0SJB3+A3zUR0ww+NpvVNxWSLJUnbZdIIgx+zunlunFjbgRuHlky+EVzQbohxebAuyPq7xDkfmhu1Qok/ae6lu/y+gfPSNUAzm2lrZu7+4/8NQMa+bHwWkcOSJ8voPR7wWICTVzfKMFPyo88SXJByYIPSzcKPaC6evwSYfIeoTa4Gj6e65NS7U/5P6Yc1iUgcdrA211kddRioEyRMS2DZPIhwuKzmnoaH1zv0gd9lbo43ZoA6HQXvMRA5uXu3WHHKWbSCa+JeT9LmrrxwOjZhfeVLxKKg6a0mVkttnTEa4qLaN0wTm0pmkKRF+j8aCBrtJeYOE5oItLtSG/3Th4/Gz6IHQIKDTqgVU494Jzs52MAaV1kxWtZrO9sj6wC+OAeeMV+bNnz+LW0np1hXBMbVOxrzBk2j8enUEpskAXfS6Ks5uyXZ+pinqhPiiQqgbCUc+YwHHbsdPw4KprE1dNXVNGeu5ac83vDjCj7MZy3fWkOhxp0H5Xk= mdries@Mikes-MacBook-Pro.local'
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+    # - name: debian - change mdries shell with chsh
+    #   shell: chsh -s /bin/zsh
+    #   when: inventory_hostname in groups['new_debian_container']
 
 
-    - name: Transfer public key to the target host
-      authorized_key:
-        user: mdries
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/XPmIClmIRxAU0SJB3+A3zUR0ww+NpvVNxWSLJUnbZdIIgx+zunlunFjbgRuHlky+EVzQbohxebAuyPq7xDkfmhu1Qok/ae6lu/y+gfPSNUAzm2lrZu7+4/8NQMa+bHwWkcOSJ8voPR7wWICTVzfKMFPyo88SXJByYIPSzcKPaC6evwSYfIeoTa4Gj6e65NS7U/5P6Yc1iUgcdrA211kddRioEyRMS2DZPIhwuKzmnoaH1zv0gd9lbo43ZoA6HQXvMRA5uXu3WHHKWbSCa+JeT9LmrrxwOjZhfeVLxKKg6a0mVkttnTEa4qLaN0wTm0pmkKRF+j8aCBrtJeYOE5oItLtSG/3Th4/Gz6IHQIKDTqgVU494Jzs52MAaV1kxWtZrO9sj6wC+OAeeMV+bNnz+LW0np1hXBMbVOxrzBk2j8enUEpskAXfS6Ks5uyXZ+pinqhPiiQqgbCUc+YwHHbsdPw4KprE1dNXVNGeu5ac83vDjCj7MZy3fWkOhxp0H5Xk= mdries@Mikes-MacBook-Pro.local'
-      when: ansible_distribution == 'Alpine'
 
-    - name: add sudo to sudoers
-      community.general.sudoers:
-        name: sudo to sudoers
-        group: sudo
-        commands: ALL
+    #    - name: create group mdries
+    #      become: true
+    #      group:
+    #        name: mdries
+    #      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux'
+
+   # - name: alpine - create group sudo
+   #   become: true
+   #   group:
+   #     name: sudo
+   #   when: inventory_hostname in groups['new_alpine_container']
+
+
+# #    - name: alpine - update user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
+#       become: true
+#       user:
+#         name: mdries
+#         shell: /bin/zsh
+#         groups: users, mdries
+#         create_home: yes
+#         #       password: "{{ '$6$7YGiKSixynhRKuQX$Dch7qgVm3rs6i2ffhB4El9v6RnDPE.EYkcslu9WwtpOpv1VPEiwWk9Sb1cBZjytBV1sj8b1T58NNtbhwHVWLa1' | password_hash('sha512') }}"
+#         password: "{{ password | password_hash('sha512') }}"
+#         append: yes
+#       when: inventory_hostname in groups['new_alpine_container']
+
+#    - name: alpine - add sudo to sudoers
+#      become: true
+#      community.general.sudoers:
+#        name: sudo to sudoers
+#        group: sudo
+#        commands: ALL
+#      when: inventory_hostname in groups['new_alpine_container']

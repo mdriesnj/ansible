@@ -1,16 +1,20 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - name: Set the timezone alpine
-#      become: true
+    # - name: pause
+    #   pause:
+    #     seconds: 10
+
+    - name: Alpine Set the timezone alpine
+      become: true
       file:
         src: /usr/share/zoneinfo/America/New_York
         dest: /etc/localtime
         state: link
-      when: ansible_distribution == 'Alpine' and firstrun == true
+      when: inventory_hostname in groups['new_alpine']
 
     - name: Set the timezone debian
-#      become: true
+      become: true
       ansible.builtin.timezone:
         name: America/New_York
-      when: ansible_distribution != 'Alpine' 
+      when: inventory_hostname in groups['new_debian']
