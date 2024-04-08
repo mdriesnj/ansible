@@ -28,7 +28,7 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" } 
-      when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine']
 
 
     - name: debian - configure sshd with pam
@@ -55,13 +55,13 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" }   
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian']
     
     - name: systemd stuff
       become: true
       systemd:
         daemon_reload: yes
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian']
 
     - name: service stuff    
       become: true

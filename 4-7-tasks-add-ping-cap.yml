@@ -15,7 +15,7 @@
         sysctl_set: true
         state: present
         reload: true
-      when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine']
 
     - name: Set ping capabilitiy
       become: true
@@ -23,4 +23,4 @@
         path: /bin/ping
         capability: cap_net_raw+p
         state: present
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian']

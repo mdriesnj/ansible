@@ -9,11 +9,11 @@
     - name: alpine - change root shell with chsh
       become: true
       shell: chsh -s /bin/zsh
-      when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine']
 
     - name: alpine - change mdries shell with chsh
       shell: chsh -s /bin/zsh
-      when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine']
 
 #----Debian
     - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
@@ -21,7 +21,7 @@
       user:
         name: mdries
         shell: /bin/zsh
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian'] 
 
 #----Debian
     - name: debian - add user mdries #Add the user james with a bash shell, appending the group admins and developers to the users groups
@@ -29,7 +29,7 @@
       user:
         name: root
         shell: /bin/zsh
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian']
 
 
     # - name: debian - change root shell with chsh

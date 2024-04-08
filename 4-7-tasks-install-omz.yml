@@ -12,7 +12,7 @@
         dest: /root/.oh-my-zsh
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
@@ -21,7 +21,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-completions plugin # noqa: latest
       become: true
@@ -30,7 +30,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: root - Install zsh-syntax-highlighting plugin # noqa: latest
       become: true
@@ -39,7 +39,7 @@
         dest: /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - clone Oh My Zsh # noqa: latest
       ansible.builtin.git:
@@ -47,7 +47,7 @@
         dest: /home/mdries/.oh-my-zsh
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-autosuggestions plugin # noqa: latest
       ansible.builtin.git:
@@ -55,7 +55,7 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-autosuggestions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-completions plugin # noqa: latest
       ansible.builtin.git:
@@ -63,7 +63,7 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-completions
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 
     - name: mdries - Install zsh-syntax-highlighting plugin # noqa: latest
       ansible.builtin.git:
@@ -71,5 +71,5 @@
         dest: /home/mdries/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
         force: yes
         depth: 1
-      when: inventory_hostname in groups['new_alpine_container'] or inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
 

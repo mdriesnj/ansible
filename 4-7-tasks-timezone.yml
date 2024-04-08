@@ -11,10 +11,10 @@
         src: /usr/share/zoneinfo/America/New_York
         dest: /etc/localtime
         state: link
-      when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname in groups['new_alpine']
 
     - name: Set the timezone debian
       become: true
       ansible.builtin.timezone:
         name: America/New_York
-      when: inventory_hostname in groups['new_debian_container']
+      when: inventory_hostname in groups['new_debian']
