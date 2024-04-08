@@ -17,4 +17,4 @@
       become: true
       ansible.builtin.timezone:
         name: America/New_York
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']

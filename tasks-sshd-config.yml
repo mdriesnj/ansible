@@ -55,13 +55,13 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" }   
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
     
     - name: systemd stuff
       become: true
       systemd:
         daemon_reload: yes
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: service stuff    
       become: true

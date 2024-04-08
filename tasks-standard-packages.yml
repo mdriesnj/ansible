@@ -66,7 +66,7 @@
         state: present
         validate_certs: no
         disable_gpg_check: true
-      when: ansible_distribution == 'AlmaLinux'
+      when: inventory_hostname in groups['new_alma']
       
     - name: alma dnf install 2
       become: true
@@ -75,7 +75,7 @@
         state: present
         validate_certs: no
         disable_gpg_check: true
-      when: ansible_distribution == 'AlmaLinux'        
+      when: inventory_hostname in groups['new_alma']
 
     - name: alma packages
       become: true
@@ -83,17 +83,17 @@
         name: 
           - tar
           - wget
-          - curl
-          - sudo
+  #        - curl
+  #        - sudo
           - git 
           - zsh
-          - vim
+  #        - vim
  #         - stow
           - net-tools  
           - neofetch
-          - neovim 
+ #         - neovim 
           - bat 
-          - ncdu
+#          - ncdu
           - btop
           - fzf
           - tldr
@@ -102,7 +102,7 @@
        #   - gdu
   #        - ranger not in yum
         state: latest
-      when: ansible_distribution == 'AlmaLinux'
+      when: inventory_hostname in groups['new_alma']
 
 #-----Eza-------------------------------------------------------
 
@@ -112,7 +112,7 @@
         url: https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /tmp/
         mode: 0755
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: "extract eza"
       become: true
@@ -120,7 +120,7 @@
         remote_src: yes
         src: /tmp/eza_x86_64-unknown-linux-gnu.tar.gz
         dest: /usr/bin/
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
 #----- Helix-----------------------------------------------------
     - name: "get helix"
@@ -129,7 +129,7 @@
         url: https://github.com/helix-editor/helix/releases/download/24.03/helix-24.03-x86_64-linux.tar.xz
         dest: /tmp/
         mode: 0755
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: "extract helix"
       become: true
@@ -137,7 +137,7 @@
         remote_src: yes
         src: /tmp/helix-24.03-x86_64-linux.tar.xz
         dest: /tmp
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: "copy hx /bin"
       become: true
@@ -146,14 +146,14 @@
         src: /tmp/helix-24.03-x86_64-linux/hx
         dest: /usr/bin/
         mode: 0755
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: "make helix runtime location"
       become: true
       file:
         path: /usr/share/helix/runtime
         state: directory
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
     - name: "copy helix runtime /usr/share"
       become: true
@@ -162,5 +162,5 @@
         src: /tmp/helix-24.03-x86_64-linux/runtime
         dest: /usr/share/helix/
         mode: 0755
-      when: inventory_hostname in groups['new_debian']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
