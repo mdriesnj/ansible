@@ -203,7 +203,7 @@
 
   
     - name: root - install command line no argv
-      become: true
+#      become: true
       command: /bin/bash -c NONINTERACTIVE=1 /tmp/install.sh
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
