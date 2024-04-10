@@ -9,8 +9,12 @@
   #firstrun: true
     ansible_become_password: "{{ password | password_hash('sha512') }}"
   environment:
-    HOMEBREW_PREFIX: /opt/linuxbrew/
-    PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
+   # HOMEBREW_PREFIX: /opt/linuxbrew/
+   # PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
+    HOMEBREW_PREFIX: /opt/linuxbrew/.linuxbrew
+    HOMEBREW_CELLAR: /opt/linuxbrew/.linuxbrew/Cellar
+    PATH: /opt/linuxbrew/bin:/op/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}  
+
   tasks:
   #    - include_tasks: tasks-alpine-bootstrap.yml
     - include_tasks: tasks-standard-packages.yml
