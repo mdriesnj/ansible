@@ -9,118 +9,119 @@
 #  #     pause:
 #  #       seconds: 10
 
-# #-------- Alpine------------------------
-#     - name: Alpine install 
-#       become: true
-#       apk:
-#         name: btop, curl, eza, fd, fzf, git, helix, libcap-getcap, libcap-setcap, neofetch, qemu-guest-agent, ranger, ripgrep, shadow, tzdata, wget, zsh
-#         state: latest
-#         update_cache: true
-#       when: inventory_hostname in groups['new_alpine']
+#-------- Alpine------------------------
+    - name: Alpine install 
+      become: true
+      apk:
+        name: btop, curl, eza, fd, fzf, git, helix, libcap-getcap, libcap-setcap, neofetch, qemu-guest-agent, ranger, ripgrep, shadow, tzdata, wget, zsh
+        state: latest
+        update_cache: true
+      when: inventory_hostname in groups['new_alpine']
 
-# #-------- Debian-------------------------    
-#     - name: Debian Update apt cache
-#       become: true
-#       apt:
-#         update_cache: yes
-#       when: inventory_hostname in groups['new_debian']
+#-------- Debian-------------------------    
+    - name: Debian Update apt cache
+      become: true
+      apt:
+        update_cache: yes
+      when: inventory_hostname in groups['new_debian']
 
-#     - name: Debian packages
-#       become: true
-#       apt:
-#         name: 
-#           - btop
-#           - build-essential
-#           - curl
-#           - fd-find
-#           - fzf
-#           - git 
-#           - neofetch
-#           - qemu-guest-agent
-#           - net-tools   
-#           - ranger
-#           - ripgrep
-#           - tldr
-#           - wget
-#           - zsh
-#           - xz-utils
-#         state: latest
-#       when: inventory_hostname in groups['new_debian']
+    - name: Debian packages
+      become: true
+      apt:
+        name: 
+          - gcc
+          - btop
+          - build-essential
+          - curl
+          - fd-find
+          - fzf
+          - git 
+          - neofetch
+          - qemu-guest-agent
+          - net-tools   
+          - ranger
+          - ripgrep
+          - tldr
+          - wget
+          - zsh
+          - xz-utils
+        state: latest
+      when: inventory_hostname in groups['new_debian']
 
-#  #   - name: Debian Update apt cache
-#  #     become: true
-#  #     apt:
-#  #       update_cache: yes
-#  #     when: inventory_hostname in groups['new_debian_container']
+ #   - name: Debian Update apt cache
+ #     become: true
+ #     apt:
+ #       update_cache: yes
+ #     when: inventory_hostname in groups['new_debian_container']
 
-#     - name: Debian remove postfix 
-#       become: true
-#       apt:
-#         name: 
-#           - postfix
-#         state: absent
-#       when: inventory_hostname in groups['new_debian']
+    - name: Debian remove postfix 
+      become: true
+      apt:
+        name: 
+          - postfix
+        state: absent
+      when: inventory_hostname in groups['new_debian']
 
 
-# #-------- Alm-------------------------    
+#-------- Alm-------------------------    
 
-#     - name: alma dnf install 1
-#       become: true
-#       dnf:
-#         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-#         state: present
-#         validate_certs: no
-#         disable_gpg_check: true
-#       when: inventory_hostname in groups['new_alma']
+    - name: alma dnf install 1
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: inventory_hostname in groups['new_alma']
 
-#     - name: alma dnf install 2
-#       become: true
-#       dnf:
-#         name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-#         state: present
-#         validate_certs: no
-#         disable_gpg_check: true
-#       when: inventory_hostname in groups['new_alma']
+    - name: alma dnf install 2
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: inventory_hostname in groups['new_alma']
 
-#     - name: alma packages
-#       become: true
-#       yum:
-#         name: 
-#           - tar
-#           - wget
-#   #        - curl
-#   #        - sudo
-#           - git 
-#           - zsh
-#   #        - vim
-#  #         - stow
-#           - net-tools  
-#           - neofetch
-#  #         - neovim 
-#  #         - bat 
-# #          - ncdu
-#           - btop
-#           - fzf
-#           - tldr
-#           - fd-find
-#           - xz
-#        #   - gdu
-#   #        - ranger not in yum
-#         state: latest
-#       when: inventory_hostname in groups['new_alma']
+    - name: alma packages
+      become: true
+      yum:
+        name: 
+          - tar
+          - wget
+  #        - curl
+  #        - sudo
+          - git 
+          - zsh
+  #        - vim
+ #         - stow
+          - net-tools  
+          - neofetch
+ #         - neovim 
+ #         - bat 
+#          - ncdu
+          - btop
+          - fzf
+          - tldr
+          - fd-find
+          - xz
+       #   - gdu
+  #        - ranger not in yum
+        state: latest
+      when: inventory_hostname in groups['new_alma']
 
-#     - name: alma remove imagemagick
-#       become: true
-#       yum:
-#         name: 
-#           - ImageMagick
-#           - ImageMagick-libs.x86_64
-#           - ImageMagick-libs-6.9.12.93-1.el9.x86_64
-#           - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
-#           - ImageMagick-libs.x86_64
-#         state: absent
-#         autoremove: yes
-#       when: inventory_hostname in groups['new_alma']
+    - name: alma remove imagemagick
+      become: true
+      yum:
+        name: 
+          - ImageMagick
+          - ImageMagick-libs.x86_64
+          - ImageMagick-libs-6.9.12.93-1.el9.x86_64
+          - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
+          - ImageMagick-libs.x86_64
+        state: absent
+        autoremove: yes
+      when: inventory_hostname in groups['new_alma']
 
 
 #-----Eza-------------------------------------------------------
