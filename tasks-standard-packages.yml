@@ -120,6 +120,11 @@
 
 
 #-----Eza-------------------------------------------------------
+    - name: delete eza
+      become: true
+      file:
+        path: /usr/bin/eza
+        state: absent
 
     # - name: "get eza"
     #   become: true
@@ -138,6 +143,13 @@
     #   when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
 #----- Helix-----------------------------------------------------
+    - name: delete helix
+      become: true
+      file:
+          path: /usr/bin/hx 
+          state: absent
+
+
     # - name: "get helix"
     #   become: true
     #   get_url:
@@ -189,7 +201,8 @@
         dest: /tmp/
         mode: 0755
 
-    - name: mdres - install command line no argv
+  
+    - name: root - install command line no argv
       become: true
       command: /bin/bash -c NONINTERACTIVE=1 /tmp/install.sh
       register: linuxbrew_result
