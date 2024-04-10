@@ -194,19 +194,47 @@
 #----- Linux Brew ----------------------------------------------
 #----- Linuxbrew-----------------------------------------------------
 
-    - name: "get Linuxbrew"
-#      become: true
-      get_url:
-        url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-        dest: /tmp/
-        mode: 0755
+#     - name: "get Linuxbrew"
+# #      become: true
+#       get_url:
+#         url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+#         dest: /tmp/
+#         mode: 0755
 
   
-    - name: root - install command line no argv
-#      become: true
-      command: /bin/bash -c NONINTERACTIVE=1 /tmp/install.sh
-      # register: linuxbrew_result
-      # failed_when: "'FAILED' in linuxbrew_result.stderr"
+#     - name: root - install command line no argv
+# #      become: true
+#       command: /bin/bash -c NONINTERACTIVE=1 /tmp/install.sh
+#       # register: linuxbrew_result
+#       # failed_when: "'FAILED' in linuxbrew_result.stderr"
+
+    - name: Clone Homebrew GitHub repo
+      become: true
+      ansible.builtin.git:
+        repo: "{{ homebrew_git_repo }}"
+        dest: "/opt/linuxbrew/Homebrew"
+        version: "master"
+#      become_user: "{{ homebrew_user }}"
+      
+
+    - name: Create bin directory for brew
+      become: true
+      ansible.builtin.file:
+        path: "/opt/linuxbrew/bin"
+        state: directory
+ #       owner: "{{ homebrew_user }}"
+ #       group: "{{ homebrew_user }}"
+        mode: 0755
+
+    - name: Create a symbolic link for brew
+      become: true
+      ansible.builtin.file:
+        src: "/opt/linuxbrew/Homebrew/bin/brew"
+        dest: "/linuxbrew/bin/brew"
+        # owner: "{{ homebrew_user }}"
+        # group: "{{ homebrew_user }}"
+        state: link
+        mode: 0755
 
     # - name: update homebrew
     #   become: true
