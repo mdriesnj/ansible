@@ -178,3 +178,10 @@
         mode: 0755
       when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
 
+#----- Linux Brew ----------------------------------------------
+#----- Linuxbrew-----------------------------------------------------
+    - name: "get Linuxbrew"
+      become: true
+      command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      register: linuxbrew_result
+      failed_when: "'FAILED' in linuxbrew_result.stderr"
