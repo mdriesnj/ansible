@@ -31,29 +31,29 @@
     #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
 #----mdries Clean----------------
-    # - name: mdries clean .config
-    #   file:
-    #     path: /home/mdries/.config
-    #     state: absent
-    #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
+      # - name: mdries clean .config
+      #   file:
+      #     path: /home/mdries/.config
+      #     state: absent
+      #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
-    # - name: mdries clean .cache
-    #   file:
-    #     path: /home/mdries/.cache
-    #     state: absent
-    #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
+      # - name: mdries clean .cache
+      #   file:
+      #     path: /home/mdries/.cache
+      #     state: absent
+      #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
-    # - name: mdries clean .oh-my-zsh
-    #   file:
-    #     path: /home/mdries/.oh-my-zsh
-    #     state: absent
-    #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
+      # - name: mdries clean .oh-my-zsh
+      #   file:
+      #     path: /home/mdries/.oh-my-zsh
+      #     state: absent
+      #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
-    # - name: mdries clean .local
-    #   file:
-    #     path: /rohome/mdriesot/.local
-    #     state: absent
-    #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
+      # - name: mdries clean .local
+      #   file:
+      #     path: /rohome/mdriesot/.local
+      #     state: absent
+      #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
 #-----Root Install-----------------------------------------
     - name: root - clone Oh My Zsh # noqa: latest
