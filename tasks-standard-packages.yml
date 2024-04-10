@@ -200,7 +200,7 @@
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
           - /bin/bash 
-          - c 
+          - -c 
           - ls
 #          - /tmp/install.sh
 #          - NONINTERACTIVE
