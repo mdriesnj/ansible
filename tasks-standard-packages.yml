@@ -250,7 +250,7 @@
         owner: mdries
         group: mdries
         mode: 0755
-
+      when: ansible_distribution != 'AlmaLinux'
 
     - name: update homebrew
       community.general.homebrew:
