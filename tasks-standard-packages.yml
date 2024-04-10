@@ -220,7 +220,7 @@
 
     - name: homebrew install eza
       community.general.homebrew:
-        name: homebrew/formulae/eza
+        name: eza
         state: present
 
 
