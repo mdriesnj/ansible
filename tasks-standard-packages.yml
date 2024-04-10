@@ -107,15 +107,15 @@
   #        - vim
  #         - stow
           - net-tools  
-          - neofetch
+ #         - neofetch
  #         - neovim 
  #         - bat 
 #          - ncdu
-          - btop
-          - fzf
-          - tldr
-          - fd-find
-          - xz
+  #        - btop
+  #        - fzf
+   #       - tldr
+   #       - fd-find
+    #      - xz
        #   - gdu
   #        - ranger not in yum
         state: latest
