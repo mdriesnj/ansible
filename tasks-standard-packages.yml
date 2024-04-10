@@ -3,12 +3,12 @@
 
     - name: Check for eza
       stat:
-        path: "{{ LinuxBrew_PATH} }/{{ EZA_FILE }} }}"
+        path: "{{ LinuxBrew_PATH }}/{{ EZA_FILE }}"
       register: eza_result
 
     - name: Check for helix
       stat:
-        path: "{{ LinuxBrew_PATH }}/{{ HX_FILE }} }}"
+        path: "{{ LinuxBrew_PATH }}/{{ HX_FILE }}"
       register: hx_result
 
 
