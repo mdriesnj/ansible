@@ -183,6 +183,6 @@
 #----- Linuxbrew-----------------------------------------------------
     - name: "get Linuxbrew"
       become: true
-      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      command: /bin/bash NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
