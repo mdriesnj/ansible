@@ -29,12 +29,13 @@
       become: true
       apt:
         name: 
-          - gcc
           - btop
           - build-essential
+          - clang
           - curl
           - fd-find
           - fzf
+          - gcc
           - git 
           - neofetch
           - qemu-guest-agent
