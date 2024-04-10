@@ -230,7 +230,7 @@
       become: true
       ansible.builtin.file:
         src: "/opt/linuxbrew/Homebrew/bin/brew"
-        dest: "/linuxbrew/bin/brew"
+        dest: "/opt/linuxbrew/bin/brew"
         # owner: "{{ homebrew_user }}"
         # group: "{{ homebrew_user }}"
         state: link
