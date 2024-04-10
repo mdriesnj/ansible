@@ -208,6 +208,17 @@
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
+    - name: update homebrew
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
+
+    - name: homebrew install hx, eza
+      community.general.homebrew:
+        name: hx, eza
+        state: present
+
+
 
 #     - name: "mdries - install Linuxbrew"
 # #      become: true
