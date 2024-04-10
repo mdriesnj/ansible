@@ -200,7 +200,8 @@
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
           - /bin/bash 
-          - -c /tmp/install.sh
+          - -c 
+          - /tmp/install.sh
           - NONINTERACTIVE
           - CI
       register: linuxbrew_result
@@ -211,7 +212,8 @@
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
           - /bin/bash 
-          - -c /tmp/install.sh
+          - -c 
+          - /tmp/install.sh
           - NONINTERACTIVE
           - CI
       register: linuxbrew_result
