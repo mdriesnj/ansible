@@ -1,6 +1,9 @@
 ---
 - hosts: new_alpine, new_debian, new_alma
   vars:
+    LinuxBrew_PATH: "/opt/linuxbrew/bin"
+    EZA_FILE: "eza"
+    HX_FILE: "hx"
   # Setting this for unarchive to work
   #ansible_remote_tmp: /tmp
   #firstrun: true
