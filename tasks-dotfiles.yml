@@ -61,14 +61,14 @@
       src: /tmp/src_dot_files/.zshrc
       dest: /home/mdries
       owner: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
 
   - name: mdries create neofetch/config
     file:
       path: /home/mdries/.config/neofetch/
       state: directory
       owner: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
 
   - name: mdries copy neofetch/config
     copy:
@@ -76,7 +76,7 @@
       src: /tmp/src_dot_files/neofetch/config.conf
       dest: /home/mdries/.config/neofetch/
       owner: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
 
 
   - name: mdries create helix/config
@@ -84,7 +84,7 @@
       path: /home/mdries/.config/helix/
       state: directory
       owner: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
 
   - name: mdries copy helix/config
     copy:
@@ -92,7 +92,7 @@
       src: /tmp/src_dot_files/helix/config.toml
       dest: /home/mdries/.config/helix/
       owner: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
 
   - name: chown mdries
     become: true
@@ -102,5 +102,61 @@
       recurse: yes
       owner: mdries
       group: mdries
-    # when: inventory_hostname in groups['new_alpine_container']
+     when: inventory_hostname not in groups['nas']
+
+
+#NAS---------- mdries ------------------    
+  - name: mdries copy .zshrc
+    copy:
+      remote_src: false
+      src: /tmp/src_dot_files/.zshrc
+      dest: ~/
+      owner: mdries
+     when: inventory_hostname in groups['nas']
+
+  - name: mdries create neofetch/config
+    file:
+      path: ~/.config/neofetch/
+      state: directory
+      owner: mdries
+     when: inventory_hostname in groups['nas']
+
+  - name: mdries copy neofetch/config
+    copy:
+      remote_src: false
+      src: /tmp/src_dot_files/neofetch/config.conf
+      dest: ~/.config/neofetch/
+      owner: mdries
+     when: inventory_hostname in groups['nas']
+
+
+  - name: mdries create helix/config
+    file:
+      path: ~/.config/helix/
+      state: directory
+      owner: mdries
+     when: inventory_hostname in groups['nas']
+
+  - name: mdries copy helix/config
+    copy:
+      remote_src: false
+      src: /tmp/src_dot_files/helix/config.toml
+      dest: ~/.config/helix/
+      owner: mdries
+     when: inventory_hostname in groups['nas']
+
+  - name: chown mdries
+    become: true
+    file:
+      path: ~/
+      state: directory
+      recurse: yes
+      owner: mdries
+      group: mdries
+     when: inventory_hostname in groups['nas']
+
+
+
+
+
 

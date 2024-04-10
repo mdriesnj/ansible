@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: normal
   vars:
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
