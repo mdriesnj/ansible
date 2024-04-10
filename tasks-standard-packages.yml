@@ -244,7 +244,7 @@
       file:
         path: /opt/linuxbrew
         state: directory
-        recursitve: true
+        recurse: true
         owner: mdries
         group: mdries
         mode: 0755
