@@ -241,16 +241,19 @@
         mode: 0755
 
     - name: update homebrew
+      become: true
       community.general.homebrew:
         update_homebrew: true
         upgrade_all: true
 
     - name: homebrew install helix
+      become: true
       community.general.homebrew:
         name: helix
         state: present
 
     - name: homebrew install eza
+      become: true
       community.general.homebrew:
         name: eza
         state: present
