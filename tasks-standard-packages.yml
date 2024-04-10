@@ -1,6 +1,10 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts    
+
 #  #   - name: pause
 #  #     pause:
 #  #       seconds: 10
