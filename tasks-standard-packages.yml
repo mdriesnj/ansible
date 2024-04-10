@@ -100,6 +100,7 @@
         name: 
           - tar
           - wget
+          - clang
   #        - curl
   #        - sudo
           - git 
