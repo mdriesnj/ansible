@@ -16,14 +16,14 @@
         name: btop, curl, eza, fd, fzf, git, helix, libcap-getcap, libcap-setcap, neofetch, qemu-guest-agent, ranger, ripgrep, shadow, tzdata, wget, zsh
         state: latest
         update_cache: true
-      when: inventory_hostname in groups['new_alpine']
+      when: ansible_distribution == 'Alpine'
 
 #-------- Debian-------------------------    
     - name: Debian Update apt cache
       become: true
       apt:
         update_cache: yes
-      when: inventory_hostname in groups['new_debian']
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
     - name: Debian packages
       become: true
@@ -47,7 +47,7 @@
           - zsh
           - xz-utils
         state: latest
-      when: inventory_hostname in groups['new_debian']
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
  #   - name: Debian Update apt cache
  #     become: true
@@ -61,8 +61,7 @@
         name: 
           - postfix
         state: absent
-      when: inventory_hostname in groups['new_debian']
-
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #-------- Alm-------------------------    
 
@@ -73,7 +72,7 @@
         state: present
         validate_certs: no
         disable_gpg_check: true
-      when: inventory_hostname in groups['new_alma']
+      when: ansible_distribution == 'AlmaLinux'
 
     - name: alma dnf install 2
       become: true
@@ -82,7 +81,7 @@
         state: present
         validate_certs: no
         disable_gpg_check: true
-      when: inventory_hostname in groups['new_alma']
+      when: ansible_distribution == 'AlmaLinux'
 
     - name: alma packages
       become: true
@@ -109,8 +108,8 @@
        #   - gdu
   #        - ranger not in yum
         state: latest
-      when: inventory_hostname in groups['new_alma']
-
+      when: ansible_distribution == 'AlmaLinux'
+   
     - name: alma remove imagemagick
       become: true
       yum:
@@ -122,8 +121,7 @@
           - ImageMagick-libs.x86_64
         state: absent
         autoremove: yes
-      when: inventory_hostname in groups['new_alma']
-
+      when: ansible_distribution == 'AlmaLinux'
 
 #-----Eza-------------------------------------------------------
     - name: delete eza
