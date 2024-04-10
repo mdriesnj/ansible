@@ -218,6 +218,7 @@
         repo: "https://github.com/Homebrew/brew"
         dest: "/opt/linuxbrew/Homebrew"
         version: "master"
+        force: true
 #      become_user: "{{ homebrew_user }}"
       
 
