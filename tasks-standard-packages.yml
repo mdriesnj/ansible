@@ -1,6 +1,17 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - name: Check for eza
+      stat:
+        path: "{{ LinuxBrew_PATH}}/{{ EZA_FILE }} }}"
+      register: eza_result
+
+    - name: Check for helix
+      stat:
+        path: "{{ LinuxBrew_PATH}}/{{ HX_FILE }} }}"
+      register: hx_result
+
+
     # - name: Print all available facts
     #   ansible.builtin.debug:
     #     var: ansible_facts    
@@ -219,7 +230,7 @@
     #     dest: "/opt/linuxbrew/Homebrew"
     #     version: "master"
     #     force: true
-        
+
 #      become_user: "{{ homebrew_user }}"
       
 
@@ -263,7 +274,7 @@
       community.general.homebrew:
         name: helix
         state: present
-      when: ansible_distribution != 'AlmaLinux'
+      when: ansible_distribution != 'AlmaLinux' and not hx_result.stat.exists
 
     - name: pause
       pause:
@@ -274,7 +285,7 @@
       community.general.homebrew:
         name: eza
         state: present
-      when: ansible_distribution != 'AlmaLinux'
+      when: ansible_distribution != 'AlmaLinux' and not eza_result.stat.exists
 
 
 #     - name: "mdries - install Linuxbrew"

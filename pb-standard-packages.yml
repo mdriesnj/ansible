@@ -1,6 +1,10 @@
 ---
 - hosts: normal
   vars:
+    LinuxBrew_PATH: "/opt/linuxbrew/bin"
+    EZA_FILE: "eza"
+    HX_FILE: "hx"
+
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
     #firstrun: true
@@ -9,6 +13,7 @@
     HOMEBREW_PREFIX: /opt/linuxbrew/
     HOMEBREW_CELLAR: /opt/linuxbrew/Cellar
     PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
+
   tasks:
     - include_tasks: tasks-standard-packages.yml
  
