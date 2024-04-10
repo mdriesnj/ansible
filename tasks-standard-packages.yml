@@ -181,11 +181,6 @@
 
 #----- Linux Brew ----------------------------------------------
 #----- Linuxbrew-----------------------------------------------------
-    # - name: "get Linuxbrew"
-    #   become: true
-    #   command: /bin/bash NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    #   register: linuxbrew_result
-    #   failed_when: "'FAILED' in linuxbrew_result.stderr"
 
     - name: "get Linuxbrew"
 #      become: true
@@ -193,6 +188,12 @@
         url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
         dest: /tmp/
         mode: 0755
+
+    - name: mdres - install command line no argv
+      become: true
+      command: /bin/bash -c NONINTERACTIVE=1 /tmp/install.sh
+      register: linuxbrew_result
+      failed_when: "'FAILED' in linuxbrew_result.stderr"
 
 
     - name: "mdries - install Linuxbrew"
