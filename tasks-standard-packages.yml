@@ -196,31 +196,31 @@
       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
 
-    - name: "mdries - install Linuxbrew"
-#      become: true
-      command: #/tmp/install.sh NONINTERACTIVE CI
-        argv:
-          - /bin/sh 
-          - NONINTERACTIVE=1
-          - /bin/bash 
-          - -c 
-          - /tmp/install.sh
-#         - CI
-      register: linuxbrew_result
-      failed_when: "'FAILED' in linuxbrew_result.stderr"
+#     - name: "mdries - install Linuxbrew"
+# #      become: true
+#       command: #/tmp/install.sh NONINTERACTIVE CI
+#         argv:
+#           - /bin/sh 
+#           - NONINTERACTIVE=1
+#           - /bin/bash 
+#           - -c 
+#           - /tmp/install.sh
+# #         - CI
+#       register: linuxbrew_result
+#       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
-    - name: "root - install Linuxbrew"
-      become: true
-      command: #/tmp/install.sh NONINTERACTIVE CI
-        argv:
-          - /bin/sh
-          - NONINTERACTIVE=1
-          - /bin/bash 
-          - -c 
-          - /tmp/install.sh
-#          - CI
-      register: linuxbrew_result
-      failed_when: "'FAILED' in linuxbrew_result.stderr"
+#     - name: "root - install Linuxbrew"
+#       become: true
+#       command: #/tmp/install.sh NONINTERACTIVE CI
+#         argv:
+#           - /bin/sh
+#           - NONINTERACTIVE=1
+#           - /bin/bash 
+#           - -c 
+#           - /tmp/install.sh
+# #          - CI
+#       register: linuxbrew_result
+#       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
 
 
