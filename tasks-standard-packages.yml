@@ -208,7 +208,7 @@
 
     - name: "root - install Linuxbrew"
       become: true
-       command: #/tmp/install.sh NONINTERACTIVE CI
+      command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
           - /bin/bash 
           - -c /tmp/install.sh
