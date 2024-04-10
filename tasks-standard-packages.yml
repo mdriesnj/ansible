@@ -240,6 +240,16 @@
         state: link
         mode: 0755
 
+    - name: fix permissions
+      file:
+        path: /opt/linuxbrew
+        state: directory
+        recursitve: true
+        owner: mdries
+        group: mdries
+        mode: 0755
+
+
     - name: update homebrew
       community.general.homebrew:
         update_homebrew: true
