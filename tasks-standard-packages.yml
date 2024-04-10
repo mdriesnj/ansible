@@ -213,11 +213,15 @@
         update_homebrew: true
         upgrade_all: true
 
-    - name: homebrew install helix, eza
+    - name: homebrew install helix
       community.general.homebrew:
-        name: helix, eza
+        name: helix
         state: present
 
+    - name: homebrew install eza
+      community.general.homebrew
+        name: homebrew/formulae/eza
+        state: present
 
 
 #     - name: "mdries - install Linuxbrew"
