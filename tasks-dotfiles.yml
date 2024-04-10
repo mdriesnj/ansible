@@ -106,7 +106,7 @@
 
 
     #NAS---------- mdries ------------------    
-    - name: mdries copy .zshrc
+    - name: NAS - mdries copy .zshrc
       copy:
         remote_src: false
         src: /tmp/src_dot_files/.zshrc
@@ -114,14 +114,14 @@
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries create neofetch/config
+    - name: NAS - mdries create neofetch/config
       file:
         path: ~/.config/neofetch/
         state: directory
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries copy neofetch/config
+    - name: NAS - mdries copy neofetch/config
       copy:
         remote_src: false
         src: /tmp/src_dot_files/neofetch/config.conf
@@ -130,14 +130,14 @@
       when: inventory_hostname in groups['nas']
 
 
-    - name: mdries create helix/config
+    - name: NAS - mdries create helix/config
       file:
         path: ~/.config/helix/
         state: directory
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries copy helix/config
+    - name: NAS - mdries copy helix/config
       copy:
         remote_src: false
         src: /tmp/src_dot_files/helix/config.toml
