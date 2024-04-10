@@ -6,6 +6,7 @@
     #firstrun: true
     ansible_become_password: "{{ password | password_hash('sha512') }}"
   environment:
+    HOMEBREW_PREFIX: /opt/linuxbrew/
     PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
   tasks:
     - include_tasks: tasks-standard-packages.yml
