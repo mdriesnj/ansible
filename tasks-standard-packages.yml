@@ -199,10 +199,10 @@
 #      become: true
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
+          - NONINTERACTIVE=1
           - /bin/bash 
           - -c 
           - /tmp/install.sh
-          - NONINTERACTIVE
 #         - CI
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
@@ -211,10 +211,10 @@
       become: true
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
+          - NONINTERACTIVE=1
           - /bin/bash 
           - -c 
           - /tmp/install.sh
-          - NONINTERACTIVE
 #          - CI
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
