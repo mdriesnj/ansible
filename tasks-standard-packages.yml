@@ -26,6 +26,7 @@
       apt:
         name: 
           - btop
+          - build-essential
           - curl
           - fd-find
           - fzf
