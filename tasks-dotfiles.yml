@@ -145,15 +145,15 @@
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: chown mdries
-      become: true
-      file:
-        path: ~/
-        state: directory
-        recurse: yes
-        owner: mdries
-        group: mdries
-      when: inventory_hostname in groups['nas']
+#    - name: chown mdries
+#      become: true
+#      file:
+#        path: ~/
+#        state: directory
+#        recurse: yes
+#        owner: mdries
+#        group: mdries
+#      when: inventory_hostname in groups['nas']
 
 
 
