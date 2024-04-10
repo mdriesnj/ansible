@@ -213,7 +213,7 @@
         update_homebrew: true
         upgrade_all: true
 
-    - name: homebrew install hx, eza
+    - name: homebrew install helix, eza
       community.general.homebrew:
         name: helix, eza
         state: present
