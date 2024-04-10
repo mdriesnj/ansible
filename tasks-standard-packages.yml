@@ -211,7 +211,7 @@
     - name: Clone Homebrew GitHub repo
       become: true
       ansible.builtin.git:
-        repo: "{{ homebrew_git_repo }}"
+        repo: "https://github.com/Homebrew/brew"
         dest: "/opt/linuxbrew/Homebrew"
         version: "master"
 #      become_user: "{{ homebrew_user }}"
