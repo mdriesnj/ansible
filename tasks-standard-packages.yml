@@ -201,7 +201,7 @@
         argv:
           - /bin/bash 
           - -c 
-         - /tmp/install.sh
+          - /tmp/install.sh
 #         - NONINTERACTIVE
 #         - CI
       register: linuxbrew_result
