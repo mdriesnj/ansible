@@ -278,6 +278,7 @@
       community.general.homebrew:
         name: helix
         state: present
+        path: /home/linuxbrew/.linuxbrew/bin        
       when: inventory_hostname in groups['new_alma']  and not hx_result.stat.exists
 
     - name: pause
@@ -289,6 +290,7 @@
       community.general.homebrew:
         name: eza
         state: present
+        path: /home/linuxbrew/.linuxbrew/bin
       when: inventory_hostname in groups['new_alma']  and not eza_result.stat.exists
 
 
