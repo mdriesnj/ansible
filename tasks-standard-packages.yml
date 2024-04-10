@@ -238,7 +238,7 @@
     - name: Create bin directory for brew
       become: true
       ansible.builtin.file:
-        path: "/opt/linuxbrew/bin"
+        path: "/opt/linuxbrew/.linuxbrew/bin"
         state: directory
         owner: mdries
         group: mdries
@@ -248,8 +248,8 @@
     - name: Create a symbolic link for brew
       become: true
       ansible.builtin.file:
-        src: "/opt/linuxbrew/Homebrew/bin/brew"
-        dest: "/opt/linuxbrew/bin/brew"
+        src: "/opt/linuxbrew/.linuxbrew/Homebrew/bin/brew"
+        dest: "/opt/linuxbrew/.linuxbrew/bin/brew"
         owner: mdries
         group: mdries
         state: link
