@@ -264,9 +264,9 @@
         state: present
       when: ansible_distribution != 'AlmaLinux'
 
-   - name: pause
-     pause:
-       seconds: 15
+    - name: pause
+      pause:
+        seconds: 15
 
 
     - name: homebrew install eza
