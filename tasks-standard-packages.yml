@@ -219,7 +219,7 @@
         state: present
 
     - name: homebrew install eza
-      community.general.homebrew
+      community.general.homebrew:
         name: homebrew/formulae/eza
         state: present
 
