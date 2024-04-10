@@ -197,13 +197,13 @@
 
     - name: "mdries - install Linuxbrew"
 #      become: true
-      command: /bin/bash -c /tmp/install.sh NONINTERACTIVE
+      command: /tmp/install.sh NONINTERACTIVE CI
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
     - name: "root - install Linuxbrew"
       become: true
-      command: /bin/bash -c /tmp/install.sh NONINTERACTIVE
+      command: /tmp/install.sh NONINTERACTIVE CI
       register: linuxbrew_result
       failed_when: "'FAILED' in linuxbrew_result.stderr"
 
