@@ -215,7 +215,7 @@
 
     - name: homebrew install hx, eza
       community.general.homebrew:
-        name: hx, eza
+        name: helix, eza
         state: present
 
 
