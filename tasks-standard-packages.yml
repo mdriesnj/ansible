@@ -29,36 +29,36 @@
 #         update_cache: true
 #       when: ansible_distribution == 'Alpine'
 
-# #-------- Debian-------------------------    
-#     - name: Debian Update apt cache
-#       become: true
-#       apt:
-#         update_cache: yes
-#       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+#-------- Debian-------------------------    
+    - name: Debian Update apt cache
+      become: true
+      apt:
+        update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-#     - name: Debian packages
-#       become: true
-#       apt:
-#         name: 
-#           - btop
-#           - build-essential
-#           - clang
-#           - curl
-#           - fd-find
-#           - fzf
-#           - gcc
-#           - git 
-#           - neofetch
-#           - qemu-guest-agent
-#           - net-tools   
-#           - ranger
-#           - ripgrep
-#           - tldr
-#           - wget
-#           - zsh
-#           - xz-utils
-#         state: latest
-#       when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+    - name: Debian packages
+      become: true
+      apt:
+        name: 
+          - btop
+          - build-essential
+          - clang
+          - curl
+          - fd-find
+          - fzf
+          - gcc
+          - git 
+          - neofetch
+          - qemu-guest-agent
+          - net-tools   
+          - ranger
+          - ripgrep
+          - tldr
+          - wget
+          - zsh
+          - xz-utils
+        state: latest
+      when: inventory_hostname in groups['new_debian'] 
 
  #   - name: Debian Update apt cache
  #     become: true
@@ -94,45 +94,45 @@
 #         disable_gpg_check: true
 #       when: ansible_distribution == 'AlmaLinux'
 
-#     - name: alma packages
-#       become: true
-#       yum:
-#         name: 
-#           - tar
-#           - wget
-#   #        - curl
-#   #        - sudo
-#           - git 
-#           - zsh
-#   #        - vim
-#  #         - stow
-#           - net-tools  
-#           - neofetch
-#  #         - neovim 
-#  #         - bat 
-# #          - ncdu
-#           - btop
-#           - fzf
-#           - tldr
-#           - fd-find
-#           - xz
-#        #   - gdu
-#   #        - ranger not in yum
-#         state: latest
-#       when: ansible_distribution == 'AlmaLinux'
-   
-#     - name: alma remove imagemagick
-#       become: true
-#       yum:
-#         name: 
-#           - ImageMagick
-#           - ImageMagick-libs.x86_64
-#           - ImageMagick-libs-6.9.12.93-1.el9.x86_64
-#           - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
-#           - ImageMagick-libs.x86_64
-#         state: absent
-#         autoremove: yes
-#       when: ansible_distribution == 'AlmaLinux'
+    - name: alma packages
+      become: true
+      yum:
+        name: 
+          - tar
+          - wget
+  #        - curl
+  #        - sudo
+          - git 
+          - zsh
+  #        - vim
+ #         - stow
+          - net-tools  
+          - neofetch
+ #         - neovim 
+ #         - bat 
+#          - ncdu
+          - btop
+          - fzf
+          - tldr
+          - fd-find
+          - xz
+       #   - gdu
+  #        - ranger not in yum
+        state: latest
+      when: inventory_hostname in groups['new_alma'] 
+
+    - name: alma remove imagemagick
+      become: true
+      yum:
+        name: 
+          - ImageMagick
+          - ImageMagick-libs.x86_64
+          - ImageMagick-libs-6.9.12.93-1.el9.x86_64
+          - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
+          - ImageMagick-libs.x86_64
+        state: absent
+        autoremove: yes
+      when: inventory_hostname in groups['new_alma'] 
 
 #-----Eza-------------------------------------------------------
     # - name: delete eza
@@ -223,46 +223,49 @@
 #       # register: linuxbrew_result
 #       # failed_when: "'FAILED' in linuxbrew_result.stderr"
 
-    # - name: Clone Homebrew GitHub repo
-    #   become: true
-    #   ansible.builtin.git:
-    #     repo: "https://github.com/Homebrew/brew"
-    #     dest: "/opt/linuxbrew/Homebrew"
-    #     version: "master"
-    #     force: true
+    - name: Clone Homebrew GitHub repo
+      become: true
+      ansible.builtin.git:
+        repo: "https://github.com/Homebrew/brew"
+        dest: "/opt/linuxbrew/Homebrew"
+        version: "master"
+        force: true
+      when: inventory_hostname in groups['new_alma'] 
 
 #      become_user: "{{ homebrew_user }}"
       
 
-    # - name: Create bin directory for brew
-    #   become: true
-    #   ansible.builtin.file:
-    #     path: "/opt/linuxbrew/bin"
-    #     state: directory
-    #     owner: mdries
-    #     group: mdries
-    #     mode: 0755
+    - name: Create bin directory for brew
+      become: true
+      ansible.builtin.file:
+        path: "/opt/linuxbrew/bin"
+        state: directory
+        owner: mdries
+        group: mdries
+        mode: 0755
+      when: inventory_hostname in groups['new_alma'] 
 
-    # - name: Create a symbolic link for brew
-    #   become: true
-    #   ansible.builtin.file:
-    #     src: "/opt/linuxbrew/Homebrew/bin/brew"
-    #     dest: "/opt/linuxbrew/bin/brew"
-    #     owner: mdries
-    #     group: mdries
-    #     state: link
-    #     mode: 0755
-
-    # - name: fix permissions
-    #   become: true
-    #   file:
-    #     path: /opt/linuxbrew
-    #     state: directory
-    #     recurse: true
-    #     owner: mdries
-    #     group: mdries
-    #     mode: 0755
-    #   when: ansible_distribution != 'AlmaLinux'
+    - name: Create a symbolic link for brew
+      become: true
+      ansible.builtin.file:
+        src: "/opt/linuxbrew/Homebrew/bin/brew"
+        dest: "/opt/linuxbrew/bin/brew"
+        owner: mdries
+        group: mdries
+        state: link
+        mode: 0755
+      when: inventory_hostname in groups['new_alma'] 
+    
+    - name: fix permissions
+      become: true
+      file:
+        path: /opt/linuxbrew
+        state: directory
+        recurse: true
+        owner: mdries
+        group: mdries
+        mode: 0755
+      when: inventory_hostname in groups['new_alma'] 
 
     # - name: update homebrew
     #   community.general.homebrew:
@@ -274,7 +277,7 @@
       community.general.homebrew:
         name: helix
         state: present
-      when: ansible_distribution != 'AlmaLinux' and not hx_result.stat.exists
+      when: inventory_hostname in groups['new_alma']  and not hx_result.stat.exists
 
     - name: pause
       pause:
@@ -285,7 +288,7 @@
       community.general.homebrew:
         name: eza
         state: present
-      when: ansible_distribution != 'AlmaLinux' and not eza_result.stat.exists
+      when: inventory_hostname in groups['new_alma']  and not eza_result.stat.exists
 
 
 #     - name: "mdries - install Linuxbrew"
