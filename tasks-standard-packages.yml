@@ -237,7 +237,6 @@
         mode: 0755
 
     - name: update homebrew
-      become: true
       community.general.homebrew:
         update_homebrew: true
         upgrade_all: true
