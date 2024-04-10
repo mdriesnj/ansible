@@ -199,6 +199,7 @@
 #      become: true
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
+          - /bin/sh 
           - NONINTERACTIVE=1
           - /bin/bash 
           - -c 
@@ -211,6 +212,7 @@
       become: true
       command: #/tmp/install.sh NONINTERACTIVE CI
         argv:
+          - /bin/sh
           - NONINTERACTIVE=1
           - /bin/bash 
           - -c 
