@@ -5,6 +5,8 @@
       stat:
         path: "{{ LinuxBrew_PATH }}/{{ EZA_FILE }}"
       register: eza_result
+      debug: msg="{{ eza_result.stat.exists }}"
+
 
     - name: Check for helix
       stat:

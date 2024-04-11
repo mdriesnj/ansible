@@ -1,0 +1,16 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+
+    # - name: pause
+    #   pause:
+    #     seconds: 10
+
+#----PVE
+    - name: pve - lxc
+      community.general.proxmox:
+      api_host: "{{ ansible_hostname }}"
+#      api_password: "{{ password | password_hash('sha512') }}"
+      api_token_id: mdries@pam!mdriesapi
+      
+      shell: chsh -s /bin/zsh
+      when: inventory_hostname in groups['new_alpine']
