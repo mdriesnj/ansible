@@ -305,17 +305,17 @@
 
     - name: EZA copy
       become: true
-        copy:
-          remote_src: false
-          src: /usr/bin/eza
-          dest: /usr/bin
+      copy:
+        remote_src: false
+        src: /usr/bin/eza
+        dest: /usr/bin
 
     - name: HX copy
       become: true
-        copy:
-          remote_src: false
-          src: /usr/bin/hx
-          dest: /usr/bin
+      copy:
+        remote_src: false
+        src: /usr/bin/hx
+        dest: /usr/bin
 
 
 
