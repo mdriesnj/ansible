@@ -3,7 +3,7 @@
 
     - name: Check for eza
       stat:
-        path: "{{ LinuxBrew_PATH }}/{{ EZA_FILE }}"
+        path: "/opt/linuxbrew/.linuxbrew/bin/eza"
       register: eza_result
 
     - name: debug eza
@@ -19,7 +19,7 @@
 
     - name: Check for helix
       stat:
-        path: "{{ LinuxBrew_PATH }}/{{ HX_FILE }}"
+        path: "/opt/linuxbrew/.linuxbrew/bin/hx"
       register: hx_result
 
     - name: debug helix
