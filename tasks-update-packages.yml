@@ -20,11 +20,11 @@
         update_cache: yes
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
-    - name: update homebrew
-      community.general.homebrew:
-        update_homebrew: true
-        upgrade_all: true
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+    # - name: update homebrew
+    #   community.general.homebrew:
+    #     update_homebrew: true
+    #     upgrade_all: true
+    #   when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 #----Alma
     - name: update yum package
