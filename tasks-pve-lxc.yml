@@ -16,7 +16,7 @@
         vmid: 950
         cores: 2
         #cpus: 1
-        disk: hostname: LAN-900-Test
+        hostname: LAN-900-Test
         unprivileged: true
         features:
           - nesting=1
