@@ -10,6 +10,7 @@
       community.general.proxmox:
         api_host: "{{ ansible_hostname }}"
   #      api_password: "{{ password | password_hash('sha512') }}"
+        api_user: mdries@pam
         api_token_id: mdries@pam!mdriesapi
         api_token_secret: 1bdaa920-ca80-4f38-8b6e-ec7ff35878e9
 
