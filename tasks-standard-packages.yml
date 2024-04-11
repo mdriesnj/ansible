@@ -157,26 +157,7 @@
         autoremove: yes
       when: inventory_hostname in groups['new_alma'] 
 
-#-----files-------------------------------------------------------
-    - name: "copy hx /bin"
-      become: true
-      copy:
-        remote_src: not
-        src: /usr/bin/hx
-        dest: /usr/bin/
-        mode: 0755
-
-    - name: "copy eza /bin"
-      become: true
-      copy:
-        remote_src: no
-        src: /usr/bin/eza
-        dest: /usr/bin/
-        mode: 0755
-        owner: root
-        group: root
-
-
+#-----Eza-------------------------------------------------------
     # - name: delete eza
     #   become: true
     #   file:
@@ -265,49 +246,49 @@
 #       # register: linuxbrew_result
 #       # failed_when: "'FAILED' in linuxbrew_result.stderr"
 
-    # - name: Clone Homebrew GitHub repo
-    #   become: true
-    #   ansible.builtin.git:
-    #     repo: "https://github.com/Homebrew/brew"
-    #     dest: "/opt/linuxbrew/.linuxbrew/Homebrew"
-    #     version: "master"
-    #     force: true
-    #   when: inventory_hostname in groups['new_alma'] 
+    - name: Clone Homebrew GitHub repo
+      become: true
+      ansible.builtin.git:
+        repo: "https://github.com/Homebrew/brew"
+        dest: "/opt/linuxbrew/.linuxbrew/Homebrew"
+        version: "master"
+        force: true
+      when: inventory_hostname in groups['new_debian'] 
 
 #      become_user: "{{ homebrew_user }}"
       
 
-    # - name: Create bin directory for brew
-    #   become: true
-    #   ansible.builtin.file:
-    #     path: "/opt/linuxbrew/.linuxbrew/bin"
-    #     state: directory
-    #     owner: mdries
-    #     group: mdries
-    #     mode: 0755
-    #   when: inventory_hostname in groups['new_alma'] 
+    - name: Create bin directory for brew
+      become: true
+      ansible.builtin.file:
+        path: "/opt/linuxbrew/.linuxbrew/bin"
+        state: directory
+        owner: mdries
+        group: mdries
+        mode: 0755
+      when: inventory_hostname in groups['new_debian'] 
 
-    # - name: Create a symbolic link for brew
-    #   become: true
-    #   ansible.builtin.file:
-    #     src: "/opt/linuxbrew/.linuxbrew/Homebrew/bin/brew"
-    #     dest: "/opt/linuxbrew/.linuxbrew/bin/brew"
-    #     owner: mdries
-    #     group: mdries
-    #     state: link
-    #     mode: 0755
-    #   when: inventory_hostname in groups['new_alma'] 
+    - name: Create a symbolic link for brew
+      become: true
+      ansible.builtin.file:
+        src: "/opt/linuxbrew/.linuxbrew/Homebrew/bin/brew"
+        dest: "/opt/linuxbrew/.linuxbrew/bin/brew"
+        owner: mdries
+        group: mdries
+        state: link
+        mode: 0755
+      when: inventory_hostname in groups['new_debian'] 
     
-    # - name: fix permissions
-    #   become: true
-    #   file:
-    #     path: /opt/linuxbrew
-    #     state: directory
-    #     recurse: true
-    #     owner: mdries
-    #     group: mdries
-    #     mode: 0755
-    #   when: inventory_hostname in groups['new_alma'] 
+    - name: fix permissions
+      become: true
+      file:
+        path: /opt/linuxbrew
+        state: directory
+        recurse: true
+        owner: mdries
+        group: mdries
+        mode: 0755
+      when: inventory_hostname in groups['new_debian'] 
 
     # - name: update homebrew
     #   community.general.homebrew:
@@ -315,25 +296,24 @@
     #     upgrade_all: true
     #   when: ansible_distribution != 'AlmaLinux'
 
-    # - name: homebrew install helix
-    #   community.general.homebrew:
-    #     name: helix
-    #     state: present
-    #     path: /home/linuxbrew/.linuxbrew/bin        
-    #   when: inventory_hostname in groups['new_alma']  and not hx_result.stat.exists
+    - name: homebrew install helix
+      community.general.homebrew:
+        name: helix
+        state: present
+        path: /home/linuxbrew/.linuxbrew/bin        
+      when: inventory_hostname in groups['new_debian']  and not hx_result.stat.exists
 
-    # - name: pause
-    #   pause:
-    #     seconds: 15
+    - name: pause
+      pause:
+        seconds: 15
 
 
-    # - name: homebrew install eza
-    #   community.general.homebrew:
-    #     name: eza
-    #     state: present
-    #     path: /home/linuxbrew/.linuxbrew/bin
-    #   when: inventory_hostname in groups['new_alma']  and not eza_result.stat.exists
-
+    - name: homebrew install eza
+      community.general.homebrew:
+        name: eza
+        state: present
+        path: /home/linuxbrew/.linuxbrew/bin
+      when: inventory_hostname in groups['new_debian']  and not eza_result.stat.exists
 
 
 #     - name: "mdries - install Linuxbrew"
