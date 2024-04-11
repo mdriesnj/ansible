@@ -22,6 +22,17 @@
         path: "{{ LinuxBrew_PATH }}/{{ HX_FILE }}"
       register: hx_result
 
+    - name: debug helix
+      debug:
+        msg: "The file or directory does exists"
+      when:  hx_result.stat.exists
+
+
+    - name: debug not helix
+      debug:
+        msg: "The file or directory does NOT exists"
+      when: not hx_result.stat.exists
+
 
     # - name: Print all available facts
     #   ansible.builtin.debug:
