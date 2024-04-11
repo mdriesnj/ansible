@@ -311,6 +311,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
+      when: inventory_hostname in groups['new_debian'] 
 
     - name: HX copy
       become: true
@@ -320,7 +321,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-
+      when: inventory_hostname in groups['new_debian'] 
 
     # - name: pause
     #   pause:
