@@ -253,7 +253,7 @@
         dest: "/opt/linuxbrew/.linuxbrew/Homebrew"
         version: "master"
         force: true
-      when: inventory_hostname in groups['new_alma'] 
+      when: inventory_hostname in groups['new_debian'] 
 
 #      become_user: "{{ homebrew_user }}"
       
@@ -266,7 +266,7 @@
         owner: mdries
         group: mdries
         mode: 0755
-      when: inventory_hostname in groups['new_alma'] 
+      when: inventory_hostname in groups['new_debian'] 
 
     - name: Create a symbolic link for brew
       become: true
@@ -277,7 +277,7 @@
         group: mdries
         state: link
         mode: 0755
-      when: inventory_hostname in groups['new_alma'] 
+      when: inventory_hostname in groups['new_debian'] 
     
     - name: fix permissions
       become: true
@@ -288,7 +288,7 @@
         owner: mdries
         group: mdries
         mode: 0755
-      when: inventory_hostname in groups['new_alma'] 
+      when: inventory_hostname in groups['new_debian'] 
 
     # - name: update homebrew
     #   community.general.homebrew:
@@ -301,7 +301,7 @@
         name: helix
         state: present
         path: /home/linuxbrew/.linuxbrew/bin        
-      when: inventory_hostname in groups['new_alma']  and not hx_result.stat.exists
+      when: inventory_hostname in groups['new_debian']  and not hx_result.stat.exists
 
     - name: pause
       pause:
@@ -313,7 +313,7 @@
         name: eza
         state: present
         path: /home/linuxbrew/.linuxbrew/bin
-      when: inventory_hostname in groups['new_alma']  and not eza_result.stat.exists
+      when: inventory_hostname in groups['new_debian']  and not eza_result.stat.exists
 
 
 #     - name: "mdries - install Linuxbrew"
