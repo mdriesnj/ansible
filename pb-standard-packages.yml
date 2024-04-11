@@ -1,5 +1,5 @@
 ---
-- hosts: normal
+- hosts: all
   vars:
     LinuxBrew_PATH: "/opt/linuxbrew/.linuxbrew/bin"
     EZA_FILE: "eza"
