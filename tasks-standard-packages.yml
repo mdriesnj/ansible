@@ -8,8 +8,14 @@
 
     - name: debug eza
       debug:
-        msg: "The file or directory doesn't exists"
+        msg: "The file or directory does exists"
+      when:  eza_result.stat.exists
+
+    - name: debug not eza
+      debug:
+        msg: "The file or directory does NOT exists"
       when: not eza_result.stat.exists
+
 
     - name: Check for helix
       stat:
