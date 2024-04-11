@@ -310,6 +310,7 @@
         src: /usr/bin/eza
         dest: /usr/bin
         mode: 0755
+        group: users
 
     - name: HX copy
       become: true
@@ -318,6 +319,7 @@
         src: /usr/bin/hx
         dest: /usr/bin
         mode: 0755
+        group: users
 
 
     # - name: pause
