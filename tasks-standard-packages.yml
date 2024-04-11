@@ -6,10 +6,10 @@
         path: "{{ LinuxBrew_PATH }}/{{ EZA_FILE }}"
       register: eza_result
 
-    - name: Task name
+    - name: debug eza
       debug:
-        msg: "The file or directory exists"
-      when: eza_result.stat.exists
+        msg: "The file or directory doesn't exists"
+      when: not eza_result.stat.exists
 
     - name: Check for helix
       stat:
