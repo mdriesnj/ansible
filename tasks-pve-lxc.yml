@@ -8,9 +8,27 @@
 #----PVE
     - name: pve - lxc
       community.general.proxmox:
-      api_host: "{{ ansible_hostname }}"
-#      api_password: "{{ password | password_hash('sha512') }}"
-      api_token_id: mdries@pam!mdriesapi
-      
-      shell: chsh -s /bin/zsh
-      when: inventory_hostname in groups['new_alpine']
+        api_host: "{{ ansible_hostname }}"
+  #      api_password: "{{ password | password_hash('sha512') }}"
+        api_token_id: mdries@pam!mdriesapi
+        api_token_secret: 1bdaa920-ca80-4f38-8b6e-ec7ff35878e9
+
+        vmid: 950
+        cores: 2
+        #cpus: 1
+        disk: hostname: LAN-900-Test
+        unprivileged: true
+        features:
+          - nesting=1
+        password: "{{ password | password_hash('sha512') }}"
+        pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/XPmIClmIRxAU0SJB3+A3zUR0ww+NpvVNxWSLJUnbZdIIgx+zunlunFjbgRuHlky+EVzQbohxebAuyPq7xDkfmhu1Qok/ae6lu/y+gfPSNUAzm2lrZu7+4/8NQMa+bHwWkcOSJ8voPR7wWICTVzfKMFPyo88SXJByYIPSzcKPaC6evwSYfIeoTa4Gj6e65NS7U/5P6Yc1iUgcdrA211kddRioEyRMS2DZPIhwuKzmnoaH1zv0gd9lbo43ZoA6HQXvMRA5uXu3WHHKWbSCa+JeT9LmrrxwOjZhfeVLxKKg6a0mVkttnTEa4qLaN0wTm0pmkKRF+j8aCBrtJeYOE5oItLtSG/3Th4/Gz6IHQIKDTqgVU494Jzs52MAaV1kxWtZrO9sj6wC+OAeeMV+bNnz+LW0np1hXBMbVOxrzBk2j8enUEpskAXfS6Ks5uyXZ+pinqhPiiQqgbCUc+YwHHbsdPw4KprE1dNXVNGeu5ac83vDjCj7MZy3fWkOhxp0H5Xk= mdries@Mikes-MacBook-Pro.local"
+        ostemplate: 'Synology-Midland:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst'
+        disk: 'local-lvm:8'
+        memory: 512
+        swap: 512
+  #      netif: '{"net0":"name=eth0,gw=192.168.7.254,ip=192.168.7.2/24,bridge=vmbr1"}'
+        netif: '{"net0":"name=eth0,ip=dhcp,vlan=7,firewall=0,bridge=vmbr1"}'
+
+
+#      shell: chsh -s /bin/zsh
+#      when: inventory_hostname in groups['']
