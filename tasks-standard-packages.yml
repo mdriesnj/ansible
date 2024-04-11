@@ -3,7 +3,7 @@
 
     - name: Check for eza
       stat:
-        path: "/opt/linuxbrew/.linuxbrew/bin/eza"
+        path: "/usr/bin/eza"
       register: eza_result
 
     - name: debug eza
@@ -19,7 +19,7 @@
 
     - name: Check for helix
       stat:
-        path: "/opt/linuxbrew/.linuxbrew/bin/hx"
+        path: "/usr/bin/hx"
       register: hx_result
 
     - name: debug helix
