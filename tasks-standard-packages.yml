@@ -309,6 +309,7 @@
         remote_src: false
         src: /usr/bin/eza
         dest: /usr/bin
+        mode: 0755
 
     - name: HX copy
       become: true
@@ -316,7 +317,7 @@
         remote_src: false
         src: /usr/bin/hx
         dest: /usr/bin
-
+        mode: 0755
 
 
     # - name: pause
