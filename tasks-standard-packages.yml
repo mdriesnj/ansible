@@ -1,39 +1,6 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - name: Check for eza
-      stat:
-        path: "/usr/bin/eza"
-      register: eza_result
-
-    - name: debug eza
-      debug:
-        msg: "The file or directory does exists"
-      when:  eza_result.stat.exists
-
-    - name: debug not eza
-      debug:
-        msg: "The file or directory does NOT exists"
-      when: not eza_result.stat.exists
-
-
-    - name: Check for helix
-      stat:
-        path: "/usr/bin/hx"
-      register: hx_result
-
-    - name: debug helix
-      debug:
-        msg: "The file or directory does exists"
-      when:  hx_result.stat.exists
-
-
-    - name: debug not helix
-      debug:
-        msg: "The file or directory does NOT exists"
-      when: not hx_result.stat.exists
-
-
     # - name: Print all available facts
     #   ansible.builtin.debug:
     #     var: ansible_facts    
@@ -308,12 +275,15 @@
       file:
         path: /usr/bin/eza
         state: absent
+      when: inventory_hostname == '192.168.7.12'
 
     - name: HX delete
       become: true
       file:
         path: /usr/bin/hx
         state: absent
+      when: inventory_hostname == '192.168.7.12'
+
 
     - name: EZA copy
       become: true
@@ -323,7 +293,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-#      when: inventory_hostname in groups['new_debian'] 
+      when: inventory_hostname == '192.168.7.12'
 
     - name: HX copy
       become: true
@@ -333,7 +303,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-#      when: inventory_hostname in groups['new_debian'] 
+      when: inventory_hostname == '192.168.7.12'
 
     # - name: pause
     #   pause:
