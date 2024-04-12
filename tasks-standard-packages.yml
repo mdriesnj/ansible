@@ -103,10 +103,12 @@
 #          - build-essential
 #          - clang
           - curl
+          - eza
           - fd-find
           - fzf
 #          - gcc
-          - git 
+          - git
+          - helix 
           - neofetch
           - qemu-guest-agent
           - net-tools
