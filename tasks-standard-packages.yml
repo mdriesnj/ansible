@@ -295,25 +295,25 @@
     #   when: ansible_distribution != 'AlmaLinux'
 
 
-    - name: EZA copy
-      become: true
-      copy:
-        remote_src: false
-        src: /usr/bin/eza
-        dest: /usr/bin
-        mode: 0755
-        group: users
-      when: ansible_distribution != 'AlmaLinux'
+    # - name: EZA copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /usr/bin/eza
+    #     dest: /usr/bin
+    #     mode: 0755
+    #     group: users
+    #   when: ansible_distribution != 'AlmaLinux'
 
-    - name: HX copy
-      become: true
-      copy:
-        remote_src: false
-        src: /usr/bin/hx
-        dest: /usr/bin
-        mode: 0755
-        group: users
-      when: ansible_distribution != 'AlmaLinux'
+    # - name: HX copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /usr/bin/hx
+    #     dest: /usr/bin
+    #     mode: 0755
+    #     group: users
+    #   when: ansible_distribution != 'AlmaLinux'
 
     # - name: pause
     #   pause:
