@@ -35,7 +35,7 @@
           - curl
           - fd-find
           - fzf
-          - gcc
+#          - gcc
           - git 
           - neofetch
           - qemu-guest-agent
@@ -87,27 +87,23 @@
       become: true
       yum:
         name: 
-          - tar
-          - wget
- #         - clang
-  #        - curl
-  #        - sudo
+          - btop
+#          - build-essential
+#          - clang
+          - curl
+          - fd-find
+          - fzf
+#          - gcc
           - git 
-          - zsh
-  #        - vim
- #         - stow
-          - net-tools  
           - neofetch
- #         - neovim 
- #         - bat 
-#          - ncdu
-  #        - btop
-  #        - fzf
-   #       - tldr
-   #       - fd-find
-    #      - xz
-       #   - gdu
-  #        - ranger not in yum
+          - qemu-guest-agent
+          - net-tools
+          - ranger
+          - ripgrep
+          - tldr
+          - wget
+          - zsh
+#          - xz-utils
         state: latest
       when: ansible_distribution == 'AlmaLinux'
 
