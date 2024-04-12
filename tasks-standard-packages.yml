@@ -47,17 +47,17 @@
           - zsh
           - xz-utils
         state: latest
-      when: inventory_hostname in groups['new_debian'] 
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
-    - name: Debian packages 2
-      become: true
-      apt:
-        name: 
-          - build-essential
-          - clang
-          - gcc
-        state: absent
-      when: inventory_hostname in groups['new_debian'] 
+    # - name: Debian packages 2
+    #   become: true
+    #   apt:
+    #     name: 
+    #       - build-essential
+    #       - clang
+    #       - gcc
+    #     state: absent
+    #   when: inventory_hostname in groups['new_debian'] 
 
 
 

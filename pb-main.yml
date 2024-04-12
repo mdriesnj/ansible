@@ -22,7 +22,6 @@
     - include_tasks: tasks-dotfiles.yml
     - include_tasks: tasks-update-packages.yml
     - include_tasks: tasks-newuser.yml
-    - include_tasks: tasks-install-omz.yml
     - include_tasks: tasks-add-ping-cap.yml
     - include_tasks: tasks-timezone.yml
     - include_tasks: tasks-sshd-config.yml
