@@ -67,13 +67,13 @@
  #       update_cache: yes
  #     when: inventory_hostname in groups['new_debian_container']
 
-    # - name: Debian remove postfix 
-    #   become: true
-    #   apt:
-    #     name: 
-    #       - postfix
-    #     state: absent
-    #   when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+    - name: Debian remove postfix 
+      become: true
+      apt:
+        name: 
+          - postfix
+        state: absent
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
 
 #-------- Alm-------------------------    
 
