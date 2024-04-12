@@ -303,6 +303,18 @@
     #     path: /home/linuxbrew/.linuxbrew/bin        
     #   when: inventory_hostname in groups['new_debian']  and not hx_result.stat.exists
 
+    - name: EZA delete
+      become: true
+      file:
+        path: /usr/bin/eza
+        state: absent
+
+    - name: HX delete
+      become: true
+      file:
+        path: /usr/bin/hx
+        state: absent
+
     - name: EZA copy
       become: true
       copy:
