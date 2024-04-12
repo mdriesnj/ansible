@@ -275,14 +275,14 @@
       file:
         path: /usr/bin/eza
         state: absent
-      when: inventory_hostname == '192.168.7.12'
+      when: inventory_hostname != '192.168.7.12'
 
     - name: HX delete
       become: true
       file:
         path: /usr/bin/hx
         state: absent
-      when: inventory_hostname == '192.168.7.12'
+      when: inventory_hostname != '192.168.7.12'
 
 
     - name: EZA copy
@@ -293,7 +293,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-      when: inventory_hostname == '192.168.7.12'
+      when: inventory_hostname != '192.168.7.12'
 
     - name: HX copy
       become: true
@@ -303,7 +303,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-      when: inventory_hostname == '192.168.7.12'
+      when: inventory_hostname != '192.168.7.12'
 
     # - name: pause
     #   pause:
