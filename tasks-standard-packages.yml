@@ -65,23 +65,23 @@
 
 #-------- Alm-------------------------    
 
-#     - name: alma dnf install 1
-#       become: true
-#       dnf:
-#         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-#         state: present
-#         validate_certs: no
-#         disable_gpg_check: true
-#       when: ansible_distribution == 'AlmaLinux'
+    - name: alma dnf install 1
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: ansible_distribution == 'AlmaLinux'
 
-#     - name: alma dnf install 2
-#       become: true
-#       dnf:
-#         name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-#         state: present
-#         validate_certs: no
-#         disable_gpg_check: true
-#       when: ansible_distribution == 'AlmaLinux'
+    - name: alma dnf install 2
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: ansible_distribution == 'AlmaLinux'
 
     - name: alma packages
       become: true
@@ -89,7 +89,7 @@
         name: 
           - tar
           - wget
-          - clang
+ #         - clang
   #        - curl
   #        - sudo
           - git 
@@ -97,7 +97,7 @@
   #        - vim
  #         - stow
           - net-tools  
- #         - neofetch
+          - neofetch
  #         - neovim 
  #         - bat 
 #          - ncdu
@@ -109,7 +109,7 @@
        #   - gdu
   #        - ranger not in yum
         state: latest
-      when: inventory_hostname in groups['new_alma'] 
+      when: ansible_distribution == 'AlmaLinux'
 
     - name: alma remove imagemagick
       become: true
@@ -122,7 +122,7 @@
           - ImageMagick-libs.x86_64
         state: absent
         autoremove: yes
-      when: inventory_hostname in groups['new_alma'] 
+      when: ansible_distribution == 'AlmaLinux'
 
 #-----Eza-------------------------------------------------------
     # - name: delete eza
@@ -275,14 +275,14 @@
       file:
         path: /usr/bin/eza
         state: absent
-      when: inventory_hostname != '192.168.7.12'
+      when: ansible_distribution != 'AlmaLinux'
 
     - name: HX delete
       become: true
       file:
         path: /usr/bin/hx
         state: absent
-      when: inventory_hostname != '192.168.7.12'
+      when: ansible_distribution != 'AlmaLinux'
 
 
     - name: EZA copy
@@ -293,7 +293,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-      when: inventory_hostname != '192.168.7.12'
+      when: ansible_distribution != 'AlmaLinux'
 
     - name: HX copy
       become: true
@@ -303,7 +303,7 @@
         dest: /usr/bin
         mode: 0755
         group: users
-      when: inventory_hostname != '192.168.7.12'
+      when: ansible_distribution != 'AlmaLinux'
 
     # - name: pause
     #   pause:
