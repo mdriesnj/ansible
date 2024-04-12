@@ -278,19 +278,19 @@
     #     path: /home/linuxbrew/.linuxbrew/bin        
     #   when: inventory_hostname in groups['new_debian']  and not hx_result.stat.exists
 
-    - name: EZA delete
-      become: true
-      file:
-        path: /usr/bin/eza
-        state: absent
-      when: ansible_distribution != 'AlmaLinux'
+    # - name: EZA delete
+    #   become: true
+    #   file:
+    #     path: /usr/bin/eza
+    #     state: absent
+    #   when: ansible_distribution != 'AlmaLinux'
 
-    - name: HX delete
-      become: true
-      file:
-        path: /usr/bin/hx
-        state: absent
-      when: ansible_distribution != 'AlmaLinux'
+    # - name: HX delete
+    #   become: true
+    #   file:
+    #     path: /usr/bin/hx
+    #     state: absent
+    #   when: ansible_distribution != 'AlmaLinux'
 
 
     - name: EZA copy
