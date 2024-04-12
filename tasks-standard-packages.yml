@@ -30,8 +30,8 @@
       apt:
         name: 
           - btop
-          - build-essential
-          - clang
+#          - build-essential
+#          - clang
           - curl
           - fd-find
           - fzf
