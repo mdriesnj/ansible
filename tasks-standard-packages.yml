@@ -49,6 +49,18 @@
         state: latest
       when: inventory_hostname in groups['new_debian'] 
 
+    - name: Debian packages 2
+      become: true
+      apt:
+        name: 
+          - build-essential
+          - clang
+          - gcc
+        state: absent
+      when: inventory_hostname in groups['new_debian'] 
+
+
+
  #   - name: Debian Update apt cache
  #     become: true
  #     apt:
