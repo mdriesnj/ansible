@@ -112,7 +112,7 @@
       become: true
       copy:
         remote_src: false
-        src: /home/semaphore/helix-runtime
+        src: /home/semaphore/helix/runtime
         dest: /usr/share/helix/runtime
         mode: 0755
         group: users
