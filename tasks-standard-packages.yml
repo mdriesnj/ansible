@@ -23,7 +23,7 @@
       become: true
       apt:
         update_cache: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['normal'] 
 
     - name: Debian packages
       become: true
@@ -47,7 +47,61 @@
           - zsh
           - xz-utils
         state: latest
-      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu'
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['normal'] 
+
+
+#-------- PVE-------------------------    
+    - name: Debian Update apt cache
+      become: true
+      apt:
+        update_cache: yes
+      when: inventory_hostname in groups['pve'] 
+
+    - name: Debian packages
+      become: true
+      apt:
+        name: 
+          - btop
+#          - build-essential
+#          - clang
+#          - curl
+#          - fd-find
+#          - fzf
+#          - gcc
+#          - git 
+          - neofetch
+#          - qemu-guest-agent
+          - net-tools   
+#          - ranger
+#          - ripgrep
+#          - tldr
+#          - wget
+          - zsh
+#          - xz-utils
+        state: latest
+      when: inventory_hostname in groups['pve'] 
+
+    - name: EZA copy
+      become: true
+      copy:
+        remote_src: false
+        src: /usr/bin/eza
+        dest: /usr/bin
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
+
+    - name: HX copy
+      become: true
+      copy:
+        remote_src: false
+        src: /usr/bin/hx
+        dest: /usr/bin
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
+
+
 
     # - name: Debian packages 2
     #   become: true
