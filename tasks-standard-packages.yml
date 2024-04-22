@@ -101,6 +101,22 @@
         group: users
       when: inventory_hostname in groups['pve'] 
 
+    - name: "make helix runtime location"
+      become: true
+      file:
+        path: /usr/share/helix/runtime
+        state: directory
+      when: inventory_hostname in groups['pve'] 
+      
+    - name: HX runtime copy
+      become: true
+      copy:
+        remote_src: false
+        src: /home/semaphore/helix-runtime
+        dest: /usr/share/helix/runtime
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
 
 
     # - name: Debian packages 2
