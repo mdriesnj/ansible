@@ -85,8 +85,8 @@
       become: true
       copy:
         remote_src: false
-        src: /usr/bin/eza
-        dest: /usr/bin
+        src: /home/semaphore/eza-pve
+        dest: /usr/bin/eza
         mode: 0755
         group: users
       when: inventory_hostname in groups['pve'] 
@@ -95,8 +95,8 @@
       become: true
       copy:
         remote_src: false
-        src: /usr/bin/hx
-        dest: /usr/bin
+        src: /home/semaphore/hx-pve
+        dest: /usr/bin/hx
         mode: 0755
         group: users
       when: inventory_hostname in groups['pve'] 
