@@ -70,6 +70,7 @@
 #          - gcc
           - git 
           - neofetch
+          - lm-sensors
 #          - qemu-guest-agent
           - net-tools   
 #          - ranger
