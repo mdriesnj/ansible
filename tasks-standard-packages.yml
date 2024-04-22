@@ -118,6 +118,15 @@
         group: users
       when: inventory_hostname in groups['pve'] 
 
+    - name: HX runtime extract
+      become: true
+      unarchive:
+        remote_src: false
+        src: /usr/share/helix/helixruntime.tar
+        dest: /usr/share/helix/
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
 
     # - name: Debian packages 2
     #   become: true
