@@ -121,11 +121,9 @@
     - name: HX runtime extract
       become: true
       unarchive:
-        remote_src: false
+        remote_src: true
         src: /usr/share/helix/helixruntime.tar
         dest: /usr/share/helix/
-        mode: 0755
-        group: users
       when: inventory_hostname in groups['pve'] 
 
     # - name: Debian packages 2
