@@ -68,7 +68,7 @@
 #          - fd-find
 #          - fzf
 #          - gcc
-#          - git 
+          - git 
           - neofetch
 #          - qemu-guest-agent
           - net-tools   
