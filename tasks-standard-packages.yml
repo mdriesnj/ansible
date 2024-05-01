@@ -43,6 +43,7 @@
           - ranger
           - ripgrep
           - tldr
+          - tmux
           - wget
           - zsh
           - xz-utils
@@ -73,6 +74,7 @@
           - lm-sensors
 #          - qemu-guest-agent
           - net-tools   
+          - tmux
 #          - ranger
 #          - ripgrep
 #          - tldr
