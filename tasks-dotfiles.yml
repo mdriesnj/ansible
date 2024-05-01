@@ -105,45 +105,6 @@
       when: inventory_hostname not in groups['nas']
 
 
-    #NAS---------- mdries ------------------    
-    - name: NAS - mdries copy .zshrc
-      copy:
-        remote_src: false
-        src: /home/semaphore/src_dot_files/.zshrc
-        dest: ~/
-        owner: mdries
-      when: inventory_hostname in groups['nas']
-
-    - name: NAS - mdries create neofetch/config
-      file:
-        path: ~/.config/neofetch/
-        state: directory
-        owner: mdries
-      when: inventory_hostname in groups['nas']
-
-    - name: NAS - mdries copy neofetch/config
-      copy:
-        remote_src: false
-        src: /home/semaphore/src_dot_files/neofetch/config.conf
-        dest: ~/.config/neofetch/
-        owner: mdries
-      when: inventory_hostname in groups['nas']
-
-
-    - name: NAS - mdries create helix/config
-      file:
-        path: ~/.config/helix/
-        state: directory
-        owner: mdries
-      when: inventory_hostname in groups['nas']
-
-    - name: NAS - mdries copy helix/config
-      copy:
-        remote_src: false
-        src: /home/semaphore/src_dot_files/helix/config.toml
-        dest: ~/.config/helix/
-        owner: mdries
-      when: inventory_hostname in groups['nas']
 
 #    - name: chown mdries
 #      become: true
