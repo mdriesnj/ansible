@@ -60,7 +60,7 @@
         remote_src: false
         src: /home/semaphore/.ssh/authorized_keys
         dest: /root/.ssh/
-        mode: 700
+        mode: 0700
         owner: root
 
     #---------- mdries ------------------    
@@ -78,7 +78,7 @@
         remote_src: false
         src: /home/semaphore/.ssh/authorized_keys
         dest: /home/mdries/.ssh/
-        mode: 700
+        mode: 0700
         owner: mdries
 
     - name: mdries create neofetch/config
