@@ -72,7 +72,7 @@
         owner: mdries
       when: inventory_hostname not in groups['nas']
 
-    - name: root copy authorized_keys
+    - name: mdries copy authorized_keys
       become: true
       copy:
         remote_src: false
