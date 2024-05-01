@@ -195,6 +195,7 @@
           - ranger
           - ripgrep
           - tldr
+          - tmux
           - wget
           - zsh
 #          - xz-utils
