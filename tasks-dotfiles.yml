@@ -54,14 +54,14 @@
         dest: /root/.config/helix/
     # when: inventory_hostname in groups['new_alpine_container']
 
-#    - name: root copy authorized_keys
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/.ssh/authorized_keys
-#        dest: /root/.ssh/
-#        mode: 0700
-#        owner: root
+    - name: root copy authorized_keys
+      become: true
+      copy:
+        remote_src: false
+        src: /home/semaphore/.ssh/authorized_keys
+        dest: /root/.ssh/
+        mode: 0700
+        owner: root
 
     #---------- mdries ------------------    
     - name: mdries copy .zshrc
@@ -72,14 +72,14 @@
         owner: mdries
       when: inventory_hostname not in groups['nas']
 
-#    - name: mdries copy authorized_keys
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/.ssh/authorized_keys
-#        dest: /home/mdries/.ssh/
-#        mode: 0700
-#        owner: mdries
+    - name: mdries copy authorized_keys
+      become: true
+      copy:
+        remote_src: false
+        src: /home/semaphore/.ssh/authorized_keys
+        dest: /home/mdries/.ssh/
+        mode: 0700
+        owner: mdries
 
     - name: mdries create neofetch/config
       file:
