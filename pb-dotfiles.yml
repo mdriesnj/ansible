@@ -4,7 +4,7 @@
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
     #firstrun: true
-    ansible_become_password: "{{ password | password_hash('sha512') }}"
+    #ansible_become_password: "{{ password | password_hash('sha512') }}"
     
   tasks:
 #    - include_tasks: tasks-install-omz.yml
