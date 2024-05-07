@@ -8,7 +8,7 @@
     # Setting this for unarchive to work
     #ansible_remote_tmp: /tmp
     #firstrun: true
-    #ansible_become_password: "{{ password | password_hash('sha512') }}"
+    ansible_become_password: "{{ password | password_hash('sha512') }}"
   environment:
     HOMEBREW_PREFIX: /opt/linuxbrew/.linuxbrew
     HOMEBREW_CELLAR: /opt/linuxbrew/.linuxbrew/Cellar
