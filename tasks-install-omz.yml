@@ -95,7 +95,12 @@
         src: /tmp/dracula/dracula.zsh-theme
         dest: /root/.oh-my-zsh/themes/
         
-
+    - name: root - copy dracula lib
+      become: true
+      copy:
+        remote_src: yes
+        src: /tmp/dracula/lib
+        dest: /root/.oh-my-zsh/themes/
 
 #-----Mdries install ----------------------------------------------------
 
@@ -125,4 +130,11 @@
       copy:
         remote_src: yes
         src: /tmp/dracula/dracula.zsh-theme
+        dest: /root/.oh-my-zsh/themes/
+        
+    - name: mdries - copy dracula lib
+      become: true
+      copy:
+        remote_src: yes
+        src: /tmp/dracula/lib
         dest: /root/.oh-my-zsh/themes/
