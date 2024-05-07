@@ -93,7 +93,7 @@
       copy:
         remote_src: yes
         src: /tmp/dracula/dracula.zsh-theme
-        dest: /root/.oh-my-zsh/themes
+        dest: /root/.oh-my-zsh/themes/
         
 
 
