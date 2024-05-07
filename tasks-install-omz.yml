@@ -92,10 +92,17 @@
       become: true
       ansible.builtin.git:
         repo: 'https://github.com/dracula/zsh.git'
-        dest: /root/.oh-my-zsh/themes/
+        dest: /tmp/dracula
         force: yes
         depth: 1
 
+    - name: root - copy dracula theme
+      become: true
+      copy:
+        remote_src: yes
+        src: /tmp/dracula/dracula.zsh-theme
+        dest: /root/.oh-my-zsh/themes
+        
 
 
 #-----Mdries install ----------------------------------------------------
