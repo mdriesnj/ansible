@@ -20,24 +20,24 @@
       become: true
       copy:
         remote_src: false
-        src: /home/semaphore/src_dot_files/.zshrc
+        src: /home/mdries/src_dot_files/.zshrc
         dest: /root
     #   when: inventory_hostname in groups['new_alpine_container']
 
-    - name: root create neofetch/config
-      become: true
-      file:
-        path: /root/.config/neofetch/
-        state: directory
+#    - name: root create neofetch/config
+#      become: true
+#      file:
+#        path: /root/.config/neofetch/
+#        state: directory
     #   when: inventory_hostname in groups['new_alpine_container']
 
-    - name: root copy neofetch/config
-      become: true
-      copy:
-        remote_src: false
-        src: /home/semaphore/src_dot_files/neofetch/config.conf
-        dest: /root/.config/neofetch/
-    # when: inventory_hostname in groups['new_alpine_container']
+#    - name: root copy neofetch/config
+#      become: true
+#      copy:
+#        remote_src: false
+#        src: /home/semaphore/src_dot_files/neofetch/config.conf
+#        dest: /root/.config/neofetch/
+#    # when: inventory_hostname in groups['new_alpine_container']
 
     - name: root create helix/config
       become: true
@@ -54,14 +54,14 @@
         dest: /root/.config/helix/
     # when: inventory_hostname in groups['new_alpine_container']
 
-    - name: root copy authorized_keys
-      become: true
-      copy:
-        remote_src: false
-        src: /home/semaphore/.ssh/authorized_keys
-        dest: /root/.ssh/
-        mode: 0700
-        owner: root
+#    - name: root copy authorized_keys
+#      become: true
+#      copy:
+#        remote_src: false
+#        src: /home/semaphore/.ssh/authorized_keys
+#        dest: /root/.ssh/
+#        mode: 0700
+#        owner: root
 
     #---------- mdries ------------------    
     - name: mdries copy .zshrc
@@ -72,29 +72,29 @@
         owner: mdries
       when: inventory_hostname not in groups['nas']
 
-    - name: mdries copy authorized_keys
-      become: true
-      copy:
-        remote_src: false
-        src: /home/semaphore/.ssh/authorized_keys
-        dest: /home/mdries/.ssh/
-        mode: 0700
-        owner: mdries
+#    - name: mdries copy authorized_keys
+#      become: true
+#      copy:
+#        remote_src: false
+#        src: /home/semaphore/.ssh/authorized_keys
+#        dest: /home/mdries/.ssh/
+#        mode: 0700
+#        owner: mdries
 
-    - name: mdries create neofetch/config
-      file:
-        path: /home/mdries/.config/neofetch/
-        state: directory
-        owner: mdries
-      when: inventory_hostname not in groups['nas']
+#    - name: mdries create neofetch/config
+#      file:
+#        path: /home/mdries/.config/neofetch/
+#        state: directory
+#        owner: mdries
+#      when: inventory_hostname not in groups['nas']
 
-    - name: mdries copy neofetch/config
-      copy:
-        remote_src: false
-        src: /home/semaphore/src_dot_files/neofetch/config.conf
-        dest: /home/mdries/.config/neofetch/
-        owner: mdries
-      when: inventory_hostname not in groups['nas']
+#    - name: mdries copy neofetch/config
+#      copy:
+#        remote_src: false
+#        src: /home/semaphore/src_dot_files/neofetch/config.conf
+#        dest: /home/mdries/.config/neofetch/
+#        owner: mdries
+#      when: inventory_hostname not in groups['nas']
 
 
     - name: mdries create helix/config
