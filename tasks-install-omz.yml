@@ -88,6 +88,16 @@
         force: yes
         depth: 1
 
+    - name: root - clone darcula # noqa: latest
+      become: true
+      ansible.builtin.git:
+        repo: 'https://github.com/dracula/zsh.git'
+        dest: /root/.oh-my-zsh/themes/
+        force: yes
+        depth: 1
+
+
+
 #-----Mdries install ----------------------------------------------------
     - name: mdries - clone Oh My Zsh # noqa: latest
       ansible.builtin.git:
@@ -117,3 +127,10 @@
         force: yes
         depth: 1
 
+    - name: mdries - clone darcula # noqa: latest
+      become: true
+      ansible.builtin.git:
+        repo: 'https://github.com/dracula/zsh.git'
+        dest: /root/.oh-my-zsh/themes/
+        force: yes
+        depth: 1
