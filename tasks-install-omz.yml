@@ -56,14 +56,6 @@
       #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
 #-----Root Install-----------------------------------------
-    - name: root - clone Oh My Zsh # noqa: latest
-      become: true
-      ansible.builtin.git:
-        repo: 'https://github.com/ohmyzsh/ohmyzsh.git'
-        dest: /root/.oh-my-zsh
-        force: yes
-        depth: 1
-
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
       ansible.builtin.git:
