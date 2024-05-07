@@ -57,6 +57,7 @@
 
 #-----Root Install-----------------------------------------
     - name: root - clone Oh My Zsh # noqa: latest
+      become: true
       ansible.builtin.git:
         repo: 'http://github.com/ohmyzsh/ohmyzsh.git'
         dest: /root/.oh-my-zsh
