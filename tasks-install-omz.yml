@@ -56,6 +56,13 @@
       #   when: inventory_hostname not in groups['new_alpine'] or inventory_hostname not in groups['new_debian'] or inventory_hostname not in groups['new_alma']
 
 #-----Root Install-----------------------------------------
+    - name: root - clone Oh My Zsh # noqa: latest
+      ansible.builtin.git:
+        repo: 'http://github.com/ohmyzsh/ohmyzsh.git'
+        dest: /root/.oh-my-zsh
+        force: yes
+        depth: 1
+
     - name: root - Install zsh-autosuggestions plugin # noqa: latest
       become: true
       ansible.builtin.git:
@@ -103,7 +110,13 @@
         dest: /root/.oh-my-zsh/themes/
 
 #-----Mdries install ----------------------------------------------------
-
+    - name: mdries - clone Oh My Zsh # noqa: latest
+      ansible.builtin.git:
+        repo: 'http://github.com/ohmyzsh/ohmyzsh.git'
+        dest: /home/mdries/.oh-my-zsh
+        force: yes
+        depth: 1
+        
     - name: mdries - Install zsh-autosuggestions plugin # noqa: latest
       ansible.builtin.git:
         repo: 'http://github.com/zsh-users/zsh-autosuggestions'
