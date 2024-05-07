@@ -120,10 +120,9 @@
         force: yes
         depth: 1
 
-    - name: mdries - clone darcula # noqa: latest
+    - name: mdries - copy dracula theme
       become: true
-      ansible.builtin.git:
-        repo: 'https://github.com/dracula/zsh.git'
+      copy:
+        remote_src: yes
+        src: /tmp/dracula/dracula.zsh-theme
         dest: /root/.oh-my-zsh/themes/
-        force: yes
-        depth: 1
