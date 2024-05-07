@@ -20,7 +20,7 @@
       become: true
       copy:
         remote_src: false
-        src: /home/mdries/src_dot_files/.zshrc
+        src: /src_dot_files/.zshrc
         dest: /root
     #   when: inventory_hostname in groups['new_alpine_container']
 
@@ -50,7 +50,7 @@
       become: true
       copy:
         remote_src: false
-        src: /home/semaphore/src_dot_files/helix/config.toml
+        src: /src_dot_files/helix/config.toml
         dest: /root/.config/helix/
     # when: inventory_hostname in groups['new_alpine_container']
 
@@ -67,7 +67,7 @@
     - name: mdries copy .zshrc
       copy:
         remote_src: false
-        src: /home/semaphore/src_dot_files/.zshrc
+        src: /src_dot_files/.zshrc
         dest: /home/mdries
         owner: mdries
       when: inventory_hostname not in groups['nas']
@@ -107,7 +107,7 @@
     - name: mdries copy helix/config
       copy:
         remote_src: false
-        src: /home/semaphore/src_dot_files/helix/config.toml
+        src: /src_dot_files/helix/config.toml
         dest: /home/mdries/.config/helix/
         owner: mdries
       when: inventory_hostname not in groups['nas']
