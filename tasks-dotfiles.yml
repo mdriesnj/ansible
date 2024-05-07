@@ -116,7 +116,7 @@
       become: true
       file:
         path: /home/mdries
-        state: directory
+        #state: directory
         recurse: yes
         owner: mdries
         group: mdries
