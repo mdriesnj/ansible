@@ -98,12 +98,6 @@
 
 
 #-----Mdries install ----------------------------------------------------
-    - name: mdries - clone Oh My Zsh # noqa: latest
-      ansible.builtin.git:
-        repo: 'http://github.com/ohmyzsh/ohmyzsh.git'
-        dest: /home/mdries/.oh-my-zsh
-        force: yes
-        depth: 1
 
     - name: mdries - Install zsh-autosuggestions plugin # noqa: latest
       ansible.builtin.git:
