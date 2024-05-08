@@ -70,7 +70,7 @@
         src: /src_dot_files/.zshrc
         dest: /home/mdries
         owner: mdries
-      when: inventory_hostname not in groups['nas']
+#      when: inventory_hostname not in groups['nas']
 
 #    - name: mdries copy authorized_keys
 #      become: true
@@ -102,7 +102,7 @@
         path: /home/mdries/.config/helix/
         state: directory
         owner: mdries
-      when: inventory_hostname not in groups['nas']
+    #   when: inventory_hostname not in groups['nas']
 
     - name: mdries copy helix/config
       copy:
@@ -110,17 +110,17 @@
         src: /src_dot_files/helix/config.toml
         dest: /home/mdries/.config/helix/
         owner: mdries
-      when: inventory_hostname not in groups['nas']
+    #   when: inventory_hostname not in groups['nas']
 
-    - name: chown mdries
-      become: true
-      file:
-        path: /home/mdries
-        #state: directory
-        recurse: yes
-        owner: mdries
-        group: mdries
-      when: inventory_hostname not in groups['nas']
+    # - name: chown mdries
+    #   become: true
+    #   file:
+    #     path: /home/mdries
+    #     #state: directory
+    #     recurse: yes
+    #     owner: mdries
+    #     group: mdries
+    #   when: inventory_hostname not in groups['nas']
 
 
 
