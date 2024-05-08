@@ -46,6 +46,7 @@
           - tmux
           - wget
           - zsh
+          - zsh-syntax-highlighting
 #          - xz-utils
         state: latest
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
@@ -88,6 +89,7 @@
 #          - tldr
           - wget
           - zsh
+          - zsh-syntax-highlighting
 #          - xz-utils
         state: latest
       when: inventory_hostname in groups['pve'] 
