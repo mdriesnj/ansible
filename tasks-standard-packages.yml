@@ -19,13 +19,13 @@
 #       when: ansible_distribution == 'Alpine'
 
 #-------- Debian-------------------------    
-    - name: Debian Update apt cache
+    - name: HOSTS Debian Hosts Update apt cache
       become: true
       apt:
         update_cache: yes
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
-    - name: Debian packages
+    - name: HOSTS Debian Hosts packages
       become: true
       apt:
         name: 
@@ -50,7 +50,7 @@
         state: latest
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
-    - name: Debian remove postfix 
+    - name: HOSTS Debian remove postfix 
       become: true
       apt:
         name: 
@@ -60,13 +60,13 @@
 
 
 #-------- PVE-------------------------    
-    - name: Debian Update apt cache
+    - name: PVE Debian Update apt cache
       become: true
       apt:
         update_cache: yes
       when: inventory_hostname in groups['pve'] 
 
-    - name: Debian packages
+    - name: PVE Debian packages
       become: true
       apt:
         name: 
@@ -92,7 +92,7 @@
         state: latest
       when: inventory_hostname in groups['pve'] 
 
-    - name: EZA copy
+    - name: PVE EZA copy
       become: true
       copy:
         remote_src: false
@@ -102,7 +102,7 @@
         group: users
       when: inventory_hostname in groups['pve'] 
 
-    - name: HX copy
+    - name: PVE HX copy
       become: true
       copy:
         remote_src: false
@@ -112,28 +112,28 @@
         group: users
       when: inventory_hostname in groups['pve'] 
 
-    - name: "make helix runtime location"
+    - name: PVE make helix runtime location
       become: true
       file:
         path: /usr/share/helix
         state: directory
       when: inventory_hostname in groups['pve'] 
       
-    - name: HX runtime copy
+    - name: PVE HX runtime copy
       become: true
       copy:
         remote_src: false
         src: /pve-exe/helixruntime.tar
-        dest: /usr/share/helix/
+        dest: /tmp/
         mode: 0755
         group: users
       when: inventory_hostname in groups['pve'] 
 
-    - name: HX runtime extract
+    - name: PVE HX runtime extract
       become: true
       unarchive:
         remote_src: true
-        src: /usr/share/helix/helixruntime.tar
+        src: /tmp/helixruntime.tar
         dest: /usr/share/helix/
       when: inventory_hostname in groups['pve'] 
 

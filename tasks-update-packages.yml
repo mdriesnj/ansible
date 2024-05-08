@@ -13,7 +13,7 @@
     #     update_cache: true
     #   when: ansible_distribution == 'Alpine' 
 #----Debian
-    - name: update apt packages
+    - name: Debian hosts update apt packages
       become: true
       apt:
         upgrade: yes
