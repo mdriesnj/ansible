@@ -102,6 +102,16 @@
         group: users
       when: inventory_hostname in groups['pve'] 
 
+    - name: PVE fastfetch copy
+      become: true
+      copy:
+        remote_src: false
+        src: /pve-exe/fastfetch
+        dest: /usr/bin/fastfetch
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
+
     - name: PVE HX copy
       become: true
       copy:
