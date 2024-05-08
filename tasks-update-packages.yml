@@ -6,12 +6,12 @@
 #        seconds: 10
 
 #----Alpine
-    - name: Update all installed packages to the latest versions
-      become: true
-      community.general.apk:
-        upgrade: true
-        update_cache: true
-      when: ansible_distribution == 'Alpine' 
+    # - name: Update all installed packages to the latest versions
+    #   become: true
+    #   community.general.apk:
+    #     upgrade: true
+    #     update_cache: true
+    #   when: ansible_distribution == 'Alpine' 
 #----Debian
     - name: update apt packages
       become: true
@@ -27,12 +27,12 @@
     #   when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 #----Alma
-    - name: update yum package
-      become: true
-      yum:
-        name: '*'
-        state: latest
-      when: ansible_distribution == 'AlmaLinux'
+    # - name: update yum package
+    #   become: true
+    #   yum:
+    #     name: '*'
+    #     state: latest
+    #   when: ansible_distribution == 'AlmaLinux'
 
 
 #    - name: upgrade all packages

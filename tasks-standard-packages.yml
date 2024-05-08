@@ -23,7 +23,7 @@
       become: true
       apt:
         update_cache: yes
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and (inventory_hostname in groups['normal'] or inventory_hostname in groups['new_debian'])
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
     - name: Debian packages
       become: true
@@ -48,7 +48,15 @@
           - zsh
 #          - xz-utils
         state: latest
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and (inventory_hostname in groups['normal'] or inventory_hostname in groups['new_debian'])
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+
+    - name: Debian remove postfix 
+      become: true
+      apt:
+        name: 
+          - postfix
+        state: absent
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 
 #-------- PVE-------------------------    
@@ -69,7 +77,7 @@
 #          - fd-find
 #          - fzf
 #          - gcc
-          - git 
+#          - git 
 #          - neofetch
           - lm-sensors
 #          - qemu-guest-agent
@@ -84,50 +92,50 @@
         state: latest
       when: inventory_hostname in groups['pve'] 
 
-    # - name: EZA copy
-    #   become: true
-    #   copy:
-    #     remote_src: false
-    #     src: /home/semaphore/eza-pve
-    #     dest: /usr/bin/eza
-    #     mode: 0755
-    #     group: users
-    #   when: inventory_hostname in groups['pve'] 
+    - name: EZA copy
+      become: true
+      copy:
+        remote_src: false
+        src: /pve-exe/eza
+        dest: /usr/bin/eza
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
 
-    # - name: HX copy
-    #   become: true
-    #   copy:
-    #     remote_src: false
-    #     src: /home/semaphore/hx-pve
-    #     dest: /usr/bin/hx
-    #     mode: 0755
-    #     group: users
-    #   when: inventory_hostname in groups['pve'] 
+    - name: HX copy
+      become: true
+      copy:
+        remote_src: false
+        src: /pve-exe/hx
+        dest: /usr/bin/hx
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
 
-    # - name: "make helix runtime location"
-    #   become: true
-    #   file:
-    #     path: /usr/share/helix
-    #     state: directory
-    #   when: inventory_hostname in groups['pve'] 
+    - name: "make helix runtime location"
+      become: true
+      file:
+        path: /usr/share/helix
+        state: directory
+      when: inventory_hostname in groups['pve'] 
       
-    # - name: HX runtime copy
-    #   become: true
-    #   copy:
-    #     remote_src: false
-    #     src: /home/semaphore/helix/helixruntime.tar
-    #     dest: /usr/share/helix/
-    #     mode: 0755
-    #     group: users
-    #   when: inventory_hostname in groups['pve'] 
+    - name: HX runtime copy
+      become: true
+      copy:
+        remote_src: false
+        src: /pve-exe/helixruntime.tar
+        dest: /usr/share/helix/
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
 
-    # - name: HX runtime extract
-    #   become: true
-    #   unarchive:
-    #     remote_src: true
-    #     src: /usr/share/helix/helixruntime.tar
-    #     dest: /usr/share/helix/
-    #   when: inventory_hostname in groups['pve'] 
+    - name: HX runtime extract
+      become: true
+      unarchive:
+        remote_src: true
+        src: /usr/share/helix/helixruntime.tar
+        dest: /usr/share/helix/
+      when: inventory_hostname in groups['pve'] 
 
     # - name: Debian packages 2
     #   become: true
@@ -147,13 +155,6 @@
  #       update_cache: yes
  #     when: inventory_hostname in groups['new_debian_container']
 
-    - name: Debian remove postfix 
-      become: true
-      apt:
-        name: 
-          - postfix
-        state: absent
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 #-------- Alm-------------------------    
 
@@ -184,17 +185,17 @@
 #          - clang
           - curl
           - eza
-          - fd-find
-          - fzf
+#          - fd-find
+#          - fzf
 #          - gcc
           - git
           - helix 
-          - neofetch
+#          - neofetch
           - qemu-guest-agent
           - net-tools
-          - ranger
-          - ripgrep
-          - tldr
+#          - ranger
+#          - ripgrep
+#          - tldr
           - tmux
           - wget
           - zsh
