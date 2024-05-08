@@ -44,7 +44,6 @@
       file:
         path: /root/.config/helix/
         state: directory
-    # when: inventory_hostname in groups['new_alpine_container']
 
     - name: root copy helix/config
       become: true
@@ -52,8 +51,22 @@
         remote_src: false
         src: /src_dot_files/helix/config.toml
         dest: /root/.config/helix/
-    # when: inventory_hostname in groups['new_alpine_container']
 
+    - name: root create fastfetch/config
+      become: true
+      file:
+        path: /root/.config/fastfetch/
+        state: directory
+        
+    - name: root copy fastfetch/config
+      become: true
+      copy:
+        remote_src: false
+        src: /src_dot_files/fastfetch/config.jsonc
+        dest: /root/.config/fastfetch/
+
+
+    
 #    - name: root copy authorized_keys
 #      become: true
 #      copy:
@@ -110,7 +123,17 @@
         src: /src_dot_files/helix/config.toml
         dest: /home/mdries/.config/helix/
         owner: mdries
-    #   when: inventory_hostname not in groups['nas']
+
+    - name: mdries create fastfetch
+      file:
+        path: /home/mdries/.config/fastfetch/
+        state: directory
+        
+    - name: mdries copy fastfetch/config
+      copy:
+        remote_src: false
+        src: /src_dot_files/fastfetch/config.jsonc
+        dest: /home/mdries/.config/fastfetch/
 
     # - name: chown mdries
     #   become: true
