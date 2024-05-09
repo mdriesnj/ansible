@@ -149,13 +149,13 @@
       copy:
         remote_src: false
         src: /src_dot_files/.zshrc
-        dest: /home/
+        dest: /volume1/homes/mdries
         owner: mdries
       when: inventory_hostname in groups['nas']
 
     - name: NAS mdries create helix/config
       file:
-        path: /home/.config/helix/
+        path: /volume1/homes/mdries/.config/helix/
         state: directory
         owner: mdries
       when: inventory_hostname in groups['nas']
@@ -164,13 +164,13 @@
       copy:
         remote_src: false
         src: /src_dot_files/helix/config.toml
-        dest: /home/.config/helix/
+        dest: /volume1/homes/mdries/.config/helix/
         owner: mdries
       when: inventory_hostname in groups['nas']
 
     - name: NAS mdries create fastfetch
       file:
-        path: /home/.config/fastfetch/
+        path: /volume1/homes/mdries/.config/fastfetch/
         state: directory
       when: inventory_hostname in groups['nas']
         
@@ -178,7 +178,7 @@
       copy:
         remote_src: false
         src: /src_dot_files/fastfetch/config.jsonc
-        dest: /homes/.config/fastfetch/
+        dest: /volume1/homes/mdries/.config/fastfetch/
       when: inventory_hostname in groups['nas']
 
 
