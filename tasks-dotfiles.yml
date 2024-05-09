@@ -14,7 +14,7 @@
     #      var: ansible_facts    
     #  debug: msg="{{ ansible_default_ipv4 }}"
 
-    #----------Alpine----------
+
     #---------- root ------------------
     - name: root copy .zshrc
       become: true
@@ -22,28 +22,14 @@
         remote_src: false
         src: /src_dot_files/.zshrc
         dest: /root
-    #   when: inventory_hostname in groups['new_alpine_container']
-
-#    - name: root create neofetch/config
-#      become: true
-#      file:
-#        path: /root/.config/neofetch/
-#        state: directory
-    #   when: inventory_hostname in groups['new_alpine_container']
-
-#    - name: root copy neofetch/config
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/src_dot_files/neofetch/config.conf
-#        dest: /root/.config/neofetch/
-#    # when: inventory_hostname in groups['new_alpine_container']
+      when: inventory_hostname not in groups['nas']
 
     - name: root create helix/config
       become: true
       file:
         path: /root/.config/helix/
         state: directory
+      when: inventory_hostname not in groups['nas']
 
     - name: root copy helix/config
       become: true
@@ -51,12 +37,14 @@
         remote_src: false
         src: /src_dot_files/helix/config.toml
         dest: /root/.config/helix/
+      when: inventory_hostname not in groups['nas']
 
     - name: root create fastfetch/config
       become: true
       file:
         path: /root/.config/fastfetch/
         state: directory
+      when: inventory_hostname not in groups['nas']
         
     - name: root copy fastfetch/config
       become: true
@@ -64,17 +52,7 @@
         remote_src: false
         src: /src_dot_files/fastfetch/config.jsonc
         dest: /root/.config/fastfetch/
-
-
-    
-#    - name: root copy authorized_keys
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/.ssh/authorized_keys
-#        dest: /root/.ssh/
-#        mode: 0700
-#        owner: root
+      when: inventory_hostname not in groups['nas']
 
     #---------- mdries ------------------    
     - name: mdries copy .zshrc
@@ -83,39 +61,14 @@
         src: /src_dot_files/.zshrc
         dest: /home/mdries
         owner: mdries
-#      when: inventory_hostname not in groups['nas']
-
-#    - name: mdries copy authorized_keys
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/.ssh/authorized_keys
-#        dest: /home/mdries/.ssh/
-#        mode: 0700
-#        owner: mdries
-
-#    - name: mdries create neofetch/config
-#      file:
-#        path: /home/mdries/.config/neofetch/
-#        state: directory
-#        owner: mdries
-#      when: inventory_hostname not in groups['nas']
-
-#    - name: mdries copy neofetch/config
-#      copy:
-#        remote_src: false
-#        src: /home/semaphore/src_dot_files/neofetch/config.conf
-#        dest: /home/mdries/.config/neofetch/
-#        owner: mdries
-#      when: inventory_hostname not in groups['nas']
-
+      when: inventory_hostname not in groups['nas']
 
     - name: mdries create helix/config
       file:
         path: /home/mdries/.config/helix/
         state: directory
         owner: mdries
-    #   when: inventory_hostname not in groups['nas']
+      when: inventory_hostname not in groups['nas']
 
     - name: mdries copy helix/config
       copy:
@@ -123,17 +76,20 @@
         src: /src_dot_files/helix/config.toml
         dest: /home/mdries/.config/helix/
         owner: mdries
+      when: inventory_hostname not in groups['nas']
 
     - name: mdries create fastfetch
       file:
         path: /home/mdries/.config/fastfetch/
         state: directory
+      when: inventory_hostname not in groups['nas']
         
     - name: mdries copy fastfetch/config
       copy:
         remote_src: false
         src: /src_dot_files/fastfetch/config.jsonc
         dest: /home/mdries/.config/fastfetch/
+      when: inventory_hostname not in groups['nas']
 
     # - name: chown mdries
     #   become: true
@@ -145,6 +101,41 @@
     #     group: mdries
     #   when: inventory_hostname not in groups['nas']
 
+    - name: mdries copy .zshrc
+      copy:
+        remote_src: false
+        src: /src_dot_files/.zshrc
+        dest: /var/services/homes/mdries
+        owner: mdries
+      when: inventory_hostname in groups['nas']
+
+    - name: mdries create helix/config
+      file:
+        path: /var/services/homes/mdries/.config/helix/
+        state: directory
+        owner: mdries
+      when: inventory_hostname in groups['nas']
+
+    - name: mdries copy helix/config
+      copy:
+        remote_src: false
+        src: /src_dot_files/helix/config.toml
+        dest: /var/services/homes/mdries/.config/helix/
+        owner: mdries
+      when: inventory_hostname in groups['nas']
+
+    - name: mdries create fastfetch
+      file:
+        path: /var/services/homes/mdries/.config/fastfetch/
+        state: directory
+      when: inventory_hostname in groups['nas']
+        
+    - name: mdries copy fastfetch/config
+      copy:
+        remote_src: false
+        src: /src_dot_files/fastfetch/config.jsonc
+        dest: /var/services/homes/mdries/.config/fastfetch/
+      when: inventory_hostname in groups['nas']
 
 
 #    - name: chown mdries
