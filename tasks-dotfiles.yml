@@ -101,40 +101,40 @@
     #     group: mdries
     #   when: inventory_hostname not in groups['nas']
 
-    - name: mdries copy .zshrc
+    - name: NAS mdries copy .zshrc
       copy:
         remote_src: false
         src: /src_dot_files/.zshrc
-        dest: /var/services/homes/mdries
+        dest: /home/
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries create helix/config
+    - name: NAS mdries create helix/config
       file:
-        path: /var/services/homes/mdries/.config/helix/
+        path: /home/.config/helix/
         state: directory
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries copy helix/config
+    - name: NAS mdries copy helix/config
       copy:
         remote_src: false
         src: /src_dot_files/helix/config.toml
-        dest: /var/services/homes/mdries/.config/helix/
+        dest: /home/.config/helix/
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    - name: mdries create fastfetch
+    - name: NAS mdries create fastfetch
       file:
-        path: /var/services/homes/mdries/.config/fastfetch/
+        path: /home/.config/fastfetch/
         state: directory
       when: inventory_hostname in groups['nas']
         
-    - name: mdries copy fastfetch/config
+    - name: NAS mdries copy fastfetch/config
       copy:
         remote_src: false
         src: /src_dot_files/fastfetch/config.jsonc
-        dest: /var/services/homes/mdries/.config/fastfetch/
+        dest: /homes/.config/fastfetch/
       when: inventory_hostname in groups['nas']
 
 
