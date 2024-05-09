@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: normal, pve
   vars:
     LinuxBrew_PATH: "/usr/bin"
     EZA_FILE: "eza"
