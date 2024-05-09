@@ -102,11 +102,11 @@
     #   when: inventory_hostname not in groups['nas']
 
 #--------------------------------------------------NAS-------------------------------------------
-    - name: NAS root copy .zshrc
+    - name: NAS root copy .bashrc
       become: yes
       copy:
         remote_src: false
-        src: /src_dot_files/.zshrc
+        src: /src_dot_files/.bashrc
         dest: /root/
         owner: root
       when: inventory_hostname in groups['nas']
@@ -145,10 +145,10 @@
 
     
     
-    - name: NAS mdries copy .zshrc
+    - name: NAS mdries copy .bashrc
       copy:
         remote_src: false
-        src: /src_dot_files/.zshrc
+        src: /src_dot_files/.bashrc
         dest: /volume1/homes/mdries
         owner: mdries
       when: inventory_hostname in groups['nas']
