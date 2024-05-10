@@ -29,6 +29,7 @@
       become: true
       apt:
         name: 
+          - bat
           - btop
 #          - build-essential
 #          - clang
@@ -72,6 +73,7 @@
       become: true
       apt:
         name: 
+          - bat
           - btop
 #          - build-essential
 #          - clang
@@ -96,15 +98,15 @@
         state: latest
       when: inventory_hostname in groups['pve'] 
 
-    - name: PVE EZA copy
-      become: true
-      copy:
-        remote_src: false
-        src: /pve-exe/eza
-        dest: /usr/bin/eza
-        mode: 0755
-        group: users
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE EZA copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /pve-exe/eza
+    #     dest: /usr/bin/eza
+    #     mode: 0755
+    #     group: users
+    #   when: inventory_hostname in groups['pve'] 
 
     - name: PVE fastfetch copy
       become: true
