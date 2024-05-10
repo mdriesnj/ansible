@@ -61,6 +61,11 @@
         state: absent
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
+    - name: HomeBrew - procs
+      community.general.homebrew
+        name: procs
+        state: present
+        update_homebrew: true
 
 #-------- PVE-------------------------    
     - name: PVE Debian Update apt cache
@@ -152,6 +157,8 @@
         src: /tmp/helixruntime.tar
         dest: /usr/share/helix/
       when: inventory_hostname in groups['pve'] 
+
+
 
     # - name: Debian packages 2
     #   become: true
