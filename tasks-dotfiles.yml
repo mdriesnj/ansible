@@ -54,6 +54,22 @@
         dest: /root/.config/fastfetch/
       when: inventory_hostname not in groups['nas']
 
+    - name: root create nvim/config
+      become: true
+      file:
+        path: /root/.config/nvim/
+        state: directory
+      when: inventory_hostname not in groups['nas']
+        
+    - name: root copy nvim/config
+      become: true
+      copy:
+        remote_src: false
+        src: /src_dot_files/nvim/init.lua
+        dest: /root/.config/nvim/
+      when: inventory_hostname not in groups['nas']
+
+
     #---------- mdries ------------------    
     - name: mdries copy .zshrc
       copy:
@@ -90,6 +106,20 @@
         src: /src_dot_files/fastfetch/config.jsonc
         dest: /home/mdries/.config/fastfetch/
       when: inventory_hostname not in groups['nas']
+
+    - name: mdries create nvim
+      file:
+        path: /home/mdries/.config/nvim/
+        state: directory
+      when: inventory_hostname not in groups['nas']
+        
+    - name: mdries copy nvim/config
+      copy:
+        remote_src: false
+        src: /src_dot_files/nvim/init.lua
+        dest: /home/mdries/.config/nvim/
+      when: inventory_hostname not in groups['nas']
+
 
     # - name: chown mdries
     #   become: true
@@ -143,6 +173,20 @@
         dest: /root/.config/fastfetch/
       when: inventory_hostname in groups['nas']
 
+    - name: NAS root create nvim
+      become: yes
+      file:
+        path: /root/.config/nvim/
+        state: directory
+      when: inventory_hostname in groups['nas']
+        
+    - name: NAS root copy nvim/config
+      become: yes
+      copy:
+        remote_src: false
+        src: /src_dot_files/nvim/init.lua
+        dest: /root/.config/nvim/
+      when: inventory_hostname in groups['nas']
     
     
     - name: NAS mdries copy .bashrc
@@ -179,6 +223,19 @@
         remote_src: false
         src: /src_dot_files/fastfetch/config.jsonc
         dest: /volume1/homes/mdries/.config/fastfetch/
+      when: inventory_hostname in groups['nas']
+
+    - name: NAS mdries create nvim
+      file:
+        path: /volume1/homes/mdries/.config/nvim/
+        state: directory
+      when: inventory_hostname in groups['nas']
+        
+    - name: NAS mdries copy nvim/config
+      copy:
+        remote_src: false
+        src: /src_dot_files/nvim/init.lua
+        dest: /volume1/homes/mdries/.config/nvim/
       when: inventory_hostname in groups['nas']
 
 
