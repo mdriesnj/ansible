@@ -61,6 +61,17 @@
         state: absent
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
+    - name: PVE nvim copy
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/nvim
+        dest: /usr/bin/nvim
+        mode: 0755
+        group: users
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+
+
     # - name: HomeBrew - procs
     #   community.general.homebrew:
     #     name: procs
@@ -119,6 +130,16 @@
         remote_src: false
         src: /pve-exe/fastfetch
         dest: /usr/bin/fastfetch
+        mode: 0755
+        group: users
+      when: inventory_hostname in groups['pve'] 
+
+    - name: PVE nvim copy
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/nvim
+        dest: /usr/bin/nvim
         mode: 0755
         group: users
       when: inventory_hostname in groups['pve'] 
