@@ -38,6 +38,7 @@
 #          - gcc
           - git 
 #          - neofetch
+          - lsd
           - qemu-guest-agent
           - net-tools   
 #          - ranger
@@ -81,6 +82,7 @@
 #          - git 
 #          - neofetch
           - lm-sensors
+          - lsd
 #          - qemu-guest-agent
           - net-tools   
           - tmux
