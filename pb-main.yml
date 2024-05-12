@@ -7,7 +7,7 @@
   # Setting this for unarchive to work
   #ansible_remote_tmp: /tmp
   #firstrun: true
-    ansible_become_password: "{{ password | password_hash('sha512') }}"
+#    ansible_become_password: "{{ password | password_hash('sha512') }}"
   environment:
    # HOMEBREW_PREFIX: /opt/linuxbrew/
    # PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
@@ -20,7 +20,7 @@
     - include_tasks: tasks-standard-packages.yml
     - include_tasks: tasks-install-omz.yml
     - include_tasks: tasks-dotfiles.yml
-  #  - include_tasks: tasks-update-packages.yml
+    - include_tasks: tasks-update-packages.yml
   #  - include_tasks: tasks-newuser.yml
     - include_tasks: tasks-add-ping-cap.yml
     - include_tasks: tasks-timezone.yml
