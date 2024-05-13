@@ -1,0 +1,30 @@
+---
+- hosts: new_vm
+  vars:
+#    LinuxBrew_PATH: "/opt/linuxbrew/bin"
+#    EZA_FILE: "eza"
+#    HX_FILE: "hx"
+  # Setting this for unarchive to work
+  #ansible_remote_tmp: /tmp
+  #firstrun: true
+ #   ansible_become_password: "{{ password | password_hash('sha512') }}"
+  environment:
+   # HOMEBREW_PREFIX: /opt/linuxbrew/
+   # PATH: /opt/linuxbrew/bin:{{ ansible_env.PATH }}
+ #   HOMEBREW_PREFIX: /opt/linuxbrew/.linuxbrew
+ #   HOMEBREW_CELLAR: /opt/linuxbrew/.linuxbrew/Cellar
+ #   PATH: /opt/linuxbrew/bin:/opt/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}  
+
+  tasks:
+  #    - include_tasks: tasks-alpine-bootstrap.yml
+    - include_tasks: tasks-update-packages.yml
+    - include_tasks: tasks-standard-packages.yml
+  #  - include_tasks: tasks-install-omz.yml
+    - include_tasks: tasks-dotfiles.yml
+    
+  #  - include_tasks: tasks-newuser.yml
+  #  - include_tasks: tasks-add-ping-cap.yml
+    - include_tasks: tasks-timezone.yml
+    - include_tasks: tasks-sshd-config.yml
+    - include_tasks: tasks-disable-root.yml  
+   # - include_tasks: tasks-reboot.yml
