@@ -10,13 +10,13 @@
 #  #       seconds: 10
 
 #-------- Alpine------------------------
-#     - name: Alpine install 
-#       become: true
-#       apk:
-#         name: btop, curl, eza, fd, fzf, git, helix, libcap-getcap, libcap-setcap, neofetch, qemu-guest-agent, ranger, ripgrep, shadow, tzdata, wget, zsh
-#         state: latest
-#         update_cache: true
-#       when: ansible_distribution == 'Alpine'
+     - name: Alpine install 
+       become: true
+       apk:
+         name: btop, curl, eza, git, helix, qemu-guest-agent, zsh
+         state: latest
+         update_cache: true
+       when: ansible_distribution == 'Alpine'
 
 #-------- Debian-------------------------    
     - name: HOSTS Debian Hosts Update apt cache
