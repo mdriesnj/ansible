@@ -13,8 +13,16 @@
     - name: Alpine install 
       become: true
       apk:
-        name: btop, curl, eza, git, helix, qemu-guest-agent, zsh, fastfetch
+        name: btop, curl, git, helix, qemu-guest-agent, zsh, neofetch
         state: latest
+        update_cache: true
+      when: ansible_distribution == 'Alpine'
+
+    - name: Alpine install 
+      become: true
+      apk:
+        name: fastfetch, eza
+        state: absent
         update_cache: true
       when: ansible_distribution == 'Alpine'
 
