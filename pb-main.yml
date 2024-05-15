@@ -1,7 +1,7 @@
 ---
 - hosts: new_alpine, new_debian, new_alma
   vars:
-    LinuxBrew_PATH: "/opt/linuxbrew/bin"
+    LinuxBrew_PATH: "/home/linuxbrew/.linuxbrew/bin"
     EZA_FILE: "eza"
     HX_FILE: "hx"
   # Setting this for unarchive to work
@@ -18,12 +18,12 @@
   tasks:
   #    - include_tasks: tasks-alpine-bootstrap.yml
     - include_tasks: tasks-standard-packages.yml
-    - include_tasks: tasks-install-omz.yml
+  #  - include_tasks: tasks-install-omz.yml
     - include_tasks: tasks-dotfiles.yml
-    - include_tasks: tasks-update-packages.yml
+  #  - include_tasks: tasks-update-packages.yml
   #  - include_tasks: tasks-newuser.yml
-    - include_tasks: tasks-add-ping-cap.yml
-    - include_tasks: tasks-timezone.yml
+  #  - include_tasks: tasks-add-ping-cap.yml
+  #  - include_tasks: tasks-timezone.yml
     - include_tasks: tasks-sshd-config.yml
     - include_tasks: tasks-disable-root.yml  
    # - include_tasks: tasks-reboot.yml
