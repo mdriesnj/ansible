@@ -44,7 +44,7 @@
           - curl
 #          - fd-find
 #          - fzf
-          - gcc
+#          - gcc
           - git 
 #          - neofetch
           - lsd
@@ -69,15 +69,15 @@
         state: absent
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
-    - name: PVE nvim copy
-      become: true
-      copy:
-        remote_src: false
-        src: /general-exe/nvim
-        dest: /usr/bin/nvim
-        mode: 0755
-        group: users
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+#    - name: PVE nvim copy
+#      become: true
+#      copy:
+#        remote_src: false
+#        src: /general-exe/nvim
+#        dest: /usr/bin/nvim
+#        mode: 0755
+#        group: users
+#      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 
     # - name: HomeBrew - procs
