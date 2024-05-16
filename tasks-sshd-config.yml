@@ -28,8 +28,8 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" } 
-      when: inventory_hostname in groups['new_alpine']
-
+#      when: inventory_hostname in groups['new_alpine']
+      when: ansible_distribution == 'Alpine'
 
     - name: debian - configure sshd with pam
       become: true
@@ -68,5 +68,5 @@
       service:
         name: sshd
         state: restarted
- #     when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' or ansible_distribution =='Alpine'
+      when: ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='AlmaLinux' or ansible_distribution =='Alpine'
   
