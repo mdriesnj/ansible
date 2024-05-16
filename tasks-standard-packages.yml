@@ -13,7 +13,7 @@
     - name: Alpine install 
       become: true
       apk:
-        name: btop, curl, git, helix, qemu-guest-agent, zsh, neofetch
+        name: btop, bat, curl, git, helix, qemu-guest-agent, zsh, neofetch
         state: latest
         update_cache: true
       when: ansible_distribution == 'Alpine'
