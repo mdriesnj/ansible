@@ -23,4 +23,4 @@
         path: /bin/ping
         capability: cap_net_raw+p
         state: present
-      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma']
+      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alma'] or inventory_hostname in groups['new_container']
