@@ -1,0 +1,16 @@
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
+
+    # - name: pause
+    #   pause:
+    #     seconds: 10
+
+    - name: debian - fix sudoer path
+      become: true
+      lineinfile:
+        path: "/etc/sudoers.d/mdries"
+        regex: ^(# *)?{{item.key}}
+        line: "Defaults:mdries !secure_path"
+#      when: inventory_hostname in groups['new_alpine']
+      when: ansible_distribution == 'Debian'
+
