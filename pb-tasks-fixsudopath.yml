@@ -9,7 +9,7 @@
       become: true
       lineinfile:
         path: "/etc/sudoers.d/mdries"
-        line: "Defaults:mdries !secure_path"
+        line: "Defaults:mdries secure_path=\"/bin:/home/linuxbrew/.linuxbrew/bin:/sbin:/usr/bin:/usr/games:/usr/local/bin:/usr/local/games:/usr/local/sbin:/usr/sbin\""
 #      when: inventory_hostname in groups['new_alpine']
       when: ansible_distribution == 'Debian'
 
