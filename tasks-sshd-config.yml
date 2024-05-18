@@ -61,7 +61,7 @@
       become: true
       systemd:
         daemon_reload: yes
-       when: ansible_distribution == 'Debian' and inventory_hostname not in groups['pve']
+      when: ansible_distribution == 'Debian' and inventory_hostname not in groups['pve']
        
     - name: service stuff    
       become: true
