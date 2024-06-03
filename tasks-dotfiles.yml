@@ -65,7 +65,7 @@
       become: true
       copy:
         remote_src: false
-        src: /src_dot_files/nvim/init.lua
+        src: /src_dot_files/nvim/
         dest: /root/.config/nvim/
       when: inventory_hostname not in groups['nas']
 
@@ -116,7 +116,7 @@
     - name: mdries copy nvim/config
       copy:
         remote_src: false
-        src: /src_dot_files/nvim/init.lua
+        src: /src_dot_files/nvim/
         dest: /home/mdries/.config/nvim/
       when: inventory_hostname not in groups['nas']
 
