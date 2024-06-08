@@ -139,60 +139,60 @@
     #     group: users
     #   when: inventory_hostname in groups['pve'] 
 
-    - name: PVE fastfetch copy
-      become: true
-      copy:
-        remote_src: false
-        src: /pve-exe/fastfetch
-        dest: /usr/bin/fastfetch
-        mode: 0755
-        group: users
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE fastfetch copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /pve-exe/fastfetch
+    #     dest: /usr/bin/fastfetch
+    #     mode: 0755
+    #     group: users
+    #   when: inventory_hostname in groups['pve'] 
 
-    - name: PVE nvim copy
-      become: true
-      copy:
-        remote_src: false
-        src: /general-exe/nvim
-        dest: /usr/bin/nvim
-        mode: 0755
-        group: users
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE nvim copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /general-exe/nvim
+    #     dest: /usr/bin/nvim
+    #     mode: 0755
+    #     group: users
+    #   when: inventory_hostname in groups['pve'] 
 
-    - name: PVE HX copy
-      become: true
-      copy:
-        remote_src: false
-        src: /pve-exe/hx
-        dest: /usr/bin/hx
-        mode: 0755
-        group: users
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE HX copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /pve-exe/hx
+    #     dest: /usr/bin/hx
+    #     mode: 0755
+    #     group: users
+    #   when: inventory_hostname in groups['pve'] 
 
-    - name: PVE make helix runtime location
-      become: true
-      file:
-        path: /usr/share/helix
-        state: directory
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE make helix runtime location
+    #   become: true
+    #   file:
+    #     path: /usr/share/helix
+    #     state: directory
+    #   when: inventory_hostname in groups['pve'] 
       
-    - name: PVE HX runtime copy
-      become: true
-      copy:
-        remote_src: false
-        src: /pve-exe/helixruntime.tar
-        dest: /tmp/
-        mode: 0755
-        group: users
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE HX runtime copy
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /pve-exe/helixruntime.tar
+    #     dest: /tmp/
+    #     mode: 0755
+    #     group: users
+    #   when: inventory_hostname in groups['pve'] 
 
-    - name: PVE HX runtime extract
-      become: true
-      unarchive:
-        remote_src: true
-        src: /tmp/helixruntime.tar
-        dest: /usr/share/helix/
-      when: inventory_hostname in groups['pve'] 
+    # - name: PVE HX runtime extract
+    #   become: true
+    #   unarchive:
+    #     remote_src: true
+    #     src: /tmp/helixruntime.tar
+    #     dest: /usr/share/helix/
+    #   when: inventory_hostname in groups['pve'] 
 
 
 
