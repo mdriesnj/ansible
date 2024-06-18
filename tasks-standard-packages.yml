@@ -84,14 +84,14 @@
         dest: /usr/bin/nhx
         mode: 0755
         group: users
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
 
     - name: Make helix runtime location
       become: true
       file:
         path: /usr/share/helix
         state: directory
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
       
     - name: Copy HX runtime
       become: true
@@ -101,7 +101,7 @@
         dest: /usr/share/helix/runtime
         mode: 0755
         group: users
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
 
 
     # - name: HomeBrew - procs
