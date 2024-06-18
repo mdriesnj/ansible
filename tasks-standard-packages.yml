@@ -81,7 +81,7 @@
       copy:
         remote_src: false
         src: /general-exe/hx
-        dest: /usr/bin/nhx
+        dest: /usr/bin/hx
         mode: 0755
         group: users
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
