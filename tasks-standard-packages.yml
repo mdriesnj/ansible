@@ -76,15 +76,32 @@
 #        update_homebrew: false
 
 
-#    - name: PVE nvim copy
-#      become: true
-#      copy:
-#        remote_src: false
-#        src: /general-exe/nvim
-#        dest: /usr/bin/nvim
-#        mode: 0755
-#        group: users
-#      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+    - name: Copy HX
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/hx
+        dest: /usr/bin/nhx
+        mode: 0755
+        group: users
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+
+    - name: Make helix runtime location
+      become: true
+      file:
+        path: /usr/share/helix
+        state: directory
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+      
+    - name: Copy HX runtime
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/runtime/
+        dest: /usr/share/helix/runtime
+        mode: 0755
+        group: users
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 
     # - name: HomeBrew - procs
