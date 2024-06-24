@@ -13,18 +13,12 @@
     - name: Alpine install 
       become: true
       apk:
-        name: btop, bat, curl, git, helix, qemu-guest-agent, zsh, neofetch
+        name:  bat, btop, curl, git, lsd, qemu-guest-agent, tmux, wget, zsh-syntax-highlighting
         state: latest
         update_cache: true
       when: ansible_distribution == 'Alpine'
 
-    - name: Alpine install 
-      become: true
-      apk:
-        name: fastfetch, eza
-        state: absent
-        update_cache: true
-      when: ansible_distribution == 'Alpine'
+
 
 #-------- Debian-------------------------    
     - name: HOSTS Debian Hosts Update apt cache
