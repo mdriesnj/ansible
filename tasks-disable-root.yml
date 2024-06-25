@@ -10,4 +10,4 @@
       user:
         name: root
         password: '!'
-      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
+#      when: inventory_hostname in groups['new_alpine'] or inventory_hostname in groups['new_debian']
