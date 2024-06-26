@@ -14,6 +14,14 @@
     #      var: ansible_facts    
     #  debug: msg="{{ ansible_default_ipv4 }}"
 
+#----------- get dot files from nas-------------------
+    - name: get dot files 
+      copy:
+        remote_src: true
+        src: /volume1/homes/mdries/dotfiles/.zshrc
+        dest: /home/mdries/ansible/src_dot_files/
+      when: inventory_hostname in groups['nas']
+
 
     #---------- root ------------------
     - name: root copy .zshrc
