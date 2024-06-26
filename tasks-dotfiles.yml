@@ -16,10 +16,11 @@
 
 #----------- get dot files from nas-------------------
     - name: get dot files 
-      copy:
-        remote_src: true
+      fetch:
+#        remote_src: true
         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
         dest: /home/mdries/ansible/src_dot_files/
+        flat: yes
       when: inventory_hostname in groups['nas']
 
 
