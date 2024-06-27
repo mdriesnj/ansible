@@ -1,5 +1,5 @@
     - name: Distribution
-      debug: msg="{{ ansible_distribution }}"
+#      debug: msg="{{ ansible_distribution }}"
 
     # - name: pause
     #   pause:
@@ -14,40 +14,40 @@
     #      var: ansible_facts    
     #  debug: msg="{{ ansible_default_ipv4 }}"
 
-# #----------- get dot files from nas-------------------
-#     - name: get dot files 
-#       become: true
-#       fetch:
-# #        remote_src: true
-#         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
-#         dest: /home/mdries/ansible/src_dot_files/.zshrc
-#         flat: yes
-#       when: inventory_hostname in groups['nas']
+ #----------- get dot files from nas-------------------
+     - name: get dot files 
+       become: true
+       fetch:
+ #        remote_src: true
+         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
+         dest: /home/mdries/ansible/src_dot_files/.zshrc
+         flat: yes
+       when: inventory_hostname in groups['nas']
 
 
     #---------- root ------------------
-    - name: root copy .zshrc
-      become: true
-      copy:
-        remote_src: false
-        src: /src_dot_files/.zshrc
-        dest: /root
-      when: inventory_hostname not in groups['nas']
+    # - name: root copy .zshrc
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /src_dot_files/.zshrc
+    #     dest: /root
+    #   when: inventory_hostname not in groups['nas']
 
-    - name: root create helix/config
-      become: true
-      file:
-        path: /root/.config/helix/
-        state: directory
-      when: inventory_hostname not in groups['nas']
+    # - name: root create helix/config
+    #   become: true
+    #   file:
+    #     path: /root/.config/helix/
+    #     state: directory
+    #   when: inventory_hostname not in groups['nas']
 
-    - name: root copy helix/config
-      become: true
-      copy:
-        remote_src: false
-        src: /src_dot_files/helix/config.toml
-        dest: /root/.config/helix/
-      when: inventory_hostname not in groups['nas']
+    # - name: root copy helix/config
+    #   become: true
+    #   copy:
+    #     remote_src: false
+    #     src: /src_dot_files/helix/config.toml
+    #     dest: /root/.config/helix/
+    #   when: inventory_hostname not in groups['nas']
 
     # - name: root create fastfetch/config
     #   become: true
@@ -81,28 +81,28 @@
 
 
     #---------- mdries ------------------    
-    - name: mdries copy .zshrc
-      copy:
-        remote_src: false
-        src: /src_dot_files/.zshrc
-        dest: /home/mdries
-        owner: mdries
-      when: inventory_hostname not in groups['nas']
+    # - name: mdries copy .zshrc
+    #   copy:
+    #     remote_src: false
+    #     src: /src_dot_files/.zshrc
+    #     dest: /home/mdries
+    #     owner: mdries
+    #   when: inventory_hostname not in groups['nas']
 
-    - name: mdries create helix/config
-      file:
-        path: /home/mdries/.config/helix/
-        state: directory
-        owner: mdries
-      when: inventory_hostname not in groups['nas']
+    # - name: mdries create helix/config
+    #   file:
+    #     path: /home/mdries/.config/helix/
+    #     state: directory
+    #     owner: mdries
+    #   when: inventory_hostname not in groups['nas']
 
-    - name: mdries copy helix/config
-      copy:
-        remote_src: false
-        src: /src_dot_files/helix/config.toml
-        dest: /home/mdries/.config/helix/
-        owner: mdries
-      when: inventory_hostname not in groups['nas']
+    # - name: mdries copy helix/config
+    #   copy:
+    #     remote_src: false
+    #     src: /src_dot_files/helix/config.toml
+    #     dest: /home/mdries/.config/helix/
+    #     owner: mdries
+    #   when: inventory_hostname not in groups['nas']
 
     # - name: mdries create fastfetch
     #   file:
