@@ -14,15 +14,24 @@
     #      var: ansible_facts    
     #  debug: msg="{{ ansible_default_ipv4 }}"
 
-# #----------- get dot files from nas-------------------
-#     - name: get dot files 
-#       become: true
-#       fetch:
-# #        remote_src: true
-#         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
-#         dest: /home/mdries/ansible/src_dot_files/.zshrc
-#         flat: yes
-#       when: inventory_hostname in groups['nas']
+    - name: get .zshrc files 
+      become: true
+      fetch:
+ #        remote_src: true
+        src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
+        dest: /src_dot_files/.zshrc
+        flat: yes
+      when: inventory_hostname in groups['nas']
+
+    - name: get helix files 
+      become: true
+      fetch:
+ #        remote_src: true
+        src: /volume1/homes/mdries/dotfiles/helix/config.toml
+        dest: /src_dot_files/helix/config.toml
+        flat: yes
+      when: inventory_hostname in groups['nas']
+
 
 
     #---------- root ------------------

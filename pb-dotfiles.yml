@@ -7,6 +7,4 @@
     #ansible_become_password: "{{ password | password_hash('sha512') }}"
     
   tasks:
-#    - include_tasks: tasks-install-omz.yml
-    - include_tasks: tasks-fetch-dotfiles.yml
-#    - include_tasks: tasks-dotfiles.yml
+    - include_tasks: tasks-dotfiles.yml
