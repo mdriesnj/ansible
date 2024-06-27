@@ -1,4 +1,4 @@
-    - name: Distribution
+#    - name: Distribution
 #      debug: msg="{{ ansible_distribution }}"
 
     # - name: pause
@@ -15,14 +15,14 @@
     #  debug: msg="{{ ansible_default_ipv4 }}"
 
  #----------- get dot files from nas-------------------
-     - name: get dot files 
-       become: true
-       fetch:
+    - name: get dot files 
+      become: true
+      fetch:
  #        remote_src: true
-         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
-         dest: /home/mdries/ansible/src_dot_files/.zshrc
-         flat: yes
-       when: inventory_hostname in groups['nas']
+        src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
+        dest: /home/mdries/ansible/src_dot_files/.zshrc
+        flat: yes
+      when: inventory_hostname in groups['nas']
 
 
     #---------- root ------------------
