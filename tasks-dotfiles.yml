@@ -16,6 +16,7 @@
 
 #----------- get dot files from nas-------------------
     - name: get dot files 
+      become: true
       fetch:
 #        remote_src: true
         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
