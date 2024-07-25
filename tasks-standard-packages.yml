@@ -70,32 +70,32 @@
 #        update_homebrew: false
 
 
-     - name: Copy HX
-       become: true
-       copy:
-         remote_src: false
-         src: /general-exe/hx
-         dest: /usr/bin/hx
-         mode: 0755
-         group: users
-       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
+    - name: Copy HX
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/hx
+        dest: /usr/bin/hx
+        mode: 0755
+        group: users
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
 
-     - name: Make helix runtime location
-       become: true
-       file:
-         path: /usr/share/helix
-         state: directory
-       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
+    - name: Make helix runtime location
+      become: true
+      file:
+        path: /usr/share/helix
+        state: directory
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
       
-     - name: Copy HX runtime
-       become: true
-       copy:
-         remote_src: false
-         src: /general-exe/runtime/
-         dest: /usr/share/helix/runtime
-         mode: 0755
-         group: users
-       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
+    - name: Copy HX runtime
+      become: true
+      copy:
+        remote_src: false
+        src: /general-exe/runtime/
+        dest: /usr/share/helix/runtime
+        mode: 0755
+        group: users
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname in groups['new_container']
 
 
     # - name: HomeBrew - procs
