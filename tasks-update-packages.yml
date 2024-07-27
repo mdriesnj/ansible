@@ -6,12 +6,12 @@
 #        seconds: 10
 
 #----Alpine
-    # - name: Update all installed packages to the latest versions
-    #   become: true
-    #   community.general.apk:
-    #     upgrade: true
-    #     update_cache: true
-    #   when: ansible_distribution == 'Alpine' 
+     - name: Update all installed packages to the latest versions
+       become: true
+       community.general.apk:
+         upgrade: true
+         update_cache: true
+       when: ansible_distribution == 'Alpine' 
 #----Debian
     - name: Debian hosts update apt packages
       become: true
