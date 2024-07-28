@@ -19,7 +19,7 @@
       fetch:
  #        remote_src: true
         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
-        dest: /src_dot_files/.zshrc
+        dest: /src_dot_files/zsh/.zshrc
         flat: yes
       when: inventory_hostname in groups['nas']
 
@@ -39,7 +39,7 @@
       become: true
       copy:
         remote_src: false
-        src: /src_dot_files/.zshrc
+        src: /src_dot_files/zsh/.zshrc
         dest: /root
       when: inventory_hostname not in groups['nas']
 
@@ -93,7 +93,7 @@
     - name: mdries copy .zshrc
       copy:
         remote_src: false
-        src: /src_dot_files/.zshrc
+        src: /src_dot_files/zsh/.zshrc
         dest: /home/mdries
         owner: mdries
       when: inventory_hostname not in groups['nas']
