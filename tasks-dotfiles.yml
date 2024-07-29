@@ -1,40 +1,9 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    # - name: pause
-    #   pause:
-    #     seconds: 10
 
-    #  - name: First run
-    #    debug: msg="{{ firstrun }}"
-    #  - name: ansible
-    #    debug: msg="{{ ansible_boot_image }}"
     #  - name: Print all available facts
-    #    ansible.builtin.debug:
-    #      var: ansible_facts    
-    #  debug: msg="{{ ansible_default_ipv4 }}"
-
-    - name: get .zshrc files 
-      become: true
-      fetch:
- #        remote_src: true
-        src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
-        dest: /src_dot_files/zsh/.zshrc
-        flat: yes
-      when: inventory_hostname in groups['nas']
-
-    - name: get helix files 
-      become: true
-      fetch:
- #        remote_src: true
-        src: /volume1/homes/mdries/dotfiles/helix/config.toml
-        dest: /src_dot_files/helix/config.toml
-        flat: yes
-      when: inventory_hostname in groups['nas']
-
-
-
-    #---------- root ------------------
+#---------- root ------------------
     - name: root copy .zshrc
       become: true
       copy:
@@ -58,38 +27,8 @@
         dest: /root/.config/helix/
       when: inventory_hostname not in groups['nas']
 
-    # - name: root create fastfetch/config
-    #   become: true
-    #   file:
-    #     path: /root/.config/fastfetch/
-    #     state: directory
-    #   when: inventory_hostname not in groups['nas']
-        
-    # - name: root copy fastfetch/config
-    #   become: true
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/fastfetch/config.jsonc
-    #     dest: /root/.config/fastfetch/
-    #   when: inventory_hostname not in groups['nas']
 
-    # - name: root create nvim/config
-    #   become: true
-    #   file:
-    #     path: /root/.config/nvim/
-    #     state: directory
-    #   when: inventory_hostname not in groups['nas']
-        
-    # - name: root copy nvim/config
-    #   become: true
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/nvim/
-    #     dest: /root/.config/nvim/
-    #   when: inventory_hostname not in groups['nas']
-
-
-    #---------- mdries ------------------    
+#---------- mdries ------------------    
     - name: mdries copy .zshrc
       copy:
         remote_src: false
@@ -113,44 +52,8 @@
         owner: mdries
       when: inventory_hostname not in groups['nas']
 
-    # - name: mdries create fastfetch
-    #   file:
-    #     path: /home/mdries/.config/fastfetch/
-    #     state: directory
-    #   when: inventory_hostname not in groups['nas']
-        
-    # - name: mdries copy fastfetch/config
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/fastfetch/config.jsonc
-    #     dest: /home/mdries/.config/fastfetch/
-    #   when: inventory_hostname not in groups['nas']
 
-    # - name: mdries create nvim
-    #   file:
-    #     path: /home/mdries/.config/nvim/
-    #     state: directory
-    #   when: inventory_hostname not in groups['nas']
-        
-    # - name: mdries copy nvim/config
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/nvim/
-    #     dest: /home/mdries/.config/nvim/
-    #   when: inventory_hostname not in groups['nas']
-
-
-    # - name: chown mdries
-    #   become: true
-    #   file:
-    #     path: /home/mdries
-    #     #state: directory
-    #     recurse: yes
-    #     owner: mdries
-    #     group: mdries
-    #   when: inventory_hostname not in groups['nas']
-
-#--------------------------------------------------NAS-------------------------------------------
+#---------- NAS ---------------------
     - name: NAS root copy .bashrc
       become: yes
       copy:
@@ -177,36 +80,23 @@
         owner: root
       when: inventory_hostname in groups['nas']
 
-    # - name: NAS root create fastfetch
-    #   become: yes
-    #   file:
-    #     path: /root/.config/fastfetch/
-    #     state: directory
-    #   when: inventory_hostname in groups['nas']
-        
-    # - name: NAS root copy fastfetch/config
-    #   become: yes
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/fastfetch/config.jsonc
-    #     dest: /root/.config/fastfetch/
-    #   when: inventory_hostname in groups['nas']
+#     - name: get .zshrc files 
+#       become: true
+#       fetch:
+#  #        remote_src: true
+#         src: /volume1/homes/mdries/dotfiles/zsh/.zshrc
+#         dest: /src_dot_files/zsh/.zshrc
+#         flat: yes
+#       when: inventory_hostname in groups['nas']
 
-    # - name: NAS root create nvim
-    #   become: yes
-    #   file:
-    #     path: /root/.config/nvim/
-    #     state: directory
-    #   when: inventory_hostname in groups['nas']
-        
-    # - name: NAS root copy nvim/config
-    #   become: yes
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/nvim/init.lua
-    #     dest: /root/.config/nvim/
-    #   when: inventory_hostname in groups['nas']
-    
+#     - name: get helix files 
+#       become: true
+#       fetch:
+#  #        remote_src: true
+#         src: /volume1/homes/mdries/dotfiles/helix/config.toml
+#         dest: /src_dot_files/helix/config.toml
+#         flat: yes
+#       when: inventory_hostname in groups['nas']
     
     - name: NAS mdries copy .bashrc
       copy:
@@ -231,31 +121,6 @@
         owner: mdries
       when: inventory_hostname in groups['nas']
 
-    # - name: NAS mdries create fastfetch
-    #   file:
-    #     path: /volume1/homes/mdries/.config/fastfetch/
-    #     state: directory
-    #   when: inventory_hostname in groups['nas']
-        
-    # - name: NAS mdries copy fastfetch/config
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/fastfetch/config.jsonc
-    #     dest: /volume1/homes/mdries/.config/fastfetch/
-    #   when: inventory_hostname in groups['nas']
-
-    # - name: NAS mdries create nvim
-    #   file:
-    #     path: /volume1/homes/mdries/.config/nvim/
-    #     state: directory
-    #   when: inventory_hostname in groups['nas']
-        
-    # - name: NAS mdries copy nvim/config
-    #   copy:
-    #     remote_src: false
-    #     src: /src_dot_files/nvim/init.lua
-    #     dest: /volume1/homes/mdries/.config/nvim/
-    #   when: inventory_hostname in groups['nas']
 
 
 #    - name: chown mdries

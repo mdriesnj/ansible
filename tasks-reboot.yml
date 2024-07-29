@@ -3,4 +3,4 @@
       reboot:
   #      msg: "rebooting"
         reboot_timeout: 15
-      when: inventory_hostname in groups['new_debian'] or inventory_hostname in groups['new_alpine'] 
+      when: inventory_hostname in groups['new_vm'] or inventory_hostname in groups['new_container'] 

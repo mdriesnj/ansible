@@ -1,10 +1,6 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    # - name: pause
-    #   pause:
-    #     seconds: 10
-
     - name: alpine - configure sshd without pam
       become: true
       lineinfile:
@@ -28,7 +24,6 @@
         - { key: "SyslogFacility", value: "AUTH" } 
         - { key: "LogLevel", value: "INFO" } 
         - { key: "ClientAliveInterval", value: "300" } 
-#      when: inventory_hostname in groups['new_alpine']
       when: ansible_distribution == 'Alpine'
 
     - name: debian - configure sshd with pam
@@ -57,15 +52,26 @@
         - { key: "ClientAliveInterval", value: "300" }   
       when: ansible_distribution == 'Debian' and inventory_hostname not in groups['pve']
     
-    - name: systemd stuff
+    - name: systemd stuff debian
       become: true
       systemd:
         daemon_reload: yes
       when: ansible_distribution == 'Debian' and inventory_hostname not in groups['pve']
        
-    - name: service stuff    
+    - name: service stuff  debian
       become: true
       service:
         name: sshd
         state: restarted
       when: ansible_distribution == 'Debian' and inventory_hostname not in groups['pve']  
+
+    - name: service stuff alpine   
+      become: true
+      service:
+        name: sshd
+        state: restarted
+      when: ansible_distribution == 'Alpine' 
+
+
+
+

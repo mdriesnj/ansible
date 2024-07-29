@@ -1,10 +1,6 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-#    - name: pause
-#      pause:
-#        seconds: 10
-
 #----Alpine
     - name: Update all installed packages to the latest versions
       become: true
@@ -12,6 +8,7 @@
         upgrade: true
         update_cache: true
       when: ansible_distribution == 'Alpine' 
+
 #----Debian
     - name: Debian hosts update apt packages
       become: true
@@ -20,11 +17,6 @@
         update_cache: yes
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
-    # - name: update homebrew
-    #   community.general.homebrew:
-    #     update_homebrew: true
-    #     upgrade_all: true
-    #   when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 #----Alma
     # - name: update yum package
@@ -34,36 +26,4 @@
     #     state: latest
     #   when: ansible_distribution == 'AlmaLinux'
 
-
-#    - name: upgrade all packages
-#      become: true
-#      command: "pkg_add -u"
-#      when: ansible_distribution == 'OpenBSD'
-
-#    - name: reboot host debian or alma
-#      become: true
-#      reboot:
-#        msg: "rebooting to upgrade"
-#        reboot_timeout: 15
-    
-#      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution == 'AlmaLinux') and inventory_hostname in groups['normal']
-
-
-#    - name: Apply all patches and store result
-#      become: true
-#      community.general.syspatch:
-#      register: syspatch
-#      when: ansible_distribution == 'OpenBSD' 
-
-#    - name: reboot host bsd
-#      become: true
-#      reboot:
-#        msg: "rebooting into bsd.rd to upgrade"
-#        reboot_timeout: 90   
-#      when: ansible_distribution == 'OpenBSD'
-
-#    - name: Reboot if patch requires it
-#      become: true
-#      ansible.builtin.reboot:
-#      when: ansible_distribution == 'OpenBSD' and syspatch.reboot_needed
 
