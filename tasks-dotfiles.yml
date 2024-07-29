@@ -2,7 +2,6 @@
       debug: msg="{{ ansible_distribution }}"
 
 
-    #  - name: Print all available facts
 #---------- root ------------------
     - name: root copy .zshrc
       become: true
