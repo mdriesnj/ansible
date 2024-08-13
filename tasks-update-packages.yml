@@ -19,17 +19,17 @@
 
 
 #----Alpine and Debian - sysctl 
-    - name: sysctl updates
-      become: true
-      sysctl:
-        name: '{{ item.key }}'
-        value: '{{ item.value }}'
-        sysctl_set: yes
-        state: present
-        reload: yes
-        ignoreerrors: yes
-      with_dict: '{{ sysctl_config }}'  
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='Alpine') and inventory_hostname not in groups['pve']
+#    - name: sysctl updates
+#      become: true
+#      sysctl:
+#        name: '{{ item.key }}'
+#        value: '{{ item.value }}'
+#        sysctl_set: yes
+#        state: present
+#        reload: yes
+#        ignoreerrors: yes
+#      with_dict: '{{ sysctl_config }}'  
+#      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='Alpine') and inventory_hostname not in groups['pve']
 
 
 #----Alma
