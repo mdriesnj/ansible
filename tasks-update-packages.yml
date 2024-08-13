@@ -18,8 +18,8 @@
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
 
 
-#----Debian - sysctl 
-    - name: Debian sysctl updates
+#----Alpine and Debian - sysctl 
+    - name: sysctl updates
       become: true
       sysctl:
         name: '{{ item.key }}'
@@ -29,7 +29,7 @@
         reload: yes
         ignoreerrors: yes
       with_dict: '{{ sysctl_config }}'  
-      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu' or ansible_distribution =='Alpine') and inventory_hostname not in groups['pve']
 
 
 #----Alma
