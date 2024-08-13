@@ -1,0 +1,22 @@
+#-----copy certs-----
+  - name: copy CA-2020 Cert
+    become: true
+    copy:
+      remote_src: false
+      src: /certs/CA-2020.crt
+      dst: /usr/local/share/ca-certificates
+    when: inventory_hostname not in groups['nas']
+
+  - name: copy ZScaler Cert
+    become: true
+    copy:
+      remote_src: false
+      src: /certs/ZscalerRootCertificate-2048-SHA256.crt
+      dst: /usr/local/share/ca-certificates
+    when: inventory_hostname not in groups['nas']
+
+#---- refresh certs ------------
+  - name: refresh certs
+    become: true
+    shell: /usr/sbin/update-ca-certificates
+    when: inventory_hostname not in groups['nas']
