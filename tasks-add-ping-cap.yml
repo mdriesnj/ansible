@@ -3,15 +3,15 @@
 
 
 #----- Alpine
-    - name: alpine - fix ping
-      become: true
-      ansible.posix.sysctl:
-        name: net.ipv4.ping_group_range
-        value: '0 1000'
-        sysctl_set: true
-        state: present
-        reload: true
-      when: inventory_hostname in groups['new_container'] and ansible_distribution == 'Alpine'
+#    - name: alpine - fix ping
+#      become: true
+#      ansible.posix.sysctl:
+#        name: net.ipv4.ping_group_range
+#        value: '0 1000'
+#        sysctl_set: true
+#        state: present
+#        reload: true
+#      when: inventory_hostname in groups['new_container'] and ansible_distribution == 'Alpine'
 
 #----- Debian
     - name: Set ping capabilitiy
