@@ -1,0 +1,19 @@
+---
+- hosts: normal
+  vars:
+#     LinuxBrew_PATH: "/usr/bin"
+#     EZA_FILE: "eza"
+#     HX_FILE: "hx"
+
+    # Setting this for unarchive to work
+    #ansible_remote_tmp: /tmp
+    #firstrun: true
+    #ansible_become_password: "{{ password | password_hash('sha512') }}"
+#  environment:
+#    HOMEBREW_PREFIX: /opt/linuxbrew/.linuxbrew
+#    HOMEBREW_CELLAR: /opt/linuxbrew/.linuxbrew/Cellar
+#    PATH: /opt/linuxbrew/bin:/op/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}
+
+  tasks:
+    - include_tasks: tasks-docker-restart.yml
+ 
