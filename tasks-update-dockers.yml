@@ -3,5 +3,5 @@
       become: yes
       args:
         chdir: /home/mdries/ansible
-      when: inventory_hostname in groups['pve']
+      when: inventory_hostname in groups['ansible']
  
