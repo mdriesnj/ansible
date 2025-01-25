@@ -1,7 +1,6 @@
     - name: update mgmt ansible
       ansible.builtin.command: /home/mdries/changedetection/update.sh
-      become: yes
-      args:
-        chdir: /home/mdries/changedetection
+#      args:
+#        chdir: /home/mdries/changedetection
       when: inventory_hostname in groups['changedetection']
  
