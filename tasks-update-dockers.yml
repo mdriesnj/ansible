@@ -2,6 +2,6 @@
       ansible.builtin.command: update.sh
       become: yes
       args:
-        chdir: /home/mdries/crashplan
-      when: inventory_hostname in groups['crashplan']
+        chdir: /home/mdries/changedetection
+      when: inventory_hostname in groups['changedetection']
  
