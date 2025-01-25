@@ -1,0 +1,7 @@
+    - name: update mgmt ansible
+      ansible.builtin.command: update.sh
+      become: yes
+      args:
+        chdir: /home/mdries/ansible
+      when: inventory_hostname in groups['pve']
+ 
