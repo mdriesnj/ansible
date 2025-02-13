@@ -22,7 +22,7 @@
       become: true
       copy:
         remote_src: false
-        src: /src_dot_files/helix/config.toml
+        src: /src_dot_files/.conf/helix/config.toml
         dest: /root/.config/helix/
       when: inventory_hostname not in groups['nas']
 
@@ -46,7 +46,7 @@
     - name: mdries copy helix/config
       copy:
         remote_src: false
-        src: /src_dot_files/helix/config.toml
+        src: /src_dot_files/.conf/helix/config.toml
         dest: /home/mdries/.config/helix/
         owner: mdries
       when: inventory_hostname not in groups['nas']
@@ -74,7 +74,7 @@
       become: yes
       copy:
         remote_src: false
-        src: /src_dot_files/helix/config.toml
+        src: /src_dot_files/.conf/helix/config.toml
         dest: /root/.config/helix/
         owner: root
       when: inventory_hostname in groups['nas']
@@ -93,7 +93,7 @@
 #       fetch:
 #  #        remote_src: true
 #         src: /volume1/homes/mdries/dotfiles/helix/config.toml
-#         dest: /src_dot_files/helix/config.toml
+#         dest: /src_dot_files/.conf/helix/config.toml
 #         flat: yes
 #       when: inventory_hostname in groups['nas']
     
@@ -115,7 +115,7 @@
     - name: NAS mdries copy helix/config
       copy:
         remote_src: false
-        src: /src_dot_files/helix/config.toml
+        src: /src_dot_files/.conf/helix/config.toml
         dest: /volume1/homes/mdries/.config/helix/
         owner: mdries
       when: inventory_hostname in groups['nas']
