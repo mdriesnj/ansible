@@ -22,7 +22,7 @@
       become: true
       copy:
         remote_src: false
-        src: /src_dot_files/.conf/helix/config.toml
+        src: /src_dot_files/.config/helix/config.toml
         dest: /root/.config/helix/
       when: inventory_hostname not in groups['nas']
 
