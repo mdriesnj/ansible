@@ -167,7 +167,7 @@
           - git
           - helix 
 # #          - neofetch
-          - lsd
+#          - lsd
           - qemu-guest-agent
           - net-tools
 # #          - ranger
