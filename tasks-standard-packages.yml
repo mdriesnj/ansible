@@ -132,64 +132,64 @@
 
 #-------- Alm-------------------------    
 
-     - name: alma dnf install 1
-       become: true
-       dnf:
-         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-         state: present
-         validate_certs: no
-         disable_gpg_check: true
-       when: ansible_distribution == 'AlmaLinux'
+    - name: alma dnf install 1
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: ansible_distribution == 'AlmaLinux'
 
-     - name: alma dnf install 2
-       become: true
-       dnf:
-         name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-         state: present
-         validate_certs: no
-         disable_gpg_check: true
-       when: ansible_distribution == 'AlmaLinux'
+    - name: alma dnf install 2
+      become: true
+      dnf:
+        name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        state: present
+        validate_certs: no
+        disable_gpg_check: true
+      when: ansible_distribution == 'AlmaLinux'
 
-     - name: alma packages
-       become: true
-       yum:
-         name: 
-           - btop
+    - name: alma packages
+      become: true
+      yum:
+        name: 
+          - btop
 # #          - build-essential
 # #          - clang
-           - curl
-           - docker
-           - docker-compose
-           - eza
-# #          - fd-find
+          - curl
+          - docker
+          - docker-compose
+          - eza
+# #         - fd-find
 # #          - fzf
 # #          - gcc
-           - git
-           - helix 
+          - git
+          - helix 
 # #          - neofetch
-           - qemu-guest-agent
-           - net-tools
+          - qemu-guest-agent
+          - net-tools
 # #          - ranger
 # #          - ripgrep
 # #          - tldr
 #           - tmux
-           - wget
-           - zsh
+          - wget
+          - zsh
 # #          - xz-utils
-         state: latest
-       when: ansible_distribution == 'AlmaLinux'
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
 
-     - name: alma remove imagemagick
-       become: true
-       yum:
-         name: 
-           - ImageMagick
-           - ImageMagick-libs.x86_64
-           - ImageMagick-libs-6.9.12.93-1.el9.x86_64
-           - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
-           - ImageMagick-libs.x86_64
-         state: absent
-         autoremove: yes
-       when: ansible_distribution == 'AlmaLinux'
+    - name: alma remove imagemagick
+      become: true
+      yum:
+        name: 
+          - ImageMagick
+          - ImageMagick-libs.x86_64
+          - ImageMagick-libs-6.9.12.93-1.el9.x86_64
+          - ImageMagick-libs.x86_64.6.9.12.93-1.el9 
+          - ImageMagick-libs.x86_64
+        state: absent
+        autoremove: yes
+      when: ansible_distribution == 'AlmaLinux'
 
 
