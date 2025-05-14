@@ -45,7 +45,7 @@
 
 #----Debian
     - name: Remove dependencies that are no longer required
-      become:
+      become: true
       apt:
         autoremove: yes
       when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
