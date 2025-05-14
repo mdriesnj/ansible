@@ -10,6 +10,7 @@
       when: ansible_distribution == 'Alpine' 
 
     - name: Run Shell Command with Pipe and Capture Status
+      become: true
       shell: "set -o pipefail; apk -u list | grep '^linux-virt'; echo $?"
       register: pipe_status_result
       changed_when: false
@@ -26,11 +27,13 @@
       when: ansible_distribution == 'Alpine' 
 
     - name: Upgrade Alpine Linux packages now
+      become: true
       community.general.apk:
           upgrade: yes
       when: ansible_distribution == 'Alpine' 
 
     - name: Reboot the system if a kernel update is installed
+      become: true
       reboot:
           msg: "Reboot initiated by Ansible for kernel updates"
           connect_timeout: 5
