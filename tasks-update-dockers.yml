@@ -1,4 +1,4 @@
-    - name: update mgmt ansible
+    - name: update dockers
       ansible.builtin.command: /home/mdries/update-dockers.sh
 #      args:
 #        chdir: /home/mdries/changedetection
