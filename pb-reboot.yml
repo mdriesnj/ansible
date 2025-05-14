@@ -1,0 +1,6 @@
+---
+- hosts: normal
+
+  tasks:
+    - include_tasks: tasks-reboot.yml
+ 
