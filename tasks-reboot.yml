@@ -1,6 +1,32 @@
-    - name: reboot host 
+#    - name: reboot host 
+#      become: true
+#      reboot:
+#        msg: "rebooting"
+#        reboot_timeout: 15
+#      when: inventory_hostname in groups['new_vm'] or inventory_hostname in groups['new_container'] 
+
+#----Alpine
+    - name: Reboot the system if a kernel update is installed
       become: true
       reboot:
-  #      msg: "rebooting"
-        reboot_timeout: 15
-      when: inventory_hostname in groups['new_vm'] or inventory_hostname in groups['new_container'] 
+          msg: "Reboot initiated by Ansible for kernel updates"
+          connect_timeout: 5
+          reboot_timeout: 120
+          pre_reboot_delay: 0
+          post_reboot_delay: 30
+          test_command: uptime
+      when: ansible_distribution == 'Alpine'
+
+#----Debian
+    - name: Reboot box if kernel/libs updated and requested by the system
+      shell: sleep 10 && /sbin/shutdown -r now 'Rebooting box to update system libs/kernel as needed' 
+      async: 300
+      poll: 0
+      ignore_errors: true
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+
+    - name: Wait for system to become reachable again
+      wait_for_connection:
+          delay: 30
+          timeout: 120
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
