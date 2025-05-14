@@ -13,28 +13,33 @@
       shell: "set -o pipefail; apk -u list | grep '^linux-virt'; echo $?"
       register: pipe_status_result
       changed_when: false
+      when: ansible_distribution == 'Alpine' 
 
     - name: Extract Exit Status from Result
       set_fact:
         pipe_exit_status: "{{ pipe_status_result.stdout_lines[-1] }}"
+      when: ansible_distribution == 'Alpine' 
 
     - name: Print the value of the variable "pipe_exit_status"
       debug:
           var: pipe_exit_status
+      when: ansible_distribution == 'Alpine' 
 
     - name: Upgrade Alpine Linux packages now
       community.general.apk:
           upgrade: yes
+      when: ansible_distribution == 'Alpine' 
 
     - name: Reboot the system if a kernel update is installed
       reboot:
           msg: "Reboot initiated by Ansible for kernel updates"
           connect_timeout: 5
-          reboot_timeout: 600
+          reboot_timeout: 120
           pre_reboot_delay: 0
           post_reboot_delay: 30
           test_command: uptime
-      when: pipe_exit_status == 0
+      when: pipe_exit_status == 0 and ansible_distribution == 'Alpine' 
+
 
 #----Debian
     - name: Debian hosts update apt packages
