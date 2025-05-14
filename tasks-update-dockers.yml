@@ -1,6 +1,6 @@
     - name: update mgmt ansible
-      ansible.builtin.command: /home/mdries/update.sh
+      ansible.builtin.command: /home/mdries/update-dockers.sh
 #      args:
 #        chdir: /home/mdries/changedetection
-      when: inventory_hostname in groups['changedetection']
+      when: inventory_hostname in groups['normal']
  
