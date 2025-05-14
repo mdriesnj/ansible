@@ -44,6 +44,11 @@
       when: ansible_distribution == 'Alpine' and pipe_exit_status == 0
 
 #----Debian
+    - name: Remove dependencies that are no longer required
+      ansible.builtin.apt:
+      autoremove: yes
+      when: (ansible_distribution == 'Debian' or ansible_distribution =='Ubuntu') and inventory_hostname not in groups['pve']
+    
     - name: Debian hosts update apt packages
       become: true
       apt:
