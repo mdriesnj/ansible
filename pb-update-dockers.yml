@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: normal
   tasks:
     - include_tasks: tasks-update-dockers.yml
  
