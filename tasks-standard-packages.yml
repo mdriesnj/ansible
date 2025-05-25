@@ -6,7 +6,7 @@
     - name: Alpine install 
       become: true
       apk:
-        name:  bat, btop, curl, git, lsd, qemu-guest-agent, tmux, wget, zsh-syntax-highlighting, docker, docker-compose
+        name:  bat, btop, curl, git, lsd, mosh-server, qemu-guest-agent, tmux, wget, zsh-syntax-highlighting, docker, docker-compose
         state: latest
         update_cache: true
       when: ansible_distribution == 'Alpine'
@@ -36,6 +36,7 @@
           - git 
 #          - neofetch
           - lsd
+          - mosh
           - qemu-guest-agent
           - net-tools   
 #          - ranger
