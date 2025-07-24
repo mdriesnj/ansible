@@ -6,7 +6,8 @@
     - name: Alpine install 
       become: true
       apk:
-        name:  bat, btop, curl, git, lsd, mosh-server, qemu-guest-agent, tmux, wget, zsh-syntax-highlighting, docker, docker-compose
+        name:  bat, btop, git, lsd, qemu-guest-agent, wget, zsh-syntax-highlighting, docker, docker-compose
+        # curl
         state: latest
         update_cache: true
       when: ansible_distribution == 'Alpine'
