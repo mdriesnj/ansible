@@ -4,4 +4,4 @@
       ansible.builtin.cron:
         name: clear caches every hour
         special_time: reboot
-        job: @hourly sync; echo 1 > /proc/sys/vm/drop_caches
+        job: "@hourly sync; echo 1 > /proc/sys/vm/drop_caches"
