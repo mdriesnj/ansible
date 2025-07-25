@@ -38,13 +38,13 @@
           - git 
 #          - neofetch
           - lsd
-          - mosh
+#          - mosh
           - qemu-guest-agent
           - net-tools   
 #          - ranger
 #          - ripgrep
 #          - tldr
-          - tmux
+ #         - tmux
           - wget
           - zsh
           - zsh-syntax-highlighting
