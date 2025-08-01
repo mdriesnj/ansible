@@ -4,7 +4,7 @@
 #----Alpine
     - name: Update all installed packages to the latest versions
       become: true
-      apk:
+      community.general.apk:
         upgrade: true
         update_cache: true
       when: ansible_distribution == 'Alpine' 
