@@ -1,5 +1,5 @@
-#     - name: Distribution
-#       debug: msg="{{ ansible_distribution }}"
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
 
 #----Alpine
     - name: Update all installed packages to the latest versions
