@@ -1,6 +1,9 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
+    - ansible.builtin.debug:
+      msg: "{{ command_output }}"
+
 #----Alpine
     - name: Update all installed packages to the latest versions
       become: true
