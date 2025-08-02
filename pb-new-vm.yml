@@ -1,7 +1,7 @@
 ---
 - hosts: new_vm
   vars:
-
+  gather_facts: yes
   tasks:
     - include_tasks: tasks-update-packages.yml
     - include_tasks: tasks-standard-packages.yml
