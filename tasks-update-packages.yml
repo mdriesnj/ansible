@@ -1,7 +1,8 @@
     - name: Distribution
       debug: msg="{{ ansible_distribution }}"
 
-    - ansible.builtin.debug:
+    - name: test debug
+      ansible.builtin.debug:
       msg: "{{ command_output }}"
 
 #----Alpine
