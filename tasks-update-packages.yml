@@ -30,8 +30,9 @@
     - name: Upgrade Alpine Linux packages now
       become: true
       apk:
-        available: yes
-        upgrade: yes
+        name: *
+        #available: yes
+        state: latest
       when: ansible_distribution == 'Alpine' 
 
     - name: Reboot the system if a kernel update is installed
