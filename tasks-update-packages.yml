@@ -30,6 +30,7 @@
     - name: Upgrade Alpine Linux packages now
       become: true
       apk:
+        available: yes
         upgrade: yes
       when: ansible_distribution == 'Alpine' 
 
