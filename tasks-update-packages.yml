@@ -28,11 +28,12 @@
       when: ansible_distribution == 'Alpine' 
 
     - name: Upgrade Alpine Linux packages now
-      become: true
-      apk:
-        name: *
+      #become: true
+      community.general.apk:
+       # name: *
         #available: yes
-        state: latest
+       # state: latest
+         upgrade: true
       when: ansible_distribution == 'Alpine' 
 
     - name: Reboot the system if a kernel update is installed
