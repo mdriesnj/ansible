@@ -27,14 +27,14 @@
           var: pipe_exit_status
       when: ansible_distribution == 'Alpine' 
 
-    - name: Upgrade Alpine Linux packages now
+#    - name: Upgrade Alpine Linux packages now
       #become: true
       #community.general.apk:
        # name: *
         #available: yes
        # state: latest
        #  upgrade: true
-      when: ansible_distribution == 'Alpine' 
+ #     when: ansible_distribution == 'Alpine' 
 
     - name: Reboot the system if a kernel update is installed
       become: true
